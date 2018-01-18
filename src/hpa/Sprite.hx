@@ -1,13 +1,11 @@
 package hpa;
 
-class Sprite
+class Sprite extends phaser.Sprite
 {
-    public var sprite:phaser.Sprite;
-
-    public var key:String;
-
     public function new(?key)
     {
-        this.key = key;
+        super(Lib.game, 0, 0, key);
+        Lib.game.add.existing(this);
+        kill();
     }
 }

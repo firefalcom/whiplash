@@ -18,7 +18,6 @@ class SpriteSystem extends ListIteratingSystem<SpriteNode>
     public function new(game)
     {
         super(SpriteNode, updateNode, onNodeAdded, onNodeRemoved);
-
         this.game = game;
     }
 
@@ -35,7 +34,7 @@ class SpriteSystem extends ListIteratingSystem<SpriteNode>
     private function updateNode(node:SpriteNode, dt:Float):Void
     {
         var position = node.transform.position;
-        var sprite = node.sprite.sprite;
+        var sprite = node.sprite;
         sprite.position.x = position.x;
         sprite.position.y = position.y;
     }
@@ -43,12 +42,14 @@ class SpriteSystem extends ListIteratingSystem<SpriteNode>
     private function onNodeAdded(node:SpriteNode)
     {
         var position = node.transform.position;
-        node.sprite.sprite = game.add.sprite(position.x, position.x, node.sprite.key);
+        var sprite = node.sprite;
+        sprite.position.x = position.x;
+        sprite.position.y = position.y;
+        sprite.revive();
     }
 
     private function onNodeRemoved(node:SpriteNode)
     {
-        node.sprite.sprite.destroy();
-        node.sprite.sprite = null;
+        node.sprite.kill();
     }
 }
