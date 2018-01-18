@@ -35,7 +35,11 @@ class MoveSystem extends ListIteratingSystem<MoveNode>
     private function updateNode(node:MoveNode, dt:Float):Void
     {
         node.move.time += dt;
-        node.transform.position.x = 300 + Math.sin(node.move.time) * 200;
+        var t = node.move.time;
+        node.transform.position.x = 400 + Math.sin(t) * 200;
+        node.transform.rotation += dt * 10;
+        node.transform.scale.x = 1 + Math.cos(t) * 0.2;
+        node.transform.scale.y = 1 + Math.cos(t) * 0.2;
     }
 }
 
@@ -47,9 +51,8 @@ class Test
     public function new()
     {
         game = new Game(800, 600, Phaser.CANVAS, 'haxe-phaser-ash test', { preload:preload, create:create, update:update });
-        hpa.Lib.init(game);
         engine = new Engine();
-        engine.addSystem(new SpriteSystem(game), 1);
+        hpa.Lib.init(game, engine);
         engine.addSystem(new MoveSystem(), 1);
     }
 
@@ -68,7 +71,6 @@ class Test
         engine.removeEntity(entity);
         entity.get(Sprite).anchor = new Point(0.5, 0.5);
         engine.addEntity(entity);
-
         entity.get(Transform).position.set(400, 300);
     }
 
