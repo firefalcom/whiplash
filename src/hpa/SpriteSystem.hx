@@ -21,35 +21,32 @@ class SpriteSystem extends ListIteratingSystem<SpriteNode>
         this.game = game;
     }
 
-    public override function addToEngine(engine:Engine)
-    {
-        super.addToEngine(engine);
-    }
-
-    public override function removeFromEngine(engine:Engine)
-    {
-        super.removeFromEngine(engine);
-    }
-
     private function updateNode(node:SpriteNode, dt:Float):Void
     {
-        var position = node.transform.position;
-        var sprite = node.sprite;
-        sprite.position.x = position.x;
-        sprite.position.y = position.y;
+        apply(node);
     }
 
     private function onNodeAdded(node:SpriteNode)
     {
-        var position = node.transform.position;
-        var sprite = node.sprite;
-        sprite.position.x = position.x;
-        sprite.position.y = position.y;
-        sprite.revive();
+        apply(node);
+        node.sprite.revive();
     }
 
     private function onNodeRemoved(node:SpriteNode)
     {
         node.sprite.kill();
+    }
+
+    private inline function apply(node:SpriteNode)
+    {
+        var transform = node.transform;
+        var position = transform.position;
+        var scale = transform.scale;
+        var sprite = node.sprite;
+        sprite.position.x = position.x;
+        sprite.position.y = position.y;
+        sprite.scale.x = scale.x;
+        sprite.scale.y = scale.y;
+        sprite.angle = transform.rotation;
     }
 }
