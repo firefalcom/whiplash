@@ -1,0 +1,7 @@
+-cp .
+-cp ../src/
+-js generated.js
+-main Test
+-lib phaser
+-lib ash
+
