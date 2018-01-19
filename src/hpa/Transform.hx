@@ -2,7 +2,7 @@ package hpa;
 
 class Transform
 {
-    public var position:phaser.Point = new phaser.Point();
+    public var position:Point = new Point();
     public var rotation:Float;
     public var scale:phaser.Point = new phaser.Point();
 

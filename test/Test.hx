@@ -3,7 +3,6 @@ package;
 import js.Lib;
 import phaser.Game;
 import phaser.Phaser;
-import phaser.Point;
 import ash.core.Entity;
 import ash.core.Engine;
 import ash.tools.ListIteratingSystem;
@@ -71,7 +70,8 @@ class Test
         engine.removeEntity(entity);
         entity.get(Sprite).anchor = new Point(0.5, 0.5);
         engine.addEntity(entity);
-        entity.get(Transform).position.set(400, 300);
+        var p = new Point(200, 150);
+        entity.get(Transform).position = p * 2;
     }
 
     function update():Void
