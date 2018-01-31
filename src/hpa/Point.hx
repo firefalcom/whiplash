@@ -1,12 +1,22 @@
 package hpa;
 
+#if under_test
+    typedef SourcePoint = {x:Float, y:Float};
+#else
+    typedef SourcePoint = phaser.Point;
+#end
+
 @:forward
-abstract Point(phaser.Point) to phaser.Point from phaser.Point
+abstract Point(SourcePoint) to SourcePoint from SourcePoint
 {
     @:selfCall
     inline public function new(x:Float = 0.0, y:Float = 0.0)
     {
-        this = new phaser.Point(x, y);
+        #if under_test
+            this = { x:x, y:y };
+        #else
+            this = new SourcePoint(x, y);
+        #end
     }
 
     @:op(A * B)
