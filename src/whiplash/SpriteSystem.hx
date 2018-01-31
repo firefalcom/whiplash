@@ -5,40 +5,33 @@ import ash.core.Engine;
 import ash.core.Node;
 import phaser.Game;
 
-class SpriteNode extends Node<SpriteNode>
-{
+class SpriteNode extends Node<SpriteNode> {
     public var transform:Transform;
     public var sprite:Sprite;
 }
 
-class SpriteSystem extends ListIteratingSystem<SpriteNode>
-{
+class SpriteSystem extends ListIteratingSystem<SpriteNode> {
     private var game:Game;
 
-    public function new(game)
-    {
+    public function new(game) {
         super(SpriteNode, updateNode, onNodeAdded, onNodeRemoved);
         this.game = game;
     }
 
-    private function updateNode(node:SpriteNode, dt:Float):Void
-    {
+    private function updateNode(node:SpriteNode, dt:Float):Void {
         apply(node);
     }
 
-    private function onNodeAdded(node:SpriteNode)
-    {
+    private function onNodeAdded(node:SpriteNode) {
         apply(node);
         node.sprite.revive();
     }
 
-    private function onNodeRemoved(node:SpriteNode)
-    {
+    private function onNodeRemoved(node:SpriteNode) {
         node.sprite.kill();
     }
 
-    private inline function apply(node:SpriteNode)
-    {
+    private inline function apply(node:SpriteNode) {
         var transform = node.transform;
         var position = transform.position;
         var scale = transform.scale;
