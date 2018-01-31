@@ -7,7 +7,7 @@ import ash.core.Entity;
 import ash.core.Engine;
 import ash.tools.ListIteratingSystem;
 import ash.core.Node;
-import hpa.*;
+import whiplash.*;
 
 class Move
 {
@@ -51,7 +51,7 @@ class Test
     {
         game = new Game(800, 600, Phaser.CANVAS, 'haxe-phaser-ash test', { preload:preload, create:create, update:update });
         engine = new Engine();
-        hpa.Lib.init(game, engine);
+        whiplash.Lib.init(game, engine);
         engine.addSystem(new MoveSystem(), 1);
     }
 

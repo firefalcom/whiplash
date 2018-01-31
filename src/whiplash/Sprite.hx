@@ -1,4 +1,4 @@
-package hpa;
+package whiplash;
 
 class Sprite extends phaser.Sprite
 {

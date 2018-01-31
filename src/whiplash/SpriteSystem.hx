@@ -1,4 +1,4 @@
-package hpa;
+package whiplash;
 
 import ash.tools.ListIteratingSystem;
 import ash.core.Engine;

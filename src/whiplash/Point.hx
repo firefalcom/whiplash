@@ -1,4 +1,4 @@
-package hpa;
+package whiplash;
 
 #if under_test
     typedef SourcePoint = {x:Float, y:Float};
