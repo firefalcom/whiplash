@@ -36,4 +36,13 @@ abstract Point(SourcePoint) to SourcePoint from SourcePoint {
     inline static public function min(a:Point, b:Point) {
         return new Point(a.x - b.x, a.y - b.y);
     }
+
+    public function getDistance(other : Point):Float{
+        var delta = ( this - other );
+        return Math.sqrt( delta.x * delta.x + delta.y * delta.y );
+    }
+
+    public function getAngle() : Float{
+        return Math.atan2( this.y, this.x );
+    }
 }
