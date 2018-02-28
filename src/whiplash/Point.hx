@@ -18,11 +18,13 @@ abstract Point(SourcePoint) to SourcePoint from SourcePoint {
     }
 
     @:op(A * B)
+    @:commutative
     inline static public function mul(a:Point, b:Float) {
         return new Point(a.x * b, a.y * b);
     }
 
     @:op(A / B)
+    @:commutative
     inline static public function div(a:Point, b:Float) {
         return new Point(a.x / b, a.y / b);
     }
@@ -38,11 +40,11 @@ abstract Point(SourcePoint) to SourcePoint from SourcePoint {
     }
 
     public function getDistance(other : Point):Float{
-        var delta = ( this - other );
-        return Math.sqrt( delta.x * delta.x + delta.y * delta.y );
+        var delta = (this - other);
+        return Math.sqrt(delta.x * delta.x + delta.y * delta.y);
     }
 
     public function getAngle() : Float{
-        return Math.atan2( this.y, this.x );
+        return Math.atan2(this.y, this.x);
     }
 }
