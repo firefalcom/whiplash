@@ -77,6 +77,12 @@ class Test {
         text.fill = 'white';
         text.addStrokeColor('#ff0000');
         entity.get(Transform).position = new Point(400, 500);
+
+        entity.add(new Graphics());
+        var graphics = entity.get(Graphics);
+        graphics.lineStyle(2, 0x0000FF, 1);
+        graphics.drawRect(-200, 40, 400, 20);
+
         engine.addEntity(entity);
     }
 
