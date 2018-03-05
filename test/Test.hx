@@ -62,6 +62,22 @@ class Test {
         engine.addEntity(entity);
         var p = new Point(200, 150);
         entity.get(Transform).position = p * 2;
+
+        entity = new Entity();
+        entity.add(new Transform());
+        entity.add(new Text("Whiplash!"));
+        var text = entity.get(Text);
+        text.anchor.set(0.5);
+        text.align = 'center';
+        text.font = 'Arial Black';
+        text.fontSize = 50;
+        text.fontWeight = 'bold';
+        text.stroke = '#000000';
+        text.strokeThickness = 8;
+        text.fill = 'white';
+        text.addStrokeColor('#ff0000');
+        entity.get(Transform).position = new Point(400, 500);
+        engine.addEntity(entity);
     }
 
     function update():Void {
