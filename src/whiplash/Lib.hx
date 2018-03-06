@@ -8,5 +8,6 @@ class Lib {
     static public function init(_game:Game, engine:ash.core.Engine) {
         game = _game;
         engine.addSystem(new SpriteSystem(game), 1);
+        engine.addSystem(new TextSystem(game), 1);
     }
 }
