@@ -47,4 +47,8 @@ abstract Point(SourcePoint) to SourcePoint from SourcePoint {
     public function getAngle() : Float{
         return Math.atan2(this.y, this.x);
     }
+
+    public function getLength() : Float{
+        return Math.sqrt(this.x * this.x + this.y * this.y);
+    }
 }
