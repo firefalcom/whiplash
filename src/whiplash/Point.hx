@@ -51,4 +51,11 @@ abstract Point(SourcePoint) to SourcePoint from SourcePoint {
     public function getLength() : Float{
         return Math.sqrt(this.x * this.x + this.y * this.y);
     }
+
+#if under_test
+    public function normalize():Point{
+        var length = getLength();
+        return {x:this.x/length, y:this.y/length};
+    }
+#end
 }
