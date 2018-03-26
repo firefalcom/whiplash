@@ -2,8 +2,8 @@ package whiplash;
 
 class Sprite extends phaser.Sprite {
     public function new(?key) {
-        super(Lib.game, 0, 0, key);
-        Lib.game.add.existing(this);
+        super(Lib.phaserGame, 0, 0, key);
+        Lib.phaserGame.add.existing(this);
         kill();
     }
 }

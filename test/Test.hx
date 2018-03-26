@@ -8,6 +8,9 @@ import ash.core.Engine;
 import ash.tools.ListIteratingSystem;
 import ash.core.Node;
 import whiplash.*;
+import babylonx.tools.math.*;
+import babylonx.cameras.*;
+import babylonx.lights.PointLight;
 
 class Move {
     public var time:Float = 0.0;
@@ -36,19 +39,38 @@ class MoveSystem extends ListIteratingSystem<MoveNode> {
     }
 }
 
+class Move3DNode extends Node<Move3DNode> {
+    public var move:Move;
+    public var transform:Transform3D;
+}
+
+class Move3DSystem extends ListIteratingSystem<Move3DNode> {
+    public function new() {
+        super(Move3DNode, updateNode);
+    }
+
+    private function updateNode(node:Move3DNode, dt:Float):Void {
+        node.move.time += dt;
+        var t = node.move.time;
+        // node.transform.position.x = 400 + Math.sin(t) * 200;
+        node.transform.scale.x = 1 + Math.cos(t) * 0.2;
+        node.transform.scale.y = 1 + Math.cos(t) * 0.2;
+    }
+}
+
 class Test {
-    var game:Game;
-    var engine:Engine;
+    var scene:babylonx.Scene;
+    var engine:ash.core.Engine;
 
     public function new() {
-        game = new Game(800, 600, Phaser.CANVAS, 'haxe-phaser-ash test', { preload:preload, create:create, update:update });
-        engine = new Engine();
-        whiplash.Lib.init(game, engine);
+        whiplash.Lib.init({ preload:preload, create:create, update:update });
+        engine = whiplash.Lib.ashEngine;
         engine.addSystem(new MoveSystem(), 1);
+        engine.addSystem(new Move3DSystem(), 1);
     }
 
     function preload():Void {
-        game.load.image('logo', 'firefalcom.png');
+        whiplash.Lib.phaserGame.load.image('logo', 'firefalcom.png');
     }
 
     function create():Void {
@@ -67,7 +89,7 @@ class Test {
         entity.add(new Transform());
         entity.add(new Text("Whiplash!"));
         var text = entity.get(Text);
-        text.anchor.set(0.5);
+        text.anchor.set(0.5, 0.5);
         text.align = 'center';
         text.font = 'Arial Black';
         text.fontSize = 50;
@@ -75,7 +97,7 @@ class Test {
         text.stroke = '#000000';
         text.strokeThickness = 8;
         text.fill = 'white';
-        text.addStrokeColor('#ff0000');
+        text.addStrokeColor('#ff0000', 0);
         entity.get(Transform).position = new Point(400, 500);
 
         entity.add(new Graphics());
@@ -84,10 +106,22 @@ class Test {
         graphics.drawRect(-200, 40, 400, 20);
 
         engine.addEntity(entity);
+
+        scene = new babylonx.Scene(whiplash.Lib.babylonEngine);
+        var camera = new FreeCamera("Camera", new Vector3(0, 1, 0), scene);
+        new PointLight("Omni0", new Vector3(0, 100, -100), scene);
+        var sphere = babylonx.mesh.Mesh.CreateSphere("Sphere", 16, 3, scene);
+        var entity = new Entity();
+        entity.add(new Mesh(sphere));
+        entity.add(new Move());
+        entity.add(new Transform3D());
+        entity.get(Transform3D).position.z = 8;
+        engine.addEntity(entity);
     }
 
     function update():Void {
-        engine.update(game.time.elapsed / 1000);
+        engine.update(whiplash.Lib.phaserGame.time.elapsed / 1000);
+        scene.render();
     }
 
     static function main():Void {
