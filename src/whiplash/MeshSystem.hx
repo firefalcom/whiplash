@@ -5,7 +5,7 @@ import ash.core.Engine;
 import ash.core.Node;
 
 class MeshNode extends Node<MeshNode> {
-    public var transform:Transform3D;
+    public var transform:Transform3d;
     public var mesh:Mesh;
 }
 

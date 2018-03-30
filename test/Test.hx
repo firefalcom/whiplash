@@ -41,7 +41,7 @@ class MoveSystem extends ListIteratingSystem<MoveNode> {
 
 class Move3DNode extends Node<Move3DNode> {
     public var move:Move;
-    public var transform:Transform3D;
+    public var transform:Transform3d;
 }
 
 class Move3DSystem extends ListIteratingSystem<Move3DNode> {
@@ -63,7 +63,7 @@ class Test {
     var engine:ash.core.Engine;
 
     public function new() {
-        whiplash.Lib.init({ preload:preload, create:create, update:update });
+        whiplash.Lib.init({preload:preload, create:create, update:update});
         engine = whiplash.Lib.ashEngine;
         engine.addSystem(new MoveSystem(), 1);
         engine.addSystem(new Move3DSystem(), 1);
@@ -114,8 +114,8 @@ class Test {
         var entity = new Entity();
         entity.add(new Mesh(sphere));
         entity.add(new Move());
-        entity.add(new Transform3D());
-        entity.get(Transform3D).position.z = 8;
+        entity.add(new Transform3d());
+        entity.get(Transform3d).position.z = 8;
         engine.addEntity(entity);
     }
 
