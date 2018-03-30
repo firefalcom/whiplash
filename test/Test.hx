@@ -10,7 +10,6 @@ import ash.core.Node;
 import whiplash.*;
 import babylonx.tools.math.*;
 import babylonx.cameras.*;
-import babylonx.lights.PointLight;
 
 class Move {
     public var time:Float = 0.0;
@@ -39,20 +38,43 @@ class MoveSystem extends ListIteratingSystem<MoveNode> {
     }
 }
 
-class Move3DNode extends Node<Move3DNode> {
+class Translate {
+    public var time:Float = 0.0;
+
+    public function new() {
+    }
+}
+
+class Translate3dNode extends Node<Translate3dNode> {
+    public var translate:Translate;
+    public var transform:Transform3d;
+}
+
+class Translate3dSystem extends ListIteratingSystem<Translate3dNode> {
+    public function new() {
+        super(Translate3dNode, updateNode);
+    }
+
+    private function updateNode(node:Translate3dNode, dt:Float):Void {
+        node.translate.time += dt;
+        var t = node.translate.time;
+        node.transform.position.x = Math.sin(t) * 100;
+    }
+}
+
+class Move3dNode extends Node<Move3dNode> {
     public var move:Move;
     public var transform:Transform3d;
 }
 
-class Move3DSystem extends ListIteratingSystem<Move3DNode> {
+class Move3dSystem extends ListIteratingSystem<Move3dNode> {
     public function new() {
-        super(Move3DNode, updateNode);
+        super(Move3dNode, updateNode);
     }
 
-    private function updateNode(node:Move3DNode, dt:Float):Void {
+    private function updateNode(node:Move3dNode, dt:Float):Void {
         node.move.time += dt;
         var t = node.move.time;
-        // node.transform.position.x = 400 + Math.sin(t) * 200;
         node.transform.scale.x = 1 + Math.cos(t) * 0.2;
         node.transform.scale.y = 1 + Math.cos(t) * 0.2;
     }
@@ -66,7 +88,8 @@ class Test {
         whiplash.Lib.init({preload:preload, create:create, update:update});
         engine = whiplash.Lib.ashEngine;
         engine.addSystem(new MoveSystem(), 1);
-        engine.addSystem(new Move3DSystem(), 1);
+        engine.addSystem(new Move3dSystem(), 1);
+        engine.addSystem(new Translate3dSystem(), 1);
     }
 
     function preload():Void {
@@ -109,10 +132,16 @@ class Test {
 
         scene = new babylonx.Scene(whiplash.Lib.babylonEngine);
         var camera = new FreeCamera("Camera", new Vector3(0, 1, 0), scene);
-        new PointLight("Omni0", new Vector3(0, 100, -100), scene);
-        var sphere = babylonx.mesh.Mesh.CreateSphere("Sphere", 16, 3, scene);
+
         var entity = new Entity();
-        entity.add(new Mesh(sphere));
+        entity.add(new PointLight(new babylonx.lights.PointLight("Omni0", Vector3.Zero(), scene)));
+        entity.add(new Translate());
+        entity.add(new Transform3d());
+        entity.get(Transform3d).position = new Vector3(0, 100, -100);
+        engine.addEntity(entity);
+
+        var entity = new Entity();
+        entity.add(new Mesh(babylonx.mesh.Mesh.CreateSphere("Sphere", 16, 3, scene)));
         entity.add(new Move());
         entity.add(new Transform3d());
         entity.get(Transform3d).position.z = 8;

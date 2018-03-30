@@ -27,6 +27,7 @@ class Lib {
         ashEngine.addSystem(new SpriteSystem(phaserGame), systemsPriority);
         ashEngine.addSystem(new TextSystem(phaserGame), systemsPriority);
         ashEngine.addSystem(new GraphicsSystem(phaserGame), systemsPriority);
+        ashEngine.addSystem(new PointLightSystem(), systemsPriority);
         ashEngine.addSystem(new MeshSystem(), systemsPriority);
     }
 }
