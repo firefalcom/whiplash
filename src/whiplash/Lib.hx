@@ -2,10 +2,6 @@ package whiplash;
 
 import js.Browser.document;
 
-typedef Options = {
-    width:Int
-}
-
 class Lib {
     static public var phaserGame:phaser.Game;
     static public var babylonEngine:babylonx.Engine;
@@ -29,5 +25,6 @@ class Lib {
         ashEngine.addSystem(new GraphicsSystem(phaserGame), systemsPriority);
         ashEngine.addSystem(new PointLightSystem(), systemsPriority);
         ashEngine.addSystem(new MeshSystem(), systemsPriority);
+        ashEngine.addSystem(new FreeCameraSystem(), systemsPriority);
     }
 }

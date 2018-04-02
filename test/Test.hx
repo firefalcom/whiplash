@@ -9,7 +9,6 @@ import ash.tools.ListIteratingSystem;
 import ash.core.Node;
 import whiplash.*;
 import babylonx.tools.math.*;
-import babylonx.cameras.*;
 
 class Move {
     public var time:Float = 0.0;
@@ -131,7 +130,11 @@ class Test {
         engine.addEntity(entity);
 
         scene = new babylonx.Scene(whiplash.Lib.babylonEngine);
-        var camera = new FreeCamera("Camera", new Vector3(0, 1, 0), scene);
+        var entity = new Entity();
+        entity.add(new Transform3d());
+        entity.add(new FreeCamera(new babylonx.cameras.FreeCamera("Camera", Vector3.Zero(), scene)));
+        entity.get(Transform3d).position = new Vector3(0, 0, -1);
+        engine.addEntity(entity);
 
         var entity = new Entity();
         entity.add(new PointLight(new babylonx.lights.PointLight("Omni0", Vector3.Zero(), scene)));

@@ -27,13 +27,13 @@ class PointLightSystem extends ListIteratingSystem<PointLightNode> {
     }
 
     private inline function apply(node:PointLightNode) {
-        var pointLight = node.pointLight.pointLight;
-        if(pointLight != null) {
+        var o = node.pointLight.o;
+        if(o != null) {
             var transform = node.transform;
             var position = transform.position;
-            pointLight.position.x = position.x;
-            pointLight.position.y = position.y;
-            pointLight.position.z = position.z;
+            o.position.x = position.x;
+            o.position.y = position.y;
+            o.position.z = position.z;
         }
     }
 }

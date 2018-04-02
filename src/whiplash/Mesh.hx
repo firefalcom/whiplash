@@ -1,9 +1,9 @@
 package whiplash;
 
 class Mesh {
-    public var mesh:babylonx.mesh.Mesh;
+    public var o:babylonx.mesh.Mesh;
 
-    public function new(?mesh:babylonx.mesh.Mesh) {
-        this.mesh = mesh;
+    public function new(?o:babylonx.mesh.Mesh) {
+        this.o = o;
     }
 }
