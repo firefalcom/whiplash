@@ -25,6 +25,7 @@ class Lib {
         ashEngine.addSystem(new TextSystem(phaserGame), systemsPriority);
         ashEngine.addSystem(new GraphicsSystem(phaserGame), systemsPriority);
         ashEngine.addSystem(new PointLightSystem(), systemsPriority);
+        ashEngine.addSystem(new DirectionalLightSystem(), systemsPriority);
         ashEngine.addSystem(new MeshSystem(), systemsPriority);
         ashEngine.addSystem(new FreeCameraSystem(), systemsPriority);
     }
