@@ -20,10 +20,15 @@ class MeshSystem extends ListIteratingSystem<MeshNode> {
     }
 
     private function onNodeAdded(node:MeshNode) {
+        node.mesh.o.isVisible = true;
+        if(node.mesh.o.rotationQuaternion == null) {
+            node.mesh.o.rotationQuaternion = new babylonx.tools.math.Quaternion(0, 0, 0, 1);
+        }
         apply(node);
     }
 
     private function onNodeRemoved(node:MeshNode) {
+        node.mesh.o.isVisible = false;
     }
 
     private inline function apply(node:MeshNode) {
@@ -36,9 +41,10 @@ class MeshSystem extends ListIteratingSystem<MeshNode> {
             o.position.x = position.x;
             o.position.y = position.y;
             o.position.z = position.z;
-            o.rotation.x = rotation.x;
-            o.rotation.y = rotation.y;
-            o.rotation.z = rotation.z;
+            o.rotationQuaternion.x = rotation.x;
+            o.rotationQuaternion.y = rotation.y;
+            o.rotationQuaternion.z = rotation.z;
+            o.rotationQuaternion.w = rotation.w;
             o.scaling.x = scale.x;
             o.scaling.y = scale.y;
             o.scaling.z = scale.z;
