@@ -1,9 +1,9 @@
 package whiplash;
 
 class PointLight {
-    public var o:babylonx.lights.PointLight;
+    public var o:BABYLON.PointLight;
 
-    public function new(?o:babylonx.lights.PointLight) {
+    public function new(?o:BABYLON.PointLight) {
         this.o = o;
     }
 }

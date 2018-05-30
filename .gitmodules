@@ -1,0 +1,3 @@
+[submodule "deps/haxe-babylon"]
+	path = deps/haxe-babylon
+	url = git@github.com:firefalcom/haxe-babylon.git

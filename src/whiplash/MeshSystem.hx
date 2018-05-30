@@ -22,7 +22,7 @@ class MeshSystem extends ListIteratingSystem<MeshNode> {
     private function onNodeAdded(node:MeshNode) {
         node.mesh.o.isVisible = true;
         if(node.mesh.o.rotationQuaternion == null) {
-            node.mesh.o.rotationQuaternion = new babylonx.tools.math.Quaternion(0, 0, 0, 1);
+            node.mesh.o.rotationQuaternion = new BABYLON.Quaternion(0, 0, 0, 1);
         }
         apply(node);
     }

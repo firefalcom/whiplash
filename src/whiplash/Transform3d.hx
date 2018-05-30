@@ -1,6 +1,7 @@
 package whiplash;
 
-import babylonx.tools.math.*;
+import BABYLON.Vector3 as Vector3;
+import BABYLON.Quaternion as Quaternion;
 
 class Transform3d {
     public var position:Vector3 = new Vector3(0, 0, 0);

@@ -144,7 +144,7 @@ class Test {
         engine.addEntity(entity);
 
         var entity = new Entity();
-        entity.add(new Mesh(babylonx.mesh.Mesh.CreateSphere("Sphere", 16, 3, scene)));
+        entity.add(new Mesh(BABYLON.Mesh.CreateSphere("Sphere", 16, 3, scene)));
         entity.add(new Move());
         entity.add(new Transform3d());
         entity.get(Transform3d).position.z = 8;
