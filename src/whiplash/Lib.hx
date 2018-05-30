@@ -23,6 +23,7 @@ class Lib {
         ashEngine = new ash.core.Engine();
         ashEngine.addSystem(new SpriteSystem(phaserGame), systemsPriority);
         ashEngine.addSystem(new TileSpriteSystem(phaserGame), systemsPriority);
+        ashEngine.addSystem(new TilemapLayerSystem(phaserGame), systemsPriority);
         ashEngine.addSystem(new TextSystem(phaserGame), systemsPriority);
         ashEngine.addSystem(new GraphicsSystem(phaserGame), systemsPriority);
         ashEngine.addSystem(new PointLightSystem(), systemsPriority);
