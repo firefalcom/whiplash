@@ -9,8 +9,8 @@ class Text extends phaser.Text {
                 boundsAlignV: 'top'
             };
         }
-        super(Lib.game, 0, 0, text, cast style);
-        Lib.game.add.existing(this);
+        super(Lib.phaserGame, 0, 0, text, cast style);
+        Lib.phaserGame.add.existing(this);
         kill();
     }
 }

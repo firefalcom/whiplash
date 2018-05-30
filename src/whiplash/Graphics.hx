@@ -2,8 +2,8 @@ package whiplash;
 
 class Graphics extends phaser.Graphics {
     public function new() {
-        super(Lib.game, 0, 0);
-        Lib.game.add.existing(this);
+        super(Lib.phaserGame, 0, 0);
+        Lib.phaserGame.add.existing(this);
         kill();
     }
 }
