@@ -2,4 +2,4 @@ language: haxe
 haxe:
   - stable
 hxml:
-  - test/build.hxml
+  - test.hxml
