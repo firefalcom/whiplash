@@ -8,7 +8,6 @@ import ash.core.Engine;
 import ash.tools.ListIteratingSystem;
 import ash.core.Node;
 import whiplash.*;
-import babylonx.tools.math.*;
 
 class Move {
     public var time:Float = 0.0;
@@ -80,7 +79,7 @@ class Move3dSystem extends ListIteratingSystem<Move3dNode> {
 }
 
 class Test {
-    var scene:babylonx.Scene;
+    var scene:BABYLON.Scene;
     var engine:ash.core.Engine;
 
     public function new() {
@@ -129,18 +128,18 @@ class Test {
 
         engine.addEntity(entity);
 
-        scene = new babylonx.Scene(whiplash.Lib.babylonEngine);
+        scene = new BABYLON.Scene(whiplash.Lib.babylonEngine);
         var entity = new Entity();
         entity.add(new Transform3d());
-        entity.add(new FreeCamera(new babylonx.cameras.FreeCamera("Camera", Vector3.Zero(), scene)));
-        entity.get(Transform3d).position = new Vector3(0, 0, -1);
+        entity.add(new FreeCamera(new BABYLON.FreeCamera("Camera", BABYLON.Vector3.Zero(), scene)));
+        entity.get(Transform3d).position = new BABYLON.Vector3(0, 0, -1);
         engine.addEntity(entity);
 
         var entity = new Entity();
-        entity.add(new PointLight(new babylonx.lights.PointLight("Omni0", Vector3.Zero(), scene)));
+        entity.add(new PointLight(new BABYLON.PointLight("Omni0", BABYLON.Vector3.Zero(), scene)));
         entity.add(new Translate());
         entity.add(new Transform3d());
-        entity.get(Transform3d).position = new Vector3(0, 100, -100);
+        entity.get(Transform3d).position = new BABYLON.Vector3(0, 100, -100);
         engine.addEntity(entity);
 
         var entity = new Entity();

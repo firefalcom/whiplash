@@ -1,6 +1,6 @@
 -cp .
 -cp ../src
--cp ../deps
+-cp ../deps/haxe-babylon/src
 -js generated.js
 -main Test
 -lib phaser
