@@ -1,0 +1,8 @@
+-cp test
+-cp src
+-cp deps/haxe-babylon/src
+-js test/generated.js
+-main Test
+-lib phaser
+-lib ash
+
