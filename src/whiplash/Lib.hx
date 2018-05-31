@@ -30,6 +30,7 @@ class Lib {
         ashEngine.addSystem(new DirectionalLightSystem(), systemsPriority);
         ashEngine.addSystem(new MeshSystem(), systemsPriority);
         ashEngine.addSystem(new FreeCameraSystem(), systemsPriority);
+        ashEngine.addSystem(new ParticleSystemSystem(), systemsPriority);
     }
 }
 
