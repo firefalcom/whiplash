@@ -1,0 +1,2 @@
+all:
+	haxe test.hxml
