@@ -1,4 +1,4 @@
-package whiplash;
+package whiplash.babylon;
 
 class PointLight {
     public var o:BABYLON.PointLight;

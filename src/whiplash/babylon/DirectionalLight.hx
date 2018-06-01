@@ -1,4 +1,4 @@
-package whiplash;
+package whiplash.babylon;
 
 class DirectionalLight {
     public var o:BABYLON.DirectionalLight;

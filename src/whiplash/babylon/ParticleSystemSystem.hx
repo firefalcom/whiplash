@@ -1,4 +1,4 @@
-package whiplash;
+package whiplash.babylon;
 
 import ash.tools.ListIteratingSystem;
 import ash.core.Engine;

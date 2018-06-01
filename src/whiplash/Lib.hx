@@ -1,5 +1,7 @@
 package whiplash;
 
+import whiplash.phaser.*;
+import whiplash.babylon.*;
 import js.Browser.document;
 
 class Lib {

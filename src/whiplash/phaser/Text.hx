@@ -1,4 +1,4 @@
-package whiplash;
+package whiplash.phaser;
 
 class Text extends phaser.Text {
     public function new(?text, ?style) {

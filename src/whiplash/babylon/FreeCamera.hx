@@ -1,4 +1,4 @@
-package whiplash;
+package whiplash.babylon;
 
 class FreeCamera {
     public var o:BABYLON.FreeCamera;

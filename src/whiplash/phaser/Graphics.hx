@@ -1,4 +1,4 @@
-package whiplash;
+package whiplash.phaser;
 
 class Graphics extends phaser.Graphics {
     public function new() {

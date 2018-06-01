@@ -1,4 +1,4 @@
-package whiplash;
+package whiplash.phaser;
 
 class TilemapLayer extends phaser.TilemapLayer {
     public function new(tilemap, index, w, h) {

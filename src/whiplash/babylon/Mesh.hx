@@ -1,4 +1,4 @@
-package whiplash;
+package whiplash.babylon;
 
 class Mesh {
     public var o:BABYLON.Mesh;

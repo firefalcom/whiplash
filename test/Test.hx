@@ -8,6 +8,8 @@ import ash.core.Engine;
 import ash.tools.ListIteratingSystem;
 import ash.core.Node;
 import whiplash.*;
+import whiplash.phaser.*;
+import whiplash.babylon.*;
 
 class Move {
     public var time:Float = 0.0;

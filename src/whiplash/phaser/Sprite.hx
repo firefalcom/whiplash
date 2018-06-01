@@ -1,4 +1,4 @@
-package whiplash;
+package whiplash.phaser;
 
 class Sprite extends phaser.Sprite {
     public function new(?key) {

@@ -1,4 +1,4 @@
-package whiplash;
+package whiplash.phaser;
 
 class TileSprite extends phaser.TileSprite {
     public function new(w=0, h=0, ?key) {

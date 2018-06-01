@@ -1,4 +1,4 @@
-package whiplash;
+package whiplash.babylon;
 
 import BABYLON.Vector3 as Vector3;
 import BABYLON.Quaternion as Quaternion;
