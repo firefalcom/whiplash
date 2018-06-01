@@ -43,6 +43,7 @@ class Lib {
         ashEngine.addSystem(new PointLightSystem(), systemsPriority);
         ashEngine.addSystem(new DirectionalLightSystem(), systemsPriority);
         ashEngine.addSystem(new MeshSystem(), systemsPriority);
+        ashEngine.addSystem(new Sprite3dSystem(), systemsPriority);
         ashEngine.addSystem(new FreeCameraSystem(), systemsPriority);
         ashEngine.addSystem(new ParticleSystemSystem(), systemsPriority);
         if(options & ENABLE_PHASER == 0) {
