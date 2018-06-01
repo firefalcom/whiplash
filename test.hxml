@@ -1,8 +1,8 @@
 -cp test
 -cp src
 -cp deps/haxe-babylon/src
+-cp deps/haxe-phaser/src
+-cp deps/Ash-Haxe/src
 -js test/generated.js
 -main Test
--lib phaser
--lib ash
 

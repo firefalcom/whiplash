@@ -1,4 +1,4 @@
-package whiplash;
+package whiplash.phaser;
 
 class Transform {
     public var position:Point = new Point();

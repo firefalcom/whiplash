@@ -1,4 +1,4 @@
-package whiplash;
+package whiplash.babylon;
 
 class ParticleSystem {
     public var o:BABYLON.ParticleSystem;
