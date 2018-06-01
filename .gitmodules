@@ -1,3 +1,9 @@
 [submodule "deps/haxe-babylon"]
 	path = deps/haxe-babylon
 	url = https://github.com/firefalcom/haxe-babylon.git
+[submodule "deps/haxe-phaser"]
+	path = deps/haxe-phaser
+	url = https://github.com/Blank101/haxe-phaser
+[submodule "deps/Ash-Haxe"]
+	path = deps/Ash-Haxe
+	url = https://github.com/firefalcom/Ash-Haxe
