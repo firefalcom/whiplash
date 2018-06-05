@@ -1,4 +1,4 @@
-package whiplash.babylon;
+package whiplash.babylon.components;
 
 class Mesh extends SceneObject<BABYLON.Mesh> {
     public function new(?o:BABYLON.Mesh, scene:BABYLON.Scene) {

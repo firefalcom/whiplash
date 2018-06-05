@@ -1,4 +1,4 @@
-package whiplash.babylon;
+package whiplash.babylon.components;
 
 class SceneObject<BabylonClass>{
     public var o:BabylonClass;
