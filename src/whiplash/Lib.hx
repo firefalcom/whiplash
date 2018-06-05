@@ -40,12 +40,11 @@ class Lib {
         ashEngine.addSystem(new TilemapLayerSystem(phaserGame), systemsPriority);
         ashEngine.addSystem(new TextSystem(phaserGame), systemsPriority);
         ashEngine.addSystem(new GraphicsSystem(phaserGame), systemsPriority);
-        ashEngine.addSystem(new PointLightSystem(), systemsPriority);
-        ashEngine.addSystem(new DirectionalLightSystem(), systemsPriority);
+        ashEngine.addSystem(new LightSystem(), systemsPriority);
         ashEngine.addSystem(new MeshSystem(), systemsPriority);
         ashEngine.addSystem(new Sprite3dSystem(), systemsPriority);
-        ashEngine.addSystem(new FreeCameraSystem(), systemsPriority);
         ashEngine.addSystem(new ParticleSystemSystem(), systemsPriority);
+        ashEngine.addSystem(new CameraSystem(), systemsPriority);
         if(options & ENABLE_PHASER == 0) {
             getDeltaTime = babylonEngine.getDeltaTime;
             haxe.Timer.delay(function() {

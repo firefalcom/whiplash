@@ -83,6 +83,9 @@ class Move3dSystem extends ListIteratingSystem<Move3dNode> {
 class Test {
     var scene:BABYLON.Scene;
     var engine:ash.core.Engine;
+    var sphereEntity:Entity;
+    var sphereAdded:Bool;
+    var keyTime:Float = 0;
 
     public function new() {
         whiplash.Lib.init({preload:preload, create:create, update:update});
@@ -137,28 +140,63 @@ class Test {
             scene = new BABYLON.Scene(whiplash.Lib.babylonEngine);
             var entity = new Entity();
             entity.add(new Transform3d());
-            entity.add(new FreeCamera(new BABYLON.FreeCamera("Camera", BABYLON.Vector3.Zero(), scene)));
+            entity.add(new Camera(new BABYLON.FreeCamera("Camera", BABYLON.Vector3.Zero(), scene), scene));
             entity.get(Transform3d).position = new BABYLON.Vector3(0, 0, -1);
             engine.addEntity(entity);
             var entity = new Entity();
-            entity.add(new PointLight(new BABYLON.PointLight("Omni0", BABYLON.Vector3.Zero(), scene)));
+            entity.add(new Light(new BABYLON.PointLight("Omni0", BABYLON.Vector3.Zero(), scene), scene));
             entity.add(new Translate());
             entity.add(new Transform3d());
             entity.get(Transform3d).position = new BABYLON.Vector3(0, 100, -100);
             engine.addEntity(entity);
-            var entity = new Entity();
-            entity.add(new Mesh(BABYLON.Mesh.CreateSphere("Sphere", 16, 3, scene)));
-            entity.add(new Move());
-            entity.add(new Transform3d());
-            entity.get(Transform3d).position.z = 8;
-            engine.addEntity(entity);
+            {
+                var ps = new BABYLON.ParticleSystem("particles", 500, scene);
+                ps.emitRate = 500;
+                ps.particleEmitterType = new BABYLON.SphereParticleEmitter(1);
+                ps.particleTexture = new BABYLON.Texture("./firefalcom.png", scene);
+                ps.color1 = new BABYLON.Color4(1, 1, 1, 1.0);
+                ps.color2 = new BABYLON.Color4(0, 0, 0, 0.0);
+                ps.colorDead = new BABYLON.Color4(0, 0, 0, 0.0);
+                ps.minLifeTime = 0.5;
+                ps.maxLifeTime = 0.6;
+                ps.minSize = 1;
+                ps.maxSize = 1;
+                ps.minEmitPower = 2;
+                ps.maxEmitPower = 4;
+                ps.gravity = new BABYLON.Vector3(0, -10, 0);
+                ps.direction1 = new BABYLON.Vector3(0.5, 1, 0);
+                ps.updateSpeed = 0.2;
+                var entity = new Entity();
+                entity.add(new Mesh(BABYLON.Mesh.CreateSphere("Sphere", 16, 3), scene));
+                ps.emitter = entity.get(Mesh).o;
+                ps.start();
+                entity.add(new Move());
+                entity.add(new Transform3d());
+                entity.add(new ParticleSystem(ps, scene));
+                entity.get(Transform3d).position.z = 8;
+                engine.addEntity(entity);
+                sphereEntity = entity;
+                sphereAdded = true;
+            }
         }
     }
 
     function update():Void {
-        engine.update(whiplash.Lib.getDeltaTime() / 1000);
+        var dt = whiplash.Lib.getDeltaTime() / 1000;
+        engine.update(dt);
         if(scene != null) {
             scene.render();
+        }
+        if(keyTime > 0.1 && whiplash.Lib.phaserGame.input.keyboard.isDown(phaser.Keyboard.SPACEBAR)) {
+            sphereAdded = !sphereAdded;
+            if(sphereAdded) {
+                engine.addEntity(sphereEntity);
+            } else {
+                engine.removeEntity(sphereEntity);
+            }
+            keyTime = 0;
+        } else {
+            keyTime += dt;
         }
     }
 
