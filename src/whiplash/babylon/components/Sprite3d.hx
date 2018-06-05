@@ -1,4 +1,4 @@
-package whiplash.babylon;
+package whiplash.babylon.components;
 
 class Sprite3d {
     public var o:BABYLON.Sprite;

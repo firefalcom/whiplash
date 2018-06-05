@@ -1,8 +1,9 @@
-package whiplash.babylon;
+package whiplash.babylon.systems;
 
 import ash.tools.ListIteratingSystem;
 import ash.core.Engine;
 import ash.core.Node;
+import whiplash.babylon.components.*;
 
 class ParticleSystemNode extends Node<ParticleSystemNode> {
     public var ps:ParticleSystem;
