@@ -18,13 +18,13 @@ class ParticleSystemSystem extends ListIteratingSystem<ParticleSystemNode> {
     }
 
     private function onNodeAdded(node:ParticleSystemNode) {
-        node.ps.o.start();
+        var ps = node.ps;
+        ps.scene.addParticleSystem(ps.o);
     }
 
     private function onNodeRemoved(node:ParticleSystemNode) {
-        var o = node.ps.o;
-        o.stop();
-        o.reset();
+        var ps = node.ps;
+        ps.scene.removeParticleSystem(ps.o);
     }
 
 }

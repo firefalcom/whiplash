@@ -1,9 +1,8 @@
 package whiplash.babylon;
 
-class Mesh {
-    public var o:BABYLON.Mesh;
-
-    public function new(?o:BABYLON.Mesh) {
-        this.o = o;
+class Mesh extends SceneObject<BABYLON.Mesh> {
+    public function new(?o:BABYLON.Mesh, scene:BABYLON.Scene) {
+        super(o, scene);
+        o.getScene().removeMesh(o);
     }
 }
