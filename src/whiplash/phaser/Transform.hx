@@ -1,5 +1,7 @@
 package whiplash.phaser;
 
+import whiplash.math.Point;
+
 class Transform {
     public var position:Point = new Point();
     public var rotation:Float;
