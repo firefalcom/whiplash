@@ -1,4 +1,4 @@
-package whiplash.phaser;
+package whiplash.math;
 
 #if under_test
 typedef SourcePoint = {x:Float, y:Float};

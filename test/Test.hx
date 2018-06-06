@@ -1,6 +1,7 @@
 package;
 
 import js.Lib;
+import js.Browser.document;
 import phaser.Game;
 import phaser.Phaser;
 import ash.core.Entity;
@@ -8,6 +9,7 @@ import ash.core.Engine;
 import ash.tools.ListIteratingSystem;
 import ash.core.Node;
 import whiplash.*;
+import whiplash.math.*;
 import whiplash.phaser.*;
 import whiplash.babylon.components.*;
 
@@ -179,6 +181,7 @@ class Test {
                 sphereAdded = true;
             }
         }
+        whiplash.Input.setup(document.querySelector("#guiLayer"));
     }
 
     function update():Void {
@@ -187,7 +190,7 @@ class Test {
         if(scene != null) {
             scene.render();
         }
-        if(keyTime > 0.1 && whiplash.Lib.phaserGame.input.keyboard.isDown(phaser.Keyboard.SPACEBAR)) {
+        if(keyTime > 0.1 && whiplash.Input.keys[" "]) {
             sphereAdded = !sphereAdded;
             if(sphereAdded) {
                 engine.addEntity(sphereEntity);
@@ -197,6 +200,10 @@ class Test {
             keyTime = 0;
         } else {
             keyTime += dt;
+        }
+
+        if(whiplash.Input.mouseButtons[0]) {
+            trace(whiplash.Input.mouseCoordinates);
         }
     }
 

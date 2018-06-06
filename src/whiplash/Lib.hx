@@ -5,17 +5,16 @@ import whiplash.babylon.systems.*;
 import js.Browser.document;
 
 class Lib {
+    static public var ENABLE_PHASER = 1;
+    static public var ENABLE_BABYLON = 2;
     static public var phaserGame:phaser.Game;
     static public var babylonEngine:BABYLON.Engine;
     static public var ashEngine:ash.core.Engine;
     static public var babylonCanvas:js.html.CanvasElement;
-
-    static public var ENABLE_PHASER = 1;
-    static public var ENABLE_BABYLON = 2;
-
     static public var getDeltaTime:Void->Float;
 
     static public function init(?width:Int = 800, ?height:Int = 600, ?parent:String = "body", ?callbacks: {?preload:Void->Void, ?create:Void->Void, ?update:Void->Void} = null, ?options:Int = 3, ?systemsPriority:Int = 10) {
+        var parentElement = document.querySelector(parent);
         ashEngine = new ash.core.Engine();
         if(options & ENABLE_PHASER != 0) {
             phaserGame = new phaser.Game(width, height, phaser.Phaser.CANVAS, '', {preload:callbacks.preload, create:callbacks.create, update:callbacks.update});
@@ -26,7 +25,7 @@ class Lib {
         }
         if(options & ENABLE_BABYLON != 0) {
             babylonCanvas = js.Browser.document.createCanvasElement();
-            document.querySelector(parent).appendChild(babylonCanvas);
+            parentElement.appendChild(babylonCanvas);
             babylonCanvas.width = width;
             babylonCanvas.height = height;
             babylonCanvas.style.width = width+"px";
