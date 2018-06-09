@@ -44,6 +44,7 @@ class Lib {
         ashEngine.addSystem(new Sprite3dSystem(), systemsPriority);
         ashEngine.addSystem(new ParticleSystemSystem(), systemsPriority);
         ashEngine.addSystem(new CameraSystem(), systemsPriority);
+        ashEngine.addSystem(new MaterialSystem(), systemsPriority);
         if(options & ENABLE_PHASER == 0) {
             getDeltaTime = babylonEngine.getDeltaTime;
             haxe.Timer.delay(function() {
