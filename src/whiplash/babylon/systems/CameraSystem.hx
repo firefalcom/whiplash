@@ -4,10 +4,12 @@ import ash.tools.ListIteratingSystem;
 import ash.core.Engine;
 import ash.core.Node;
 import whiplash.babylon.components.*;
+import whiplash.common.components.Active;
 
 class CameraNode extends Node<CameraNode> {
     public var transform:Transform3d;
     public var camera:Camera;
+    public var active:Active;
 }
 
 class CameraSystem extends ListIteratingSystem<CameraNode> {
