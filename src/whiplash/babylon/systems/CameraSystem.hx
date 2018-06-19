@@ -39,12 +39,8 @@ class CameraSystem extends ListIteratingSystem<CameraNode> {
             var transform = node.transform;
             var position = transform.position;
             var rotation = transform.rotation;
-            o.position.x = position.x;
-            o.position.y = position.y;
-            o.position.z = position.z;
-            o.rotation.x = rotation.x;
-            o.rotation.y = rotation.y;
-            o.rotation.z = rotation.z;
+            o.position.copyFrom(position);
+            o.rotationQuaternion.copyFrom(rotation);
         }
     }
 }
