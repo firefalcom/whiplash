@@ -7,6 +7,11 @@ class Input {
     static public var keys:Map<String, Bool> = new Map();
     static public var mouseButtons:Map<Int, Bool> = new Map();
     static public var mouseCoordinates:Point = new Point(0, 0);
+    static public var mouseWheelDelta:Int = 0;
+
+    static public function resetMouseWheelDelta() {
+        mouseWheelDelta = 0;
+    }
 
     static public function setup(element:js.html.Element) {
         element.addEventListener("mousedown", function(e) {
@@ -22,6 +27,9 @@ class Input {
             mouseButtons[e.button] = false;
             mouseCoordinates.x = e.clientX;
             mouseCoordinates.y = e.clientY;
+        });
+        element.addEventListener("mousewheel", function(e) {
+            mouseWheelDelta = e.wheelDelta;
         });
         window.addEventListener("keydown", function(e) {
             keys[e.key] = true;
