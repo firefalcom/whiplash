@@ -34,17 +34,22 @@ class Lib {
             babylonCanvas.style.position = "absolute";
             babylonEngine = new BABYLON.Engine(cast babylonCanvas, true);
         }
-        ashEngine.addSystem(new SpriteSystem(phaserGame), systemsPriority);
-        ashEngine.addSystem(new TileSpriteSystem(phaserGame), systemsPriority);
-        ashEngine.addSystem(new TilemapLayerSystem(phaserGame), systemsPriority);
-        ashEngine.addSystem(new TextSystem(phaserGame), systemsPriority);
-        ashEngine.addSystem(new GraphicsSystem(phaserGame), systemsPriority);
-        ashEngine.addSystem(new LightSystem(), systemsPriority);
-        ashEngine.addSystem(new MeshSystem(), systemsPriority);
-        ashEngine.addSystem(new Sprite3dSystem(), systemsPriority);
-        ashEngine.addSystem(new ParticleSystemSystem(), systemsPriority);
-        ashEngine.addSystem(new CameraSystem(), systemsPriority);
-        ashEngine.addSystem(new MaterialSystem(), systemsPriority);
+        if(options & ENABLE_PHASER != 0) {
+            ashEngine.addSystem(new SpriteSystem(phaserGame), systemsPriority);
+            ashEngine.addSystem(new TileSpriteSystem(phaserGame), systemsPriority);
+            ashEngine.addSystem(new TilemapLayerSystem(phaserGame), systemsPriority);
+            ashEngine.addSystem(new TextSystem(phaserGame), systemsPriority);
+            ashEngine.addSystem(new GraphicsSystem(phaserGame), systemsPriority);
+        }
+        if(options & ENABLE_BABYLON != 0) {
+            ashEngine.addSystem(new LightSystem(), systemsPriority);
+            ashEngine.addSystem(new MeshSystem(), systemsPriority);
+            ashEngine.addSystem(new CameraSystem(), systemsPriority);
+            ashEngine.addSystem(new ParticleSystemSystem(), systemsPriority);
+            ashEngine.addSystem(new Sprite3dSystem(), systemsPriority);
+            ashEngine.addSystem(new MaterialSystem(), systemsPriority);
+            ashEngine.addSystem(new VisibilitySystem(), systemsPriority);
+        }
         if(options & ENABLE_PHASER == 0) {
             getDeltaTime = babylonEngine.getDeltaTime;
             haxe.Timer.delay(function() {
