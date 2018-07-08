@@ -3,6 +3,7 @@ package whiplash.math;
 typedef Base = BABYLON.Vector2;
 
 @:forward
+@:forwardStatics
 abstract Vector2(Base) to Base from Base {
     @:selfCall
     inline public function new(x:Float = 0.0, y:Float = 0.0) {
