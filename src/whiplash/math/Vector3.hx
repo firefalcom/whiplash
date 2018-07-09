@@ -1,6 +1,6 @@
 package whiplash.math;
 
-typedef Base = BABYLON.Vector3;
+private typedef Base = BABYLON.Vector3;
 
 @:forward
 @:forwardStatics
