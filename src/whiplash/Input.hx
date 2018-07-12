@@ -28,8 +28,8 @@ class Input {
             mouseCoordinates.x = e.clientX;
             mouseCoordinates.y = e.clientY;
         });
-        element.addEventListener("mousewheel", function(e) {
-            mouseWheelDelta = e.wheelDelta;
+        element.addEventListener("wheel", function(e) {
+            mouseWheelDelta = e.deltaY;
         });
         window.addEventListener("keydown", function(e) {
             keys[e.key] = true;
