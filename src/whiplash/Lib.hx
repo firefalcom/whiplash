@@ -49,6 +49,7 @@ class Lib {
             ashEngine.addSystem(new Sprite3dSystem(), systemsPriority);
             ashEngine.addSystem(new MaterialSystem(), systemsPriority);
             ashEngine.addSystem(new VisibilitySystem(), systemsPriority);
+            ashEngine.addSystem(new SoundSystem(), systemsPriority);
         }
         if(options & ENABLE_PHASER == 0) {
             getDeltaTime = babylonEngine.getDeltaTime;
