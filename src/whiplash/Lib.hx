@@ -26,6 +26,7 @@ class Lib {
         if(options & ENABLE_BABYLON != 0) {
             babylonCanvas = js.Browser.document.createCanvasElement();
             parentElement.appendChild(babylonCanvas);
+            babylonCanvas.classList.add('babylonCanvas');
             babylonCanvas.width = width;
             babylonCanvas.height = height;
             babylonCanvas.style.width = width+"px";
