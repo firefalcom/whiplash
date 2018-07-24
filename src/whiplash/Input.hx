@@ -5,12 +5,22 @@ import js.Browser.window;
 
 class Input {
     static public var keys:Map<String, Bool> = new Map();
+    static private var lastKeys:Map<String, Bool> = new Map();
     static public var mouseButtons:Map<Int, Bool> = new Map();
     static public var mouseCoordinates:Point = new Point(0, 0);
     static public var mouseWheelDelta:Int = 0;
 
     static public function resetMouseWheelDelta() {
         mouseWheelDelta = 0;
+    }
+
+    static public function update() {
+        lastKeys = keys;
+        keys = new Map();
+    }
+
+    static public function isKeyJustPressed(name:String):Bool {
+        return !lastKeys[name] && keys[name];
     }
 
     static public function setup(element:js.html.Element) {
