@@ -5,7 +5,7 @@ import js.Browser.window;
 
 class Input {
     static public var keys:Map<String, Bool> = new Map();
-    static private var lastKeys:Map<String, Bool> = new Map();
+    static private var justPressedKeys:Map<String, Bool> = new Map();
     static public var mouseButtons:Map<Int, Bool> = new Map();
     static public var mouseCoordinates:Point = new Point(0, 0);
     static public var mouseWheelDelta:Int = 0;
@@ -15,12 +15,11 @@ class Input {
     }
 
     static public function update() {
-        lastKeys = keys;
-        keys = new Map();
+        justPressedKeys = new Map();
     }
 
     static public function isKeyJustPressed(name:String):Bool {
-        return !lastKeys[name] && keys[name];
+        return justPressedKeys[name];
     }
 
     static public function setup(element:js.html.Element) {
@@ -43,6 +42,7 @@ class Input {
         });
         window.addEventListener("keydown", function(e) {
             keys[e.key] = true;
+            justPressedKeys[e.key] = true;
         });
         window.addEventListener("keyup", function(e) {
             keys[e.key] = false;
