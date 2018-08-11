@@ -49,7 +49,7 @@ class Input {
         return justPressedKeys[name];
     }
 
-    static public function hasAxisJustValue(axe:Axis, value:Float):Bool {
+    static public function hasJustAxisValue(axe:Axis, value:Float):Bool {
         var a = Type.enumIndex(axe);
         for(i in 0...gamepadStates.length) {
             var g = gamepadStates[i];
@@ -82,6 +82,27 @@ class Input {
         }
 
         return nullAxes;
+    }
+
+    static public function hasJustXYAxesValue(threshold:Float = 0.6):Bool {
+        for(i in 0...gamepadStates.length) {
+            var g = gamepadStates[i];
+            var previousAxes = previousGamepadAxes[i];
+            if(g != null && previousAxes != null) {
+                var axes = g.axes;
+                xyAxes.set(axes[0], axes[1]);
+                var squaredLength = xyAxes.lengthSquared();
+                if(squaredLength > threshold * threshold) {
+                    xyAxes.set(previousAxes[0], previousAxes[1]);
+                    var previousSquaredLength = xyAxes.lengthSquared();
+                    if(previousSquaredLength < threshold * threshold && previousSquaredLength < squaredLength) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
     }
 
 
