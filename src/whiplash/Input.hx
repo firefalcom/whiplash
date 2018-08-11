@@ -85,7 +85,18 @@ class Input {
     static public function isButtonJustPressed(button:Int):Bool {
         for(i in 0...gamepadStates.length) {
             var g = gamepadStates[i];
-            if(g != null && g.buttons[button].pressed  && !previousGamepadButtons[i][button]) {
+            if(g != null && g.buttons[button].pressed && !previousGamepadButtons[i][button]) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    static public function isButtonPressed(button:Int):Bool {
+        for(i in 0...gamepadStates.length) {
+            var g = gamepadStates[i];
+            if(g != null && g.buttons[button].pressed) {
                 return true;
             }
         }
