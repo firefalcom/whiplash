@@ -30,8 +30,11 @@ class Input {
         mouseWheelDelta = 0;
     }
 
-    static public function update() {
+    static public function postUpdate() {
         justPressedKeys = new Map();
+    }
+
+    static public function update() {
         for(i in 0...gamepadStates.length) {
             var g = gamepadStates[i];
             if(g != null) {
@@ -104,7 +107,6 @@ class Input {
 
         return false;
     }
-
 
     static public function getXYAxes():Vector2 {
         for(i in 0...gamepadStates.length) {
