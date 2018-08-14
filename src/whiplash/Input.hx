@@ -13,6 +13,25 @@ enum Axis {
     W;
 }
 
+enum GamepadButton {
+    Face1;
+    Face2;
+    Face3;
+    Face4;
+    LeftShoulder;
+    RightShoulder;
+    LeftShoulderBottom;
+    RightShoulderBottom;
+    Select;
+    Start;
+    LeftAnalogueStick;
+    RightAnalogueStick;
+    PadTop;
+    PadBottom;
+    PadLeft;
+    PadRight;
+}
+
 class Input {
     static public var keys:Map<String, Bool> = new Map();
     static public var mouseButtons:Map<Int, Bool> = new Map();
@@ -122,10 +141,11 @@ class Input {
         return xyAxes;
     }
 
-    static public function isButtonJustPressed(button:Int):Bool {
+    static public function isButtonJustPressed(button:GamepadButton):Bool {
+        var b = Type.enumIndex(button);
         for(i in 0...gamepadStates.length) {
             var g = gamepadStates[i];
-            if(g != null && g.buttons[button].pressed && !previousGamepadButtons[i][button]) {
+            if(g != null && g.buttons[b].pressed && !previousGamepadButtons[i][b]) {
                 return true;
             }
         }
@@ -133,10 +153,11 @@ class Input {
         return false;
     }
 
-    static public function isButtonPressed(button:Int):Bool {
+    static public function isButtonPressed(button:GamepadButton):Bool {
+        var b = Type.enumIndex(button);
         for(i in 0...gamepadStates.length) {
             var g = gamepadStates[i];
-            if(g != null && g.buttons[button].pressed) {
+            if(g != null && g.buttons[b].pressed) {
                 return true;
             }
         }
