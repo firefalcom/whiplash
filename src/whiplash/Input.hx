@@ -44,6 +44,7 @@ class Input {
     static private var previousGamepadButtons:Array<Array<Bool>> = [[], [], [], []];
     static private var previousGamepadAxes:Array<Array<Float>> = [nullAxes, nullAxes, nullAxes, nullAxes];
     static private var xyAxes:Vector2 = new Vector2(0, 0);
+    static private var zwAxes:Vector2 = new Vector2(0, 0);
 
     static public function resetMouseWheelDelta() {
         mouseWheelDelta = 0;
@@ -139,6 +140,20 @@ class Input {
 
         xyAxes.set(0, 0);
         return xyAxes;
+    }
+
+    static public function getZWAxes():Vector2 {
+        for(i in 0...gamepadStates.length) {
+            var g = gamepadStates[i];
+            if(g != null) {
+                var axes = g.axes;
+                zwAxes.set(axes[2], axes[3]);
+                return zwAxes;
+            }
+        }
+
+        zwAxes.set(0, 0);
+        return zwAxes;
     }
 
     static public function isButtonJustPressed(button:GamepadButton):Bool {
