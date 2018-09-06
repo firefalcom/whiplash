@@ -17,7 +17,7 @@ class Lib {
         var parentElement = document.querySelector(parent);
         ashEngine = new ash.core.Engine();
         if(options & ENABLE_PHASER != 0) {
-            phaserGame = new phaser.Game(width, height, phaser.Phaser.CANVAS, '', {preload:callbacks.preload, create:callbacks.create, update:callbacks.update});
+            phaserGame = new phaser.Game(width, height, phaser.Phaser.CANVAS, parentElement, {preload:callbacks.preload, create:callbacks.create, update:callbacks.update});
             phaserGame.transparent = true;
             getDeltaTime = function() {
                 return phaserGame.time.elapsed;
