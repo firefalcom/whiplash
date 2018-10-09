@@ -183,17 +183,17 @@ class Input {
     static public function setup(element:js.html.Element) {
         element.addEventListener("mousedown", function(e) {
             mouseButtons[e.button] = true;
-            mouseCoordinates.x = e.clientX;
-            mouseCoordinates.y = e.clientY;
+            mouseCoordinates.x = e.offsetX;
+            mouseCoordinates.y = e.offsetY;
         });
         element.addEventListener("mousemove", function(e) {
-            mouseCoordinates.x = e.clientX;
-            mouseCoordinates.y = e.clientY;
+            mouseCoordinates.x = e.offsetX;
+            mouseCoordinates.y = e.offsetY;
         });
         element.addEventListener("mouseup", function(e) {
             mouseButtons[e.button] = false;
-            mouseCoordinates.x = e.clientX;
-            mouseCoordinates.y = e.clientY;
+            mouseCoordinates.x = e.offsetX;
+            mouseCoordinates.y = e.offsetY;
         });
         element.addEventListener("wheel", function(e) {
             mouseWheelDelta = e.deltaY;
