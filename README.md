@@ -15,13 +15,22 @@ Whiplash is a light framework combining the [haxe implementation](https://github
 
 ### Dependencies
 
-```shell
-haxelib install ash
-haxelib install phaser
-haxelib install babylon
+This project has the following dependencies as submodules:
+
+ * [Ash-Haxe](https://github.com/firefalcom/Ash-Haxe)
+ * [haxe-babylon](https://github.com/firefalcom/haxe-babylon)
+ * [haxe-phaser](https://github.com/Blank101/haxe-phaser)
+
+They have to be included in your .hxml file, g.e:
+
+```
+...
+-cp deps/haxe-babylon/src
+-cp deps/haxe-phaser/src
+-cp deps/Ash-Haxe/src
+...
 ```
 
-Or clone this repository and use its submodules.
 
 ### Sample
 
