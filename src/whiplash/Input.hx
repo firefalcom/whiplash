@@ -107,6 +107,7 @@ class Input {
         return nullAxes;
     }
 
+#if babylonjs // Required for Vectgor2.lengthSquared
     static public function hasJustXYAxesValue(threshold:Float = 0.6):Bool {
         for(i in 0...gamepadStates.length) {
             var g = gamepadStates[i];
@@ -127,6 +128,7 @@ class Input {
 
         return false;
     }
+#end
 
     static public function getXYAxes():Vector2 {
         for(i in 0...gamepadStates.length) {
