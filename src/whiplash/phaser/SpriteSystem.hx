@@ -36,10 +36,18 @@ class SpriteSystem extends ListIteratingSystem<SpriteNode> {
         var position = transform.position;
         var scale = transform.scale;
         var sprite = node.sprite;
-        sprite.position.x = position.x;
-        sprite.position.y = position.y;
-        sprite.scale.x = scale.x;
-        sprite.scale.y = scale.y;
-        sprite.angle = transform.rotation;
+        if(sprite.body && untyped !sprite.body.immovable) {
+            position.x = sprite.position.x;
+            position.y = sprite.position.y;
+            scale.x = sprite.scale.x;
+            scale.y = sprite.scale.y;
+            transform.rotation = sprite.angle;
+        } else {
+            sprite.position.x = position.x;
+            sprite.position.y = position.y;
+            sprite.scale.x = scale.x;
+            sprite.scale.y = scale.y;
+            sprite.angle = transform.rotation;
+        }
     }
 }
