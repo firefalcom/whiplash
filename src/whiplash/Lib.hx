@@ -15,11 +15,11 @@ class Lib {
     static public var babylonCanvas:js.html.CanvasElement;
     static public var getDeltaTime:Void->Float;
 
-    static public function init(?width:Int = 800, ?height:Int = 600, ?parent:String = "body", ?callbacks: {?preload:Void->Void, ?create:Void->Void, ?update:Void->Void} = null, ?options:Int = 3, ?systemsPriority:Int = 10) {
+    static public function init(?width:Int = 800, ?height:Int = 600, ?parent:String = "body", ?callbacks: {?preload:Void->Void, ?create:Void->Void, ?update:Void->Void, ?render:Void->Void} = null, ?options:Int = 3, ?systemsPriority:Int = 10) {
         var parentElement = document.querySelector(parent);
         ashEngine = new ash.core.Engine();
 #if phaser
-        phaserGame = new phaser.Game(width, height, phaser.Phaser.CANVAS, parentElement, {preload:callbacks.preload, create:callbacks.create, update:callbacks.update});
+        phaserGame = new phaser.Game(width, height, phaser.Phaser.CANVAS, parentElement, {preload:callbacks.preload, create:callbacks.create, update:callbacks.update, render:callbacks.render});
         phaserGame.transparent = true;
         getDeltaTime = function() {
             return phaserGame.time.elapsed;
