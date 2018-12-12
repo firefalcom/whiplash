@@ -42,6 +42,7 @@ class Lib {
         ashEngine.addSystem(new TileSpriteSystem(phaserGame), systemsPriority);
         ashEngine.addSystem(new TilemapLayerSystem(phaserGame), systemsPriority);
         ashEngine.addSystem(new TextSystem(phaserGame), systemsPriority);
+        ashEngine.addSystem(new BitmapTextSystem(phaserGame), systemsPriority);
         ashEngine.addSystem(new GraphicsSystem(phaserGame), systemsPriority);
 #end
 #if babylonjs
