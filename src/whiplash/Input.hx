@@ -190,6 +190,8 @@ class Input {
         });
         element.addEventListener("touchstart", function(e) {
             mouseButtons[0] = true;
+            mouseCoordinates.x = e.touches[0].clientX;
+            mouseCoordinates.y = e.touches[0].clientY;
         });
         element.addEventListener("touchmove", function(e) {
             mouseCoordinates.x = e.touches[0].clientX;
@@ -197,6 +199,8 @@ class Input {
         });
         element.addEventListener("touchend", function(e) {
             mouseButtons[0] = false;
+            mouseCoordinates.x = e.touches[0].clientX;
+            mouseCoordinates.y = e.touches[0].clientY;
         });
         element.addEventListener("mousemove", function(e) {
             mouseCoordinates.x = e.offsetX;
