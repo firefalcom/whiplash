@@ -40,4 +40,6 @@ abstract Vector3(Base) to Base from Base {
     public function getLength() : Float{
         return Math.sqrt(this.x * this.x + this.y * this.y + this.z * this.z);
     }
+
+    static public var zero = new Vector3(0, 0, 0);
 }
