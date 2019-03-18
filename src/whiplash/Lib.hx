@@ -38,6 +38,7 @@ class Lib {
         babylonEngine = new BABYLON.Engine(cast babylonCanvas, true);
 #end
 #if phaser
+        ashEngine.addSystem(new GroupSystem(phaserGame), systemsPriority);
         ashEngine.addSystem(new SpriteSystem(phaserGame), systemsPriority);
         ashEngine.addSystem(new TileSpriteSystem(phaserGame), systemsPriority);
         ashEngine.addSystem(new TilemapLayerSystem(phaserGame), systemsPriority);
