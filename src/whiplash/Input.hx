@@ -57,14 +57,17 @@ class Input {
     static public function update() {
         for(i in 0...gamepadStates.length) {
             var g = gamepadStates[i];
+
             if(g != null) {
                 previousGamepadAxes[i] = g.axes;
                 var previousButtons = previousGamepadButtons[i];
+
                 for(b in 0...g.buttons.length) {
                     previousButtons[b] = g.buttons[b].pressed;
                 }
             }
         }
+
         gamepadStates = navigator.getGamepads();
     }
 
@@ -74,8 +77,10 @@ class Input {
 
     static public function hasJustAxisValue(axe:Axis, value:Float):Bool {
         var a = Type.enumIndex(axe);
+
         for(i in 0...gamepadStates.length) {
             var g = gamepadStates[i];
+
             if(g != null) {
                 if(value > 0) {
                     if(g.axes[a] >= value && previousGamepadAxes[i][a] < value) {
@@ -99,6 +104,7 @@ class Input {
     static public function getAxes():Array<Float> {
         for(i in 0...gamepadStates.length) {
             var g = gamepadStates[i];
+
             if(g != null) {
                 return g.axes;
             }
@@ -112,13 +118,16 @@ class Input {
         for(i in 0...gamepadStates.length) {
             var g = gamepadStates[i];
             var previousAxes = previousGamepadAxes[i];
+
             if(g != null && previousAxes != null) {
                 var axes = g.axes;
                 xyAxes.set(axes[0], axes[1]);
                 var squaredLength = xyAxes.lengthSquared();
+
                 if(squaredLength > threshold * threshold) {
                     xyAxes.set(previousAxes[0], previousAxes[1]);
                     var previousSquaredLength = xyAxes.lengthSquared();
+
                     if(previousSquaredLength < threshold * threshold && previousSquaredLength < squaredLength) {
                         return true;
                     }
@@ -133,6 +142,7 @@ class Input {
     static public function getXYAxes():Vector2 {
         for(i in 0...gamepadStates.length) {
             var g = gamepadStates[i];
+
             if(g != null) {
                 var axes = g.axes;
                 xyAxes.set(axes[0], axes[1]);
@@ -147,6 +157,7 @@ class Input {
     static public function getZWAxes():Vector2 {
         for(i in 0...gamepadStates.length) {
             var g = gamepadStates[i];
+
             if(g != null) {
                 var axes = g.axes;
                 zwAxes.set(axes[2], axes[3]);
@@ -160,8 +171,10 @@ class Input {
 
     static public function isButtonJustPressed(button:GamepadButton):Bool {
         var b = Type.enumIndex(button);
+
         for(i in 0...gamepadStates.length) {
             var g = gamepadStates[i];
+
             if(g != null && g.buttons[b].pressed && !previousGamepadButtons[i][b]) {
                 return true;
             }
@@ -172,8 +185,10 @@ class Input {
 
     static public function isButtonPressed(button:GamepadButton):Bool {
         var b = Type.enumIndex(button);
+
         for(i in 0...gamepadStates.length) {
             var g = gamepadStates[i];
+
             if(g != null && g.buttons[b].pressed) {
                 return true;
             }
@@ -199,8 +214,16 @@ class Input {
         });
         element.addEventListener("touchend", function(e) {
             mouseButtons[0] = false;
-            mouseCoordinates.x = e.touches[0].clientX;
-            mouseCoordinates.y = e.touches[0].clientY;
+            var touches:Array<Dynamic> = e.changedTouches;
+
+            if(touches == null) {
+                touches = e.touches;
+            }
+
+            if(touches.length > 0)  {
+                mouseCoordinates.x = touches[0].clientX;
+                mouseCoordinates.y = touches[0].clientY;
+            }
         });
         element.addEventListener("mousemove", function(e) {
             mouseCoordinates.x = e.offsetX;
