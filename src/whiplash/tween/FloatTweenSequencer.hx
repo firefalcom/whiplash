@@ -10,6 +10,7 @@ class FloatTweenSequencer extends FloatTween {
 
     public function add(from:Float, to:Float, duration:Float, easing:Easing) {
         parameters.push({from:from, to:to, duration:duration, easing:easing});
+
         if(index == -1) {
             setNext();
         }
@@ -17,6 +18,7 @@ class FloatTweenSequencer extends FloatTween {
 
     override public function update(dt:Float) {
         super.update(dt);
+
         if(super.isCompleted()) {
             setNext();
         }

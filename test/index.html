@@ -6,10 +6,25 @@
   <title>whiplash test</title>
   <script src="../deps/haxe-phaser/lib/phaser.js"></script>
   <script src="../deps/haxe-babylon/lib/babylon.max.js"></script>
+  <script src="../deps/jquery-3.3.1.min.js"></script>
 </head>
 
 <body>
-  <div id="guiLayer" style="width: 800px; height: 600px; z-index: 10; position: absolute;"></div>
+  <!-- <div id="guiLayer" style="width: 800px; height: 600px; z-index: 10; position: absolute;"></div> -->
+  <div class="pages">
+    <div class="default">
+      Main menu
+      <button class="play">Play</button>
+    </div>
+    <div class="lobby">
+        Lobby
+      <button class="ready">Ready</button>
+    </div>
+    <div class="hud">
+      Hud
+      <button class="abort">Abort</button>
+    </div>
+  </div>
   <script src="generated.js"></script>
 </body>
 

@@ -3,8 +3,11 @@
 -cp deps/haxe-babylon/src
 -cp deps/haxe-phaser/src
 -cp deps/Ash-Haxe/src
+-lib jquery-uipages
 -js test/generated.js
 -main Test
 -D phaser
 -D babylonjs
+-D dataPath=test/data
+-D dataRelativePath=./data
 

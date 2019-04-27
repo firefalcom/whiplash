@@ -37,20 +37,25 @@ class FloatTween {
     public function update(dt:Float) {
         var f:Float;
         time += dt;
+
         if(time > duration) {
             f = 1.0;
             time = duration;
         } else {
             f = time / duration;
+
             f = switch(easing) {
                 case Linear:
                     f;
+
                 case EaseIn:
                     f * f;
+
                 case EaseInEaseOut:
                     ((1.0 - Math.cos((f) * Math.PI)) * 0.5);
             };
         }
+
         value = from + (to - from) * f;
     }
 }

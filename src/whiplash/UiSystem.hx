@@ -18,6 +18,7 @@ class UiSystem extends ash.core.System {
 
     public override function addToEngine(engine:Engine) {
         super.addToEngine(engine);
+
         for(item in items) {
             item.element.on(item.event, item.handler);
         }
@@ -25,6 +26,7 @@ class UiSystem extends ash.core.System {
 
     public override function removeFromEngine(engine:Engine) {
         super.removeFromEngine(engine);
+
         for(item in items) {
             item.element.off();
         }
@@ -35,8 +37,9 @@ class UiSystem extends ash.core.System {
     }
 
     public function apply(func:String, ?a:Dynamic, ?b:Dynamic, ?c:Dynamic, ?d:Dynamic) {
-        var js_args =untyped __js__("arguments");
+        var js_args = untyped __js__("arguments");
         var args = [for(a in 1...js_args.length) untyped js_args[a]];
+
         for(item in items) {
             var element = item.element;
             untyped element[func].apply(element, args);

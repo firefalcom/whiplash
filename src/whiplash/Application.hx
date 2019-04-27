@@ -1,6 +1,7 @@
 package whiplash;
 
 import ash.fsm.EngineState;
+import ash.fsm.EngineStateMachine;
 import js.jquery.*;
 import js.Browser.window;
 
@@ -8,9 +9,9 @@ class Application {
     public var engine:ash.core.Engine;
     public var uiEngine:ash.core.Engine;
     var game:phaser.Game;
-    var esm:ashextension.EngineStateMachine;
-    var ingameEsm:ashextension.EngineStateMachine;
-    var uiEsm:ashextension.EngineStateMachine;
+    var esm:EngineStateMachine;
+    var ingameEsm:EngineStateMachine;
+    var uiEsm:EngineStateMachine;
     var pages:js.uipages.Group;
     var statePageMap:Map<String, String>;
     var timeFactor:Float = 1;
@@ -21,9 +22,9 @@ class Application {
             uiEngine = new ash.core.Engine();
             engine = whiplash.Lib.ashEngine;
             game = whiplash.Lib.phaserGame;
-            esm = new ashextension.EngineStateMachine(engine);
-            ingameEsm = new ashextension.EngineStateMachine(engine);
-            uiEsm = new ashextension.EngineStateMachine(uiEngine);
+            esm = new EngineStateMachine(engine);
+            ingameEsm = new EngineStateMachine(engine);
+            uiEsm = new EngineStateMachine(uiEngine);
             statePageMap = new Map<String, String>();
             onGuiLoaded();
         });

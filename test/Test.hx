@@ -2,6 +2,7 @@ package;
 
 import js.Lib;
 import js.Browser.document;
+import js.jquery.JQuery;
 import phaser.Game;
 import phaser.Phaser;
 import ash.core.Entity;
@@ -83,32 +84,36 @@ class Move3dSystem extends ListIteratingSystem<Move3dNode> {
     }
 }
 
-class Test {
+class Test extends Application {
+
     var scene:BABYLON.Scene;
-    var engine:ash.core.Engine;
     var sphereEntity:Entity;
     var sphereAdded:Bool;
     var keyTime:Float = 0;
 
     public function new() {
-        whiplash.Lib.init({preload:preload, create:create, update:update});
-        engine = whiplash.Lib.ashEngine;
+        super();
+    }
+
+    override function create():Void {
         engine.addSystem(new MoveSystem(), 1);
         engine.addSystem(new Move3dSystem(), 1);
         engine.addSystem(new Translate3dSystem(), 1);
-    }
 
-    function preload():Void {
-        if(whiplash.Lib.phaserGame != null) {
-            whiplash.Lib.phaserGame.load.image('logo', 'firefalcom.png');
-        }
-    }
+        var menuState = createState("menu");
+        createUiState("main", ".default");
+        createUiState("lobby", ".lobby");
+        createUiState("hud", ".hud");
 
-    function create():Void {
+        var ingameState = createState("ingame");
+
+        changeState("menu");
+        changeUiState("main");
+
 #if phaser
         var entity = new Entity();
         entity.add(new Transform());
-        entity.add(new Sprite('logo'));
+        entity.add(new Sprite('firefalcom'));
         entity.add(new Move());
         engine.addEntity(entity);
         engine.removeEntity(entity);
@@ -155,7 +160,7 @@ class Test {
             var ps = new BABYLON.ParticleSystem("particles", 500, scene);
             ps.emitRate = 500;
             ps.particleEmitterType = new BABYLON.SphereParticleEmitter(1);
-            ps.particleTexture = new BABYLON.Texture("./firefalcom.png", scene);
+            ps.particleTexture = new BABYLON.Texture("./data/textures/firefalcom.png", scene);
             ps.color1 = new BABYLON.Color4(1, 1, 1, 1.0);
             ps.color2 = new BABYLON.Color4(0, 0, 0, 0.0);
             ps.colorDead = new BABYLON.Color4(0, 0, 0, 0.0);
@@ -181,25 +186,43 @@ class Test {
             sphereAdded = true;
         }
 #end
-        whiplash.Input.setup(document.querySelector("#guiLayer"));
+        whiplash.Input.setup(document.querySelector(".pages"));
     }
 
-    function update():Void {
-        var dt = whiplash.Lib.getDeltaTime() / 1000;
-        engine.update(dt);
+    override function onGuiLoaded() {
+        super.onGuiLoaded();
+        new JQuery(".play").on("click", function() {
+            changeUiState("lobby");
+        });
+        new JQuery(".ready").on("click", function() {
+            changeUiState("hud");
+            changeState("ingame");
+        });
+        new JQuery(".abort").on("click", function() {
+            changeUiState("main");
+            changeState("menu");
+        });
+    }
+
+    override function update() {
+        super.update();
+
         if(scene != null) {
             scene.render();
         }
+
         if(keyTime > 0.1 && whiplash.Input.keys[" "]) {
             sphereAdded = !sphereAdded;
+
             if(sphereAdded) {
                 engine.addEntity(sphereEntity);
             } else {
                 engine.removeEntity(sphereEntity);
             }
+
             keyTime = 0;
         } else {
-            keyTime += dt;
+            keyTime += 0.1; // :TODO: System for deltatime.
         }
 
         if(whiplash.Input.mouseButtons[0]) {

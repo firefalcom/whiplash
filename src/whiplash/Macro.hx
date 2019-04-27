@@ -7,9 +7,11 @@ class Macro {
     public static macro function getDataFilePaths(folder:String, applyRelative:Bool = true) {
         var dataPath = haxe.macro.Context.definedValue("dataPath") + "/";
         var dataRelativePath = haxe.macro.Context.definedValue("dataRelativePath") + "/";
+
         if(!sys.FileSystem.exists(dataPath + folder)) {
             return macro $a {[]};
         }
+
         var files = sys.FileSystem.readDirectory(dataPath + folder);
         var exprs = [for(file in files) macro $v {(applyRelative ? dataRelativePath : dataPath) + folder + "/" + file}];
         return macro $a {exprs};
@@ -35,6 +37,7 @@ class Macro {
 
         for(file in jsonFiles) {
             var path = new haxe.io.Path(file);
+
             if(path.ext == "json") {
                 var name = path.file;
                 var fileContent:String = sys.io.File.getContent(file);
