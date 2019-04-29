@@ -240,9 +240,11 @@ class Input {
         window.addEventListener("keydown", function(e) {
             keys[e.key] = true;
             justPressedKeys[e.key] = true;
+            e.preventDefault();
         });
         window.addEventListener("keyup", function(e) {
             keys[e.key] = false;
+            e.preventDefault();
         });
     }
 }
