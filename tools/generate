@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [ "$#" -ne 1 ]; then
+    echo "Usage: generate COMPONENT_NAME"
+    exit -1
+fi
+
+toolsDir=`dirname $0`
+componentName=$1
+
+sed 's/Component/'$componentName'/g' ${toolsDir}/Component.hx > ${componentName}.hx
+sed 's/Component/'$componentName'/g' ${toolsDir}/System.hx > ${componentName}System.hx

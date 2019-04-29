@@ -1,0 +1,5 @@
+#!/bin/bash
+
+haxe build.hxml -D embed=1
+inliner -m src/intermediate.html > build/embedded.html
+
