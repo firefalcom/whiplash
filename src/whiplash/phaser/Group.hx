@@ -1,7 +1,7 @@
 package whiplash.phaser;
 
-class Group extends phaser.Group {
+class Group extends phaser.gameobjects.Container {
     public function new(?parent) {
-        super(Lib.phaserGame, parent);
+        super(null); //Lib.phaserGame, parent);
     }
 }

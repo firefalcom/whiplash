@@ -117,28 +117,28 @@ class Test extends Application {
         entity.add(new Move());
         engine.addEntity(entity);
         engine.removeEntity(entity);
-        entity.get(Sprite).anchor = new Point(0.5, 0.5);
+        //entity.get(Sprite).anchor = new Point(0.5, 0.5);
         engine.addEntity(entity);
         var p = new Point(200, 150);
         entity.get(Transform).position = p * 2;
         entity = new Entity();
         entity.add(new Transform());
         entity.add(new Text("Whiplash!"));
-        var text = entity.get(Text);
-        text.anchor.set(0.5, 0.5);
-        text.align = 'center';
-        text.font = 'Arial Black';
-        text.fontSize = 50;
-        text.fontWeight = 'bold';
-        text.stroke = '#000000';
-        text.strokeThickness = 8;
-        text.fill = 'white';
-        text.addStrokeColor('#ff0000', 0);
+        /*var text = entity.get(Text);
+        throw "";//text.anchor.set(0.5, 0.5);
+        throw "";//text.align = 'center';
+        throw "";//text.font = 'Arial Black';
+        throw "";//text.fontSize = 50;
+        throw "";//text.fontWeight = 'bold';
+        throw "";//text.stroke = '#000000';
+        throw "";//text.strokeThickness = 8;
+        throw "";//text.fill = 'white';
+        throw "";//text.addStrokeColor('#ff0000', 0);*/
         entity.get(Transform).position = new Point(400, 500);
         entity.add(new Graphics());
         var graphics = entity.get(Graphics);
         graphics.lineStyle(2, 0x0000FF, 1);
-        graphics.drawRect(-200, 40, 400, 20);
+        graphics.strokeRect(-200, 40, 400, 20);
         engine.addEntity(entity);
 #end
 
@@ -204,8 +204,8 @@ class Test extends Application {
         });
     }
 
-    override function update() {
-        super.update();
+    override function update(time, delta) {
+        super.update(time, delta);
 
         if(scene != null) {
             scene.render();

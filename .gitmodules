@@ -7,3 +7,6 @@
 [submodule "deps/Ash-Haxe"]
 	path = deps/Ash-Haxe
 	url = https://github.com/firefalcom/Ash-Haxe
+[submodule "deps/haxe-phaser3"]
+	path = deps/haxe-phaser3
+	url = https://github.com/sebbernery/haxe-phaser3.git

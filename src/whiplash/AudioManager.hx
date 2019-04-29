@@ -6,11 +6,11 @@ class AudioManager {
     static public var sounds:Map<String, Dynamic> = new Map();
     static public var music:Dynamic;
 
-    static public function init(game:phaser.Game) {
-        if(game != null) {
+    static public function init(scene:phaser.Scene) {
+        if(scene != null) {
             for(file in DataManager.soundFiles) {
                 var name = new haxe.io.Path(file).file;
-                sounds[name] = game.add.audio(name);
+                sounds[name] = scene.load.audio(name);
             }
         }
     }

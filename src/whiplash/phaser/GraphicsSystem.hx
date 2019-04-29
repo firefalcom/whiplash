@@ -24,11 +24,15 @@ class GraphicsSystem extends ListIteratingSystem<GraphicsNode> {
 
     private function onNodeAdded(node:GraphicsNode) {
         apply(node);
-        node.graphics.revive();
+
+        node.graphics.setActive(true);
+        node.graphics.setVisible(true);
     }
 
     private function onNodeRemoved(node:GraphicsNode) {
-        node.graphics.kill();
+
+        node.graphics.setActive(false);
+        node.graphics.setVisible(false);
     }
 
     private inline function apply(node:GraphicsNode) {
@@ -36,10 +40,8 @@ class GraphicsSystem extends ListIteratingSystem<GraphicsNode> {
         var position = transform.position;
         var scale = transform.scale;
         var graphics = node.graphics;
-        graphics.position.x = position.x;
-        graphics.position.y = position.y;
-        graphics.scale.x = scale.x;
-        graphics.scale.y = scale.y;
-        graphics.angle = transform.rotation;
+        graphics.setPosition( position.x, position.y );
+        graphics.setScale( scale.x, scale.y );
+        graphics.setAngle( transform.rotation );
     }
 }

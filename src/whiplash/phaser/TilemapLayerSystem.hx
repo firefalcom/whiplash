@@ -21,10 +21,10 @@ class TilemapLayerSystem extends ListIteratingSystem<TilemapLayerNode> {
     }
 
     private function onNodeAdded(node:TilemapLayerNode) {
-        node.tilemapLayer.revive();
+        throw "";//node.tilemapLayer.revive();
     }
 
     private function onNodeRemoved(node:TilemapLayerNode) {
-        node.tilemapLayer.kill();
+        throw "";//node.tilemapLayer.kill();
     }
 }

@@ -34,10 +34,8 @@ class GroupSystem extends ListIteratingSystem<GroupNode> {
         var position = transform.position;
         var scale = transform.scale;
         var group = node.group;
-        group.position.x = position.x;
-        group.position.y = position.y;
-        group.scale.x = scale.x;
-        group.scale.y = scale.y;
-        group.angle = transform.rotation;
+        group.setPosition( position.x, position.y );
+        group.setScale( scale.x, scale.y);
+        group.setAngle( transform.rotation );
     }
 }

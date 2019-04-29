@@ -11,39 +11,39 @@ class DataManager {
     public static var tilemapFiles:Array<String> = Macro.getDataFilePaths("tilemaps");
     public static var atlasFiles:Array<String> = Macro.getDataFilePaths("atlases");
 
-    static public function preload(game:phaser.Game) {
+    static public function preload(scene:phaser.Scene) {
 #if phaser
 #if embed
         var nodes = document.querySelectorAll(".texture");
 
         for(node in nodes) {
             var el:js.html.Element = cast node;
-            game.cache.addImage(el.id, null, node);
+            scene.cache.addImage(el.id, null, node);
         }
 
 #end
 
-        if(game != null) {
+        if(scene != null) {
             for(file in textureFiles) {
                 var name = new haxe.io.Path(file).file;
 #if !embed
-                game.load.image(name, file);
+                scene.load.image(name, file);
 #end
             }
 
             for(file in soundFiles) {
                 var name = new haxe.io.Path(file).file;
 #if !embed
-                game.load.audio(name, file);
+                scene.load.audio(name, file);
 #end
             }
 
             for(file in tilemapFiles) {
                 var name = new haxe.io.Path(file).file;
 #if embed
-                game.load.tilemap(name, cast null, untyped $global.jsons[name], cast phaser.Tilemap.TILED_JSON);
+                throw "";//scene.load.tilemapWeltmeister(name, cast null, untyped $global.jsons[name],);
 #else
-                game.load.tilemap(name, cast file, cast null, cast phaser.Tilemap.TILED_JSON);
+                throw "";//scene.load.tilemapWeltmeister(name, cast file, cast null);
 #end
             }
 
@@ -55,7 +55,7 @@ class DataManager {
 #if embed
                     throw ":TODO:";
 #else
-                    game.load.atlas(name, haxe.io.Path.withExtension(file, "png"), file);
+                    scene.load.atlas(name, haxe.io.Path.withExtension(file, "png"), file);
 #end
                 }
             }

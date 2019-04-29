@@ -24,11 +24,11 @@ class BitmapTextSystem extends ListIteratingSystem<BitmapTextNode> {
 
     private function onNodeAdded(node:BitmapTextNode) {
         apply(node);
-        node.sprite.revive();
+        throw "";//node.sprite.revive();
     }
 
     private function onNodeRemoved(node:BitmapTextNode) {
-        node.sprite.kill();
+        throw "";//node.sprite.kill();
     }
 
     private inline function apply(node:BitmapTextNode) {
@@ -36,10 +36,8 @@ class BitmapTextSystem extends ListIteratingSystem<BitmapTextNode> {
         var position = transform.position;
         var scale = transform.scale;
         var sprite = node.sprite;
-        sprite.position.x = position.x;
-        sprite.position.y = position.y;
-        sprite.scale.x = scale.x;
-        sprite.scale.y = scale.y;
-        sprite.angle = transform.rotation;
+        sprite.setPosition( position.x, position.y );
+        sprite.setScale( scale.x, scale.y );
+        sprite.setAngle( transform.rotation );
     }
 }
