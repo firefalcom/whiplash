@@ -1,8 +1,8 @@
 package whiplash.phaser;
 
 class Emitter extends phaser.gameobjects.particles.ParticleEmitterManager {
-    public function new(maxParticles) {
-        super(Lib.phaserScene, "");
+    public function new(texture) {
+        super(Lib.phaserScene, texture);
         Lib.phaserScene.add.existing(this);
         setActive(false);
         setVisible(false);
