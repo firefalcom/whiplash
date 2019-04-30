@@ -117,7 +117,7 @@ class Test extends Application {
         entity.add(new Move());
         engine.addEntity(entity);
         engine.removeEntity(entity);
-        //entity.get(Sprite).anchor = new Point(0.5, 0.5);
+        entity.get(Sprite).setOrigin(0.5, 0.5);
         engine.addEntity(entity);
         var p = new Point(200, 150);
         entity.get(Transform).position = p * 2;
@@ -125,7 +125,7 @@ class Test extends Application {
         entity.add(new Transform());
         entity.add(new Text("Whiplash!"));
         /*var text = entity.get(Text);
-        throw "";//text.anchor.set(0.5, 0.5);
+        throw "";//text.setOrigin(0.5, 0.5);
         throw "";//text.align = 'center';
         throw "";//text.font = 'Arial Black';
         throw "";//text.fontSize = 50;

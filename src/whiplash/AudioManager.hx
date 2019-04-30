@@ -3,6 +3,7 @@ package whiplash;
 class AudioManager {
     static private var soundIsEnabled = true;
     static private var musicIsEnabled = true;
+    static public var validSounds : Array<String> = [];
     static public var sounds:Map<String, Dynamic> = new Map();
     static public var music:Dynamic;
 
@@ -10,29 +11,34 @@ class AudioManager {
         if(scene != null) {
             for(file in DataManager.soundFiles) {
                 var name = new haxe.io.Path(file).file;
-                sounds[name] = scene.load.audio(name);
+                scene.load.audio(name,file);
+                validSounds.push(name);
             }
         }
     }
 
     static public function playSound(name) {
-        if(!sounds.exists(name)) {
+        if(validSounds.indexOf(name) == -1) {
             trace("Unknown sound: " + name);
             return;
         }
 
         if(soundIsEnabled) {
+            sounds[name] = Lib.phaserScene.sound.add(name);
             sounds[name].play();
         }
     }
 
     static public function stopSound(name) {
-        if(!sounds.exists(name)) {
+        if(validSounds.indexOf(name) == -1) {
             trace("Unknown sound: " + name);
             return;
         }
 
-        sounds[name].stop();
+        if( sounds.exists( name ) ){
+            sounds[name].stop();
+            sounds.remove(name);
+        }
     }
 
     static public function playMusic(name) {
@@ -45,8 +51,8 @@ class AudioManager {
         }
 
         if(musicIsEnabled) {
-            music = sounds[name];
-            music.play('', 0, 1, true);
+            music = Lib.phaserScene.sound.play(name, {position:0, volume:1, loop:true} );
+            sounds[name] = music;
         }
     }
 

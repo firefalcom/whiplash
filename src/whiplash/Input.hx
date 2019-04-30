@@ -145,12 +145,14 @@ class Input {
 
             if(g != null) {
                 var axes = g.axes;
-                xyAxes.set(axes[0], axes[1]);
+                xyAxes.x = axes[0];
+                xyAxes.y = axes[1];
                 return xyAxes;
             }
         }
 
-        xyAxes.set(0, 0);
+        xyAxes.x = 0;
+        xyAxes.y = 0;
         return xyAxes;
     }
 
@@ -160,12 +162,14 @@ class Input {
 
             if(g != null) {
                 var axes = g.axes;
-                zwAxes.set(axes[2], axes[3]);
+                zwAxes.x = axes[2];
+                zwAxes.y = axes[3];
                 return zwAxes;
             }
         }
 
-        zwAxes.set(0, 0);
+        zwAxes.x = 0;
+        zwAxes.y = 0;
         return zwAxes;
     }
 

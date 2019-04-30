@@ -9,7 +9,6 @@ class Application {
     public var engine:ash.core.Engine;
     public var uiEngine:ash.core.Engine;
     var game:phaser.Game;
-    var phaserScene:phaser.Scene;
     var esm:EngineStateMachine;
     var ingameEsm:EngineStateMachine;
     var uiEsm:EngineStateMachine;
@@ -23,7 +22,6 @@ class Application {
             uiEngine = new ash.core.Engine();
             engine = whiplash.Lib.ashEngine;
             game = whiplash.Lib.phaserGame;
-            phaserScene = whiplash.Lib.phaserScene;
             esm = new EngineStateMachine(engine);
             ingameEsm = new EngineStateMachine(engine);
             uiEsm = new EngineStateMachine(uiEngine);
@@ -33,15 +31,15 @@ class Application {
     }
 
     function preload():Void {
-        DataManager.preload(phaserScene);
+        DataManager.preload(whiplash.Lib.phaserScene);
     }
 
     function create():Void {
-        AudioManager.init(phaserScene);
+        AudioManager.init(whiplash.Lib.phaserScene);
     }
 
     function update(time:Float, delta:Float):Void {
-        var t =delta;
+        var t = delta / 1000;
         t *= timeFactor;
         engine.update(t);
         uiEngine.update(t);

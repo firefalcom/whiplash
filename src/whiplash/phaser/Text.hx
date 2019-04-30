@@ -11,6 +11,7 @@ class Text extends phaser.gameobjects.Text {
         }
 
         super( Lib.phaserScene, 0, 0, text , style);
+        Lib.phaserScene.add.existing(this);
         setActive( false );
         setVisible( false );
     }

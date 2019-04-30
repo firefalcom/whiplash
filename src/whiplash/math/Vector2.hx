@@ -3,7 +3,7 @@ package whiplash.math;
 #if babylonjs
 private typedef Base = BABYLON.Vector2;
 #elseif phaser
-private typedef Base = phaser.Point;
+private typedef Base = phaser.geom.Point;
 #end
 
 @:forward
