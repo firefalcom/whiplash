@@ -6,8 +6,8 @@ import ash.core.Node;
 import whiplash.babylon.components.*;
 
 class MaterialNode extends Node<MaterialNode> {
-    public var mesh : Mesh;
-    public var material : Material;
+    public var mesh:Mesh;
+    public var material:Material;
 }
 
 class MaterialSystem extends ListIteratingSystem<MaterialNode> {
@@ -17,11 +17,11 @@ class MaterialSystem extends ListIteratingSystem<MaterialNode> {
     }
 
     private function updateNode(node:MaterialNode, dt:Float):Void {
-
         var material_node = node.material;
+
         if(material_node.hasTime) {
             material_node.time += dt;
-            material_node.o.setFloat("time", material_node.time);
+            cast(material_node.o, BABYLON.ShaderMaterial).setFloat("time", material_node.time);
         }
     }
 
