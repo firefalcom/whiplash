@@ -15,7 +15,7 @@ class Lib {
     static public var ashEngine:ash.core.Engine;
     static public var babylonCanvas:js.html.CanvasElement;
 
-    static public function init(?width:Int = 800, ?height:Int = 600, ?parent:String = "body", ?callbacks: {?preload:Void->Void, ?create:Void->Void, ?update:Float->Float->Void, ?render:Void->Void} = null, ?options:Int = 3, ?systemsPriority:Int = 10) {
+    static public function init(?width:Int = 800, ?height:Int = 600, ?parent:String = "body", ?callbacks: {?preload:Void->Void, ?create:Void->Void, ?update:Float->Float->Void, ?render:Void->Void} = null, ?systemsPriority:Int = 10) {
         var parentElement = document.querySelector(parent);
         ashEngine = new ash.core.Engine();
 #if phaser
