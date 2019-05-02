@@ -27,7 +27,7 @@ class Lib {
                 callbacks.preload();
         };
         phaserGame = new phaser.Game(
-                { width: width, height: height, type: untyped Phaser.CANVAS, parent: parentElement,
+                { width: width, height: height, type: untyped Phaser.WEBGL, parent: parentElement,
                 scene : {preload:local_preload, create:callbacks.create, update:callbacks.update, render:callbacks.render},
                 render : {transparent:true}
                 }
