@@ -4,24 +4,32 @@ import ash.fsm.EngineState;
 import ash.fsm.EngineStateMachine;
 import js.jquery.*;
 import js.Browser.window;
+import js.Browser.document;
 
 class Application {
     public var engine:ash.core.Engine;
     public var uiEngine:ash.core.Engine;
+#if phaser
     var game:phaser.Game;
+#end
     var esm:EngineStateMachine;
     var ingameEsm:EngineStateMachine;
     var uiEsm:EngineStateMachine;
     var pages:js.uipages.Group;
     var statePageMap:Map<String, String>;
+
+    var deltaTime:Float;
     var timeFactor:Float = 1;
 
-    public function new(width:Int = 800, height:Int = 600, parent:String = "body", whiplash_options:Int = 3) {
+    public function new(width:Int = 800, height:Int = 600, parent:String = "body") {
         new JQuery(window).on("load", function() {
-            whiplash.Lib.init(width, height, parent, {preload:preload, create:create, update:update}, whiplash_options);
+            whiplash.Lib.init(width, height, parent, {preload:preload, create:create, update:update});
+            whiplash.Input.setup(document.querySelector(parent));
             uiEngine = new ash.core.Engine();
             engine = whiplash.Lib.ashEngine;
+#if phaser
             game = whiplash.Lib.phaserGame;
+#end
             esm = new EngineStateMachine(engine);
             ingameEsm = new EngineStateMachine(engine);
             uiEsm = new EngineStateMachine(uiEngine);
@@ -31,18 +39,24 @@ class Application {
     }
 
     function preload():Void {
+#if phaser
         DataManager.preload(game);
+#end
     }
 
     function create():Void {
+#if phaser
         AudioManager.init(game);
+#end
     }
 
     function update():Void {
-        var t = game.time.elapsed / 1000;
-        t *= timeFactor;
-        engine.update(t);
-        uiEngine.update(t);
+        deltaTime = whiplash.Lib.getDeltaTime();
+        deltaTime *= timeFactor;
+        whiplash.Input.update();
+        engine.update(deltaTime);
+        uiEngine.update(deltaTime);
+        whiplash.Input.postUpdate();
     }
 
     function createState(name:String):EngineState {
