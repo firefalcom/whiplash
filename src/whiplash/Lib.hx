@@ -22,7 +22,7 @@ class Lib {
         phaserGame = new phaser.Game(width, height, phaser.Phaser.CANVAS, parentElement, {preload:callbacks.preload, create:callbacks.create, update:callbacks.update, render:callbacks.render});
         phaserGame.transparent = true;
         getDeltaTime = function() {
-            return phaserGame.time.elapsed;
+            return phaserGame.time.elapsed * 0.001;
         }
 #end
 #if babylonjs
@@ -58,7 +58,9 @@ class Lib {
         ashEngine.addSystem(new SoundSystem(), systemsPriority);
 #end
 #if !phaser
-        getDeltaTime = babylonEngine.getDeltaTime;
+        getDeltaTime = function() {
+            return babylonEngine.getDeltaTime() * 0.001;
+        }
         haxe.Timer.delay(function() {
             callbacks.preload();
             callbacks.create();
