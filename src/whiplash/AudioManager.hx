@@ -3,7 +3,7 @@ package whiplash;
 class AudioManager {
     static private var soundIsEnabled = true;
     static private var musicIsEnabled = true;
-    static public var validSounds : Array<String> = [];
+    static public var validSounds:Array<String> = [];
     static public var sounds:Map<String, Dynamic> = new Map();
     static public var music:Dynamic;
 
@@ -11,7 +11,7 @@ class AudioManager {
         if(scene != null) {
             for(file in DataManager.soundFiles) {
                 var name = new haxe.io.Path(file).file;
-                scene.load.audio(name,file);
+                scene.load.audio(name, file);
                 validSounds.push(name);
             }
         }
@@ -35,14 +35,14 @@ class AudioManager {
             return;
         }
 
-        if( sounds.exists( name ) ){
+        if(sounds.exists(name)) {
             sounds[name].stop();
             sounds.remove(name);
         }
     }
 
     static public function playMusic(name) {
-        if(sounds[name] == music) {
+        if(music != null && sounds[name] == music) {
             return;
         }
 
@@ -51,7 +51,7 @@ class AudioManager {
         }
 
         if(musicIsEnabled) {
-            music = Lib.phaserScene.sound.play(name, {position:0, volume:1, loop:true} );
+            music = Lib.phaserScene.sound.play(name, {position:0, volume:1, loop:true});
             sounds[name] = music;
         }
     }
