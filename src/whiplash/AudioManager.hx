@@ -3,7 +3,6 @@ package whiplash;
 class AudioManager {
     static private var soundIsEnabled = true;
     static private var musicIsEnabled = true;
-    static public var validSounds:Array<String> = [];
     static public var sounds:Map<String, Dynamic> = new Map();
     static public var music:Dynamic;
 
@@ -12,37 +11,40 @@ class AudioManager {
             for(file in DataManager.soundFiles) {
                 var name = new haxe.io.Path(file).file;
                 scene.load.audio(name, file);
-                validSounds.push(name);
+                sounds[name] = Lib.phaserScene.sound.add(name);
             }
         }
     }
 
     static public function playSound(name) {
-        if(validSounds.indexOf(name) == -1) {
+        if(!sounds.exists(name)) {
             trace("Unknown sound: " + name);
             return;
         }
 
         if(soundIsEnabled) {
-            sounds[name] = Lib.phaserScene.sound.add(name);
             sounds[name].play();
         }
     }
 
     static public function stopSound(name) {
-        if(validSounds.indexOf(name) == -1) {
+        if(!sounds.exists(name)) {
             trace("Unknown sound: " + name);
             return;
         }
 
         if(sounds.exists(name)) {
             sounds[name].stop();
-            sounds.remove(name);
         }
     }
 
     static public function playMusic(name) {
-        if(music != null && sounds[name] == music) {
+        if(!sounds.exists(name)) {
+            trace("Unknown sound: " + name);
+            return;
+        }
+
+        if(sounds[name] == music) {
             return;
         }
 
@@ -51,8 +53,8 @@ class AudioManager {
         }
 
         if(musicIsEnabled) {
-            music = Lib.phaserScene.sound.play(name, {position:0, volume:1, loop:true});
-            sounds[name] = music;
+            music = sounds[name];
+            music.play({loop:true});
         }
     }
 
@@ -82,7 +84,7 @@ class AudioManager {
             }
         } else {
             if(music != null) {
-                music.play('', 0, 1, true);
+                music.play({loop:true});
             }
         }
 
