@@ -66,7 +66,7 @@ class AudioManager {
     }
 
     static public function enableSound(enabled) {
-        if(enabled) {
+        if(!enabled) {
             for(sound in sounds) {
                 if(sound != music) {
                     sound.stop();
