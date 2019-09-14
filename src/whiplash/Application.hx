@@ -55,6 +55,9 @@ class Application {
         var delta_time = delta / 1000;
         delta_time *= timeFactor;
         whiplash.Input.update();
+#if babylonjs
+        BABYLON.Scene.MinDeltaTime = BABYLON.Scene.MaxDeltaTime = delta;
+#end
         engine.update(delta_time);
         uiEngine.update(delta_time);
         whiplash.Input.postUpdate();

@@ -11,27 +11,24 @@ class Lib {
 #end
 #if babylonjs
     static public var babylonEngine:BABYLON.Engine;
+    static public var babylonCanvas:js.html.CanvasElement;
 #end
     static public var ashEngine:ash.core.Engine;
-    static public var babylonCanvas:js.html.CanvasElement;
+    static public var getDeltaTime:Void->Float;
 
     static public function init(?width:Int = 800, ?height:Int = 600, ?parent:String = "body", ?callbacks: {?preload:Void->Void, ?create:Void->Void, ?update:Float->Float->Void, ?render:Void->Void} = null, ?systemsPriority:Int = 10) {
         var parentElement = document.querySelector(parent);
         ashEngine = new ash.core.Engine();
 #if phaser
-
-        var local_preload = function(){
-                #if phaser
-                phaserScene = untyped __js__ ("this");
-                #end
-                callbacks.preload();
+        var local_preload = function() {
+            phaserScene = untyped __js__("this");
+            callbacks.preload();
         };
-        phaserGame = new phaser.Game(
-                { width: width, height: height, type: untyped Phaser.WEBGL, parent: parentElement,
-                scene : {preload:local_preload, create:callbacks.create, update:callbacks.update, render:callbacks.render},
-                render : {transparent:true}
-                }
-                );
+        phaserGame = new phaser.Game({
+            width: width, height: height, type: untyped Phaser.WEBGL, parent: parentElement,
+            scene : {preload:local_preload, create:callbacks.create, update:callbacks.update, render:callbacks.render},
+            render : {transparent:true}
+        });
 #end
 #if babylonjs
         babylonCanvas = js.Browser.document.createCanvasElement();
@@ -67,10 +64,16 @@ class Lib {
 #end
 #if !phaser
         getDeltaTime = babylonEngine.getDeltaTime;
+        var totalTime = 0.0;
+        var updateLoop = function() {
+            var dt = getDeltaTime();
+            totalTime += dt;
+            callbacks.update(totalTime, dt);
+        };
         haxe.Timer.delay(function() {
             callbacks.preload();
             callbacks.create();
-            babylonEngine.runRenderLoop(callbacks.update);
+            babylonEngine.runRenderLoop(updateLoop);
         }, 1);
 #end
     }

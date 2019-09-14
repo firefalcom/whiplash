@@ -158,21 +158,20 @@ class Test extends Application {
         engine.addEntity(entity);
         {
             var ps = new BABYLON.ParticleSystem("particles", 500, scene);
-            ps.emitRate = 500;
+            ps.emitRate = 50;
             ps.particleEmitterType = new BABYLON.SphereParticleEmitter(1);
             ps.particleTexture = new BABYLON.Texture("./data/textures/firefalcom.png", scene);
             ps.color1 = new BABYLON.Color4(1, 1, 1, 1.0);
             ps.color2 = new BABYLON.Color4(0, 0, 0, 0.0);
             ps.colorDead = new BABYLON.Color4(0, 0, 0, 0.0);
             ps.minLifeTime = 0.5;
-            ps.maxLifeTime = 0.6;
+            ps.maxLifeTime = 2.6;
             ps.minSize = 1;
             ps.maxSize = 1;
             ps.minEmitPower = 2;
             ps.maxEmitPower = 4;
             ps.gravity = new BABYLON.Vector3(0, -10, 0);
             ps.direction1 = new BABYLON.Vector3(0.5, 1, 0);
-            ps.updateSpeed = 0.2;
             var entity = new Entity();
             entity.add(new Mesh(BABYLON.Mesh.CreateSphere("Sphere", 16, 3), scene));
             ps.emitter = entity.get(Mesh).o;
