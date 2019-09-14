@@ -202,6 +202,7 @@ class Input {
     }
 
     static public function setup(element:js.html.Element) {
+        var rect = element.getBoundingClientRect();
         element.addEventListener("mousedown", function(e) {
             mouseButtons[e.button] = true;
             mouseCoordinates.x = e.offsetX;
@@ -209,12 +210,18 @@ class Input {
         });
         element.addEventListener("touchstart", function(e) {
             mouseButtons[0] = true;
-            mouseCoordinates.x = e.touches[0].clientX;
-            mouseCoordinates.y = e.touches[0].clientY;
+            var touch = e.touches[0];
+            var x = (touch.clientX / rect.width) * element.offsetWidth;
+            var y = (touch.clientY / rect.height) * element.offsetHeight;
+            mouseCoordinates.x = x;
+            mouseCoordinates.y = y;
         });
         element.addEventListener("touchmove", function(e) {
-            mouseCoordinates.x = e.touches[0].clientX;
-            mouseCoordinates.y = e.touches[0].clientY;
+            var touch = e.touches[0];
+            var x = (touch.clientX / rect.width) * element.offsetWidth;
+            var y = (touch.clientY / rect.height) * element.offsetHeight;
+            mouseCoordinates.x = x;
+            mouseCoordinates.y = y;
         });
         element.addEventListener("touchend", function(e) {
             mouseButtons[0] = false;
@@ -225,8 +232,11 @@ class Input {
             }
 
             if(touches.length > 0)  {
-                mouseCoordinates.x = touches[0].clientX;
-                mouseCoordinates.y = touches[0].clientY;
+                var touch = touches[0];
+                var x = (touch.clientX / rect.width) * element.offsetWidth;
+                var y = (touch.clientY / rect.height) * element.offsetHeight;
+                mouseCoordinates.x = x;
+                mouseCoordinates.y = y;
             }
         });
         element.addEventListener("mousemove", function(e) {

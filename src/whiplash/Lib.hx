@@ -71,7 +71,7 @@ class Lib {
         ashEngine.addSystem(new SoundSystem(), systemsPriority);
 #end
 #if !phaser
-        getDeltaTime = babylonEngine.getDeltaTime;
+        getDeltaTime = function() {
         var totalTime = 0.0;
         var updateLoop = function() {
             var dt = getDeltaTime();
