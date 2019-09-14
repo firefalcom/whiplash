@@ -117,7 +117,7 @@ class Test extends Application {
         entity.add(new Move());
         engine.addEntity(entity);
         engine.removeEntity(entity);
-        entity.get(Sprite).anchor = new Point(0.5, 0.5);
+        entity.get(Sprite).setOrigin(0.5, 0.5);
         engine.addEntity(entity);
         var p = new Point(200, 150);
         entity.get(Transform).position = p * 2;
@@ -125,20 +125,17 @@ class Test extends Application {
         entity.add(new Transform());
         entity.add(new Text("Whiplash!"));
         var text = entity.get(Text);
-        text.anchor.set(0.5, 0.5);
-        text.align = 'center';
-        text.font = 'Arial Black';
-        text.fontSize = 50;
-        text.fontWeight = 'bold';
-        text.stroke = '#000000';
-        text.strokeThickness = 8;
-        text.fill = 'white';
-        text.addStrokeColor('#ff0000', 0);
+        text.setOrigin(0.5, 0.5);
+        text.setAlign('center');
+        text.setFontFamily('Arial Black');
+        text.setFontSize(50);
+        text.setStroke('#000000', 8);
+        text.setFill('white');
         entity.get(Transform).position = new Point(400, 500);
         entity.add(new Graphics());
         var graphics = entity.get(Graphics);
         graphics.lineStyle(2, 0x0000FF, 1);
-        graphics.drawRect(-200, 40, 400, 20);
+        graphics.strokeRect(-200, 40, 400, 20);
         engine.addEntity(entity);
 #end
 
@@ -158,21 +155,20 @@ class Test extends Application {
         engine.addEntity(entity);
         {
             var ps = new BABYLON.ParticleSystem("particles", 500, scene);
-            ps.emitRate = 500;
+            ps.emitRate = 50;
             ps.particleEmitterType = new BABYLON.SphereParticleEmitter(1);
             ps.particleTexture = new BABYLON.Texture("./data/textures/firefalcom.png", scene);
             ps.color1 = new BABYLON.Color4(1, 1, 1, 1.0);
             ps.color2 = new BABYLON.Color4(0, 0, 0, 0.0);
             ps.colorDead = new BABYLON.Color4(0, 0, 0, 0.0);
             ps.minLifeTime = 0.5;
-            ps.maxLifeTime = 0.6;
+            ps.maxLifeTime = 2.6;
             ps.minSize = 1;
             ps.maxSize = 1;
             ps.minEmitPower = 2;
             ps.maxEmitPower = 4;
             ps.gravity = new BABYLON.Vector3(0, -10, 0);
             ps.direction1 = new BABYLON.Vector3(0.5, 1, 0);
-            ps.updateSpeed = 0.2;
             var entity = new Entity();
             entity.add(new Mesh(BABYLON.Mesh.CreateSphere("Sphere", 16, 3), scene));
             ps.emitter = entity.get(Mesh).o;
@@ -204,8 +200,8 @@ class Test extends Application {
         });
     }
 
-    override function update() {
-        super.update();
+    override function update(time, delta) {
+        super.update(time, delta);
 
         if(scene != null) {
             scene.render();

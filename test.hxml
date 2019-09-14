@@ -1,7 +1,7 @@
 -cp test
 -cp src
 -cp deps/haxe-babylon/src
--cp deps/haxe-phaser/src
+-cp deps/haxe-phaser3/src
 -cp deps/Ash-Haxe/src
 -lib jquery-uipages
 -js test/generated.js

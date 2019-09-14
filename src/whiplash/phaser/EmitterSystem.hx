@@ -24,12 +24,12 @@ class EmitterSystem extends ListIteratingSystem<EmitterNode> {
 
     private function onNodeAdded(node:EmitterNode) {
         apply(node);
-        node.emitter.revive();
+        node.emitter.setActive(true);
+        node.emitter.setVisible(true);
     }
 
     private function onNodeRemoved(node:EmitterNode) {
         node.emitter.destroy();
-        node.emitter.kill();
     }
 
     private inline function apply(node:EmitterNode) {
@@ -37,10 +37,8 @@ class EmitterSystem extends ListIteratingSystem<EmitterNode> {
         var position = transform.position;
         var scale = transform.scale;
         var emitter = node.emitter;
-        emitter.position.x = position.x;
-        emitter.position.y = position.y;
-        emitter.scale.x = scale.x;
-        emitter.scale.y = scale.y;
-        emitter.angle = transform.rotation;
+        emitter.setPosition( position.x, position.y );
+        emitter.setScale( scale.x, scale.y );
+        emitter.setAngle( transform.rotation );
     }
 }

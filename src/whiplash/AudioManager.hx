@@ -6,11 +6,12 @@ class AudioManager {
     static public var sounds:Map<String, Dynamic> = new Map();
     static public var music:Dynamic;
 
-    static public function init(game:phaser.Game) {
-        if(game != null) {
+    static public function init(scene:phaser.Scene) {
+        if(scene != null) {
             for(file in DataManager.soundFiles) {
                 var name = new haxe.io.Path(file).file;
-                sounds[name] = game.add.audio(name);
+                scene.load.audio(name, file);
+                sounds[name] = Lib.phaserScene.sound.add(name);
             }
         }
     }
@@ -32,10 +33,17 @@ class AudioManager {
             return;
         }
 
-        sounds[name].stop();
+        if(sounds.exists(name)) {
+            sounds[name].stop();
+        }
     }
 
     static public function playMusic(name) {
+        if(!sounds.exists(name)) {
+            trace("Unknown sound: " + name);
+            return;
+        }
+
         if(sounds[name] == music) {
             return;
         }
@@ -46,7 +54,7 @@ class AudioManager {
 
         if(musicIsEnabled) {
             music = sounds[name];
-            music.play('', 0, 1, true);
+            music.play({loop:true});
         }
     }
 
@@ -58,7 +66,7 @@ class AudioManager {
     }
 
     static public function enableSound(enabled) {
-        if(enabled) {
+        if(!enabled) {
             for(sound in sounds) {
                 if(sound != music) {
                     sound.stop();
@@ -76,7 +84,7 @@ class AudioManager {
             }
         } else {
             if(music != null) {
-                music.play('', 0, 1, true);
+                music.play({loop:true});
             }
         }
 

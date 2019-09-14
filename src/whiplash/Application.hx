@@ -39,23 +39,27 @@ class Application {
     }
 
     function preload():Void {
+
 #if phaser
-        DataManager.preload(game);
+        DataManager.preload(whiplash.Lib.phaserScene);
 #end
     }
 
     function create():Void {
 #if phaser
-        AudioManager.init(game);
+        AudioManager.init(whiplash.Lib.phaserScene);
 #end
     }
 
-    function update():Void {
-        deltaTime = whiplash.Lib.getDeltaTime();
-        deltaTime *= timeFactor;
+    function update(time:Float, delta:Float):Void {
+        var delta_time = delta / 1000;
+        delta_time *= timeFactor;
         whiplash.Input.update();
-        engine.update(deltaTime);
-        uiEngine.update(deltaTime);
+#if babylonjs
+        BABYLON.Scene.MinDeltaTime = BABYLON.Scene.MaxDeltaTime = delta;
+#end
+        engine.update(delta_time);
+        uiEngine.update(delta_time);
         whiplash.Input.postUpdate();
     }
 

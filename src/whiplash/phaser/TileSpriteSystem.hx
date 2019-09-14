@@ -36,10 +36,10 @@ class TileSpriteSystem extends ListIteratingSystem<TileSpriteNode> {
         var position = transform.position;
         var scale = transform.scale;
         var sprite = node.sprite;
-        sprite.position.x = position.x;
-        sprite.position.y = position.y;
-        sprite.scale.x = scale.x;
+        sprite.x = Std.int(position.x);
+        sprite.y = Std.int(position.y);
+        throw ""; /*sprite.scale.x = scale.x;
         sprite.scale.y = scale.y;
-        sprite.angle = transform.rotation;
+        sprite.angle = transform.rotation;*/
     }
 }

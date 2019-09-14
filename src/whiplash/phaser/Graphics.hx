@@ -1,9 +1,10 @@
 package whiplash.phaser;
 
-class Graphics extends phaser.Graphics {
+class Graphics extends phaser.gameobjects.Graphics {
     public function new() {
-        super(Lib.phaserGame, 0, 0);
-        Lib.phaserGame.add.existing(this);
-        kill();
+        super(Lib.phaserScene);
+        Lib.phaserScene.add.existing(this);
+        setActive( false );
+        setVisible( false );
     }
 }

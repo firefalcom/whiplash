@@ -3,7 +3,7 @@ package whiplash.math;
 #if under_test
 typedef SourcePoint = {x:Float, y:Float};
 #else
-typedef SourcePoint = phaser.Point;
+typedef SourcePoint = phaser.geom.Point;
 #end
 
 @:forward

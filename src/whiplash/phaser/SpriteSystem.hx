@@ -24,11 +24,13 @@ class SpriteSystem extends ListIteratingSystem<SpriteNode> {
 
     private function onNodeAdded(node:SpriteNode) {
         apply(node);
-        node.sprite.revive();
+        node.sprite.setActive( true );
+        node.sprite.setVisible( true );
     }
 
     private function onNodeRemoved(node:SpriteNode) {
-        node.sprite.kill();
+        node.sprite.setActive( false );
+        node.sprite.setVisible( false );
     }
 
     private inline function apply(node:SpriteNode) {
@@ -38,25 +40,21 @@ class SpriteSystem extends ListIteratingSystem<SpriteNode> {
         var sprite = node.sprite;
         if(sprite.body) {
             if(untyped !sprite.body.immovable) {
-                position.x = sprite.position.x;
-                position.y = sprite.position.y;
+                position.x = sprite.x;
+                position.y = sprite.y;
                 transform.rotation = sprite.angle;
             } else {
                 untyped sprite.body.position.x = position.x;
                 untyped sprite.body.position.y = position.y;
                 untyped sprite.body.angle = transform.rotation;
-                sprite.position.x = position.x;
-                sprite.position.y = position.y;
-                sprite.angle = transform.rotation;
+                sprite.setPosition( position.x, position.y);
+                sprite.setAngle( transform.rotation );
             }
-            sprite.scale.x = scale.x;
-            sprite.scale.y = scale.y;
+            sprite.setScale( scale.x, scale.y);
         } else {
-            sprite.position.x = position.x;
-            sprite.position.y = position.y;
-            sprite.scale.x = scale.x;
-            sprite.scale.y = scale.y;
-            sprite.angle = transform.rotation;
+            sprite.setPosition( position.x, position.y );
+            sprite.setScale( scale.x, scale.y );
+            sprite.setAngle( transform.rotation );
         }
     }
 }
