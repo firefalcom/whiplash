@@ -124,16 +124,13 @@ class Test extends Application {
         entity = new Entity();
         entity.add(new Transform());
         entity.add(new Text("Whiplash!"));
-        /*var text = entity.get(Text);
-        throw "";//text.setOrigin(0.5, 0.5);
-        throw "";//text.align = 'center';
-        throw "";//text.font = 'Arial Black';
-        throw "";//text.fontSize = 50;
-        throw "";//text.fontWeight = 'bold';
-        throw "";//text.stroke = '#000000';
-        throw "";//text.strokeThickness = 8;
-        throw "";//text.fill = 'white';
-        throw "";//text.addStrokeColor('#ff0000', 0);*/
+        var text = entity.get(Text);
+        text.setOrigin(0.5, 0.5);
+        text.setAlign('center');
+        text.setFontFamily('Arial Black');
+        text.setFontSize(50);
+        text.setStroke('#000000', 8);
+        text.setFill('white');
         entity.get(Transform).position = new Point(400, 500);
         entity.add(new Graphics());
         var graphics = entity.get(Graphics);
