@@ -8,6 +8,7 @@ class Lib {
 #if phaser
     static public var phaserGame:phaser.Game;
     static public var phaserScene:phaser.Scene;
+    static public var phaserCanvas:js.html.CanvasElement;
 #end
 #if babylonjs
     static public var babylonEngine:BABYLON.Engine;
@@ -16,31 +17,38 @@ class Lib {
     static public var ashEngine:ash.core.Engine;
     static public var getDeltaTime:Void->Float;
 
+    static private function createCanvas(parentElement:js.html.Element, width:Int, height:Int) {
+        var canvas = js.Browser.document.createCanvasElement();
+        parentElement.appendChild(canvas);
+        canvas.width = width;
+        canvas.height = height;
+        canvas.style.width = width+"px";
+        canvas.style.height = height+"px";
+        canvas.style.zIndex = "-1";
+        canvas.style.position = "absolute";
+        return canvas;
+    }
+
     static public function init(?width:Int = 800, ?height:Int = 600, ?parent:String = "body", ?callbacks: {?preload:Void->Void, ?create:Void->Void, ?update:Float->Float->Void, ?render:Void->Void} = null, ?systemsPriority:Int = 10) {
         var parentElement = document.querySelector(parent);
         ashEngine = new ash.core.Engine();
+#if babylonjs
+        babylonCanvas = createCanvas(parentElement, width, height);
+        babylonCanvas.classList.add('babylonCanvas');
+        babylonEngine = new BABYLON.Engine(cast babylonCanvas, true);
+#end
 #if phaser
         var local_preload = function() {
             phaserScene = untyped __js__("this");
             callbacks.preload();
         };
+        phaserCanvas = createCanvas(parentElement, width, height);
+        phaserCanvas.classList.add('phaserCanvas');
         phaserGame = new phaser.Game({
-            width: width, height: height, type: untyped Phaser.WEBGL, parent: parentElement,
+            width: width, height: height, type: untyped Phaser.WEBGL, canvas: phaserCanvas,
             scene : {preload:local_preload, create:callbacks.create, update:callbacks.update, render:callbacks.render},
             render : {transparent:true}
         });
-#end
-#if babylonjs
-        babylonCanvas = js.Browser.document.createCanvasElement();
-        parentElement.appendChild(babylonCanvas);
-        babylonCanvas.classList.add('babylonCanvas');
-        babylonCanvas.width = width;
-        babylonCanvas.height = height;
-        babylonCanvas.style.width = width+"px";
-        babylonCanvas.style.height = height+"px";
-        babylonCanvas.style.zIndex = "-1";
-        babylonCanvas.style.position = "absolute";
-        babylonEngine = new BABYLON.Engine(cast babylonCanvas, true);
 #end
 #if phaser
         ashEngine.addSystem(new GroupSystem(phaserGame), systemsPriority);
