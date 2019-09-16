@@ -24,11 +24,13 @@ class TileSpriteSystem extends ListIteratingSystem<TileSpriteNode> {
 
     private function onNodeAdded(node:TileSpriteNode) {
         apply(node);
-        untyped node.sprite.revive();
+        node.sprite.setActive(true);
+        node.sprite.setVisible(true);
     }
 
     private function onNodeRemoved(node:TileSpriteNode) {
-        untyped node.sprite.kill();
+        node.sprite.setActive(false);
+        node.sprite.setVisible(false);
     }
 
     private inline function apply(node:TileSpriteNode) {
@@ -38,8 +40,7 @@ class TileSpriteSystem extends ListIteratingSystem<TileSpriteNode> {
         var sprite = node.sprite;
         sprite.x = Std.int(position.x);
         sprite.y = Std.int(position.y);
-        throw ""; /*sprite.scale.x = scale.x;
-        sprite.scale.y = scale.y;
-        sprite.angle = transform.rotation;*/
+        sprite.setScale(scale.x, scale.y);
+        sprite.angle = cast transform.rotation;
     }
 }
