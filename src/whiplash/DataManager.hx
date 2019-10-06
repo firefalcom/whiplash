@@ -7,6 +7,7 @@ import js.Browser.document;
 #end
 class DataManager {
     public static var textureFiles:Array<String> = Macro.getDataFilePaths("textures");
+    public static var normalmapFiles:Array<String> = Macro.getDataFilePaths("normalmaps");
     public static var soundFiles:Array<String> = Macro.getDataFilePaths("sounds");
     public static var tilemapFiles:Array<String> = Macro.getDataFilePaths("tilemaps");
     public static var atlasFiles:Array<String> = Macro.getDataFilePaths("atlases");
@@ -27,7 +28,22 @@ class DataManager {
             for(file in textureFiles) {
                 var name = new haxe.io.Path(file).file;
 #if !embed
-                scene.load.image(name, file);
+                var loaded = false;
+
+                for(normalFile in normalmapFiles) {
+                    var normalName = new haxe.io.Path(normalFile).file;
+
+                    if(name == normalName) {
+                        scene.load.image(name, [file, normalFile]);
+                        loaded = true;
+                        break;
+                    }
+                }
+
+                if(!loaded) {
+                    scene.load.image(name, file);
+                }
+
 #end
             }
 
