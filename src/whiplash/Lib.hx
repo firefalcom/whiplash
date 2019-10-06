@@ -59,6 +59,7 @@ class Lib {
         ashEngine.addSystem(new BitmapTextSystem(phaserGame), systemsPriority);
         ashEngine.addSystem(new GraphicsSystem(phaserGame), systemsPriority);
         ashEngine.addSystem(new EmitterSystem(phaserGame), systemsPriority);
+        ashEngine.addSystem(new whiplash.phaser.LightSystem(phaserGame), systemsPriority);
 #end
 #if babylonjs
         ashEngine.addSystem(new LightSystem(), systemsPriority);
