@@ -47,7 +47,8 @@ class Lib {
         phaserGame = new phaser.Game({
             width: width, height: height, type: untyped Phaser.WEBGL, canvas: phaserCanvas,
             scene : {preload:local_preload, create:callbacks.create, update:callbacks.update, render:callbacks.render},
-            render : {transparent:true}
+            render : {transparent:true},
+            physics: {"default":'arcade'}
         });
 #end
 #if phaser
@@ -73,18 +74,18 @@ class Lib {
 #end
 #if !phaser
         getDeltaTime = function() {
-        var totalTime = 0.0;
-        var updateLoop = function() {
-            var dt = getDeltaTime();
-            totalTime += dt;
-            callbacks.update(totalTime, dt);
-        };
-        haxe.Timer.delay(function() {
-            callbacks.preload();
-            callbacks.create();
-            babylonEngine.runRenderLoop(updateLoop);
-        }, 1);
+            var totalTime = 0.0;
+            var updateLoop = function() {
+                var dt = getDeltaTime();
+                totalTime += dt;
+                callbacks.update(totalTime, dt);
+            };
+            haxe.Timer.delay(function() {
+                callbacks.preload();
+                callbacks.create();
+                babylonEngine.runRenderLoop(updateLoop);
+            }, 1);
 #end
+        }
     }
-}
 
