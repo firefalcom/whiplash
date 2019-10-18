@@ -38,8 +38,8 @@ class TextSystem extends ListIteratingSystem<TextNode> {
         var position = transform.position;
         var scale = transform.scale;
         var sprite = node.sprite;
-        sprite.setPosition( position.x, position.y );
-        sprite.setScale( scale.x, scale.y );
-        sprite.setAngle( transform.rotation );
+        sprite.setPosition(position.x, position.y);
+        sprite.setScale(scale.x, scale.y);
+        sprite.setAngle(transform.rotation);
     }
 }
