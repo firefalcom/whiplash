@@ -11,11 +11,8 @@ class TextNode extends Node<TextNode> {
 }
 
 class TextSystem extends ListIteratingSystem<TextNode> {
-    private var game:Game;
-
-    public function new(game) {
+    public function new() {
         super(TextNode, updateNode, onNodeAdded, onNodeRemoved);
-        this.game = game;
     }
 
     private function updateNode(node:TextNode, dt:Float):Void {

@@ -6,8 +6,5 @@ class TilemapLayer extends phaser.tilemaps.DynamicTilemapLayer {
         Lib.phaserScene.add.existing(this);
         setActive(false);
         setVisible(false);
-        /*Lib.phaserGame, tilemap, index, w, h);
-        Lib.phaserGame.add.existing(this);
-        this.kill();*/
     }
 }

@@ -11,11 +11,8 @@ class GraphicsNode extends Node<GraphicsNode> {
 }
 
 class GraphicsSystem extends ListIteratingSystem<GraphicsNode> {
-    private var game:Game;
-
-    public function new(game) {
+    public function new() {
         super(GraphicsNode, updateNode, onNodeAdded, onNodeRemoved);
-        this.game = game;
     }
 
     private function updateNode(node:GraphicsNode, dt:Float):Void {
@@ -24,13 +21,11 @@ class GraphicsSystem extends ListIteratingSystem<GraphicsNode> {
 
     private function onNodeAdded(node:GraphicsNode) {
         apply(node);
-
         node.graphics.setActive(true);
         node.graphics.setVisible(true);
     }
 
     private function onNodeRemoved(node:GraphicsNode) {
-
         node.graphics.setActive(false);
         node.graphics.setVisible(false);
     }
@@ -40,8 +35,8 @@ class GraphicsSystem extends ListIteratingSystem<GraphicsNode> {
         var position = transform.position;
         var scale = transform.scale;
         var graphics = node.graphics;
-        graphics.setPosition( position.x, position.y );
-        graphics.setScale( scale.x, scale.y );
-        graphics.setAngle( transform.rotation );
+        graphics.setPosition(position.x, position.y);
+        graphics.setScale(scale.x, scale.y);
+        graphics.setAngle(transform.rotation);
     }
 }

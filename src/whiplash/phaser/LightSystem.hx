@@ -11,11 +11,8 @@ class LightNode extends Node<LightNode> {
 }
 
 class LightSystem extends ListIteratingSystem<LightNode> {
-    private var game:Game;
-
-    public function new(game) {
+    public function new() {
         super(LightNode, updateNode, onNodeAdded, onNodeRemoved);
-        this.game = game;
     }
 
     private function updateNode(node:LightNode, dt:Float):Void {

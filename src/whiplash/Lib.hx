@@ -52,15 +52,15 @@ class Lib {
         });
 #end
 #if phaser
-        ashEngine.addSystem(new ContainerSystem(phaserGame), systemsPriority);
-        ashEngine.addSystem(new SpriteSystem(phaserGame), systemsPriority);
-        ashEngine.addSystem(new TileSpriteSystem(phaserGame), systemsPriority);
-        ashEngine.addSystem(new TilemapLayerSystem(phaserGame), systemsPriority);
-        ashEngine.addSystem(new TextSystem(phaserGame), systemsPriority);
-        ashEngine.addSystem(new BitmapTextSystem(phaserGame), systemsPriority);
-        ashEngine.addSystem(new GraphicsSystem(phaserGame), systemsPriority);
-        ashEngine.addSystem(new EmitterSystem(phaserGame), systemsPriority);
-        ashEngine.addSystem(new whiplash.phaser.LightSystem(phaserGame), systemsPriority);
+        ashEngine.addSystem(new ContainerSystem(), systemsPriority);
+        ashEngine.addSystem(new SpriteSystem(), systemsPriority);
+        ashEngine.addSystem(new TileSpriteSystem(), systemsPriority);
+        ashEngine.addSystem(new TilemapLayerSystem(), systemsPriority);
+        ashEngine.addSystem(new TextSystem(), systemsPriority);
+        ashEngine.addSystem(new BitmapTextSystem(), systemsPriority);
+        ashEngine.addSystem(new GraphicsSystem(), systemsPriority);
+        ashEngine.addSystem(new EmitterSystem(), systemsPriority);
+        ashEngine.addSystem(new whiplash.phaser.LightSystem(), systemsPriority);
 #end
 #if babylonjs
         ashEngine.addSystem(new LightSystem(), systemsPriority);

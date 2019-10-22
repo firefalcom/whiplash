@@ -11,11 +11,9 @@ class SpriteNode extends Node<SpriteNode> {
 }
 
 class SpriteSystem extends ListIteratingSystem<SpriteNode> {
-    private var game:Game;
 
-    public function new(game) {
+    public function new() {
         super(SpriteNode, updateNode, onNodeAdded, onNodeRemoved);
-        this.game = game;
     }
 
     private function updateNode(node:SpriteNode, dt:Float):Void {
