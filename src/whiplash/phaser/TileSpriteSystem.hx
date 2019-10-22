@@ -11,11 +11,8 @@ class TileSpriteNode extends Node<TileSpriteNode> {
 }
 
 class TileSpriteSystem extends ListIteratingSystem<TileSpriteNode> {
-    private var game:Game;
-
-    public function new(game) {
+    public function new() {
         super(TileSpriteNode, updateNode, onNodeAdded, onNodeRemoved);
-        this.game = game;
     }
 
     private function updateNode(node:TileSpriteNode, dt:Float):Void {

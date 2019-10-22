@@ -11,11 +11,8 @@ class BitmapTextNode extends Node<BitmapTextNode> {
 }
 
 class BitmapTextSystem extends ListIteratingSystem<BitmapTextNode> {
-    private var game:Game;
-
-    public function new(game) {
+    public function new() {
         super(BitmapTextNode, updateNode, onNodeAdded, onNodeRemoved);
-        this.game = game;
     }
 
     private function updateNode(node:BitmapTextNode, dt:Float):Void {
@@ -36,8 +33,8 @@ class BitmapTextSystem extends ListIteratingSystem<BitmapTextNode> {
         var position = transform.position;
         var scale = transform.scale;
         var sprite = node.sprite;
-        sprite.setPosition( position.x, position.y );
-        sprite.setScale( scale.x, scale.y );
-        sprite.setAngle( transform.rotation );
+        sprite.setPosition(position.x, position.y);
+        sprite.setScale(scale.x, scale.y);
+        sprite.setAngle(transform.rotation);
     }
 }

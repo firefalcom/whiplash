@@ -11,11 +11,8 @@ class EmitterNode extends Node<EmitterNode> {
 }
 
 class EmitterSystem extends ListIteratingSystem<EmitterNode> {
-    private var game:Game;
-
-    public function new(game) {
+    public function new() {
         super(EmitterNode, updateNode, onNodeAdded, onNodeRemoved);
-        this.game = game;
     }
 
     private function updateNode(node:EmitterNode, dt:Float):Void {
@@ -37,8 +34,8 @@ class EmitterSystem extends ListIteratingSystem<EmitterNode> {
         var position = transform.position;
         var scale = transform.scale;
         var emitter = node.emitter;
-        emitter.setPosition( position.x, position.y );
-        emitter.setScale( scale.x, scale.y );
-        emitter.setAngle( transform.rotation );
+        emitter.setPosition(position.x, position.y);
+        emitter.setScale(scale.x, scale.y);
+        emitter.setAngle(transform.rotation);
     }
 }

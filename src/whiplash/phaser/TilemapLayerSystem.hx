@@ -10,11 +10,9 @@ class TilemapLayerNode extends Node<TilemapLayerNode> {
 }
 
 class TilemapLayerSystem extends ListIteratingSystem<TilemapLayerNode> {
-    private var game:Game;
 
-    public function new(game) {
+    public function new() {
         super(TilemapLayerNode, updateNode, onNodeAdded, onNodeRemoved);
-        this.game = game;
     }
 
     private function updateNode(node:TilemapLayerNode, dt:Float):Void {

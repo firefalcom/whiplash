@@ -11,11 +11,9 @@ class ContainerNode extends Node<ContainerNode> {
 }
 
 class ContainerSystem extends ListIteratingSystem<ContainerNode> {
-    private var game:Game;
 
-    public function new(game) {
+    public function new() {
         super(ContainerNode, updateNode, onNodeAdded, onNodeRemoved);
-        this.game = game;
     }
 
     private function updateNode(node:ContainerNode, dt:Float):Void {
