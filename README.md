@@ -17,16 +17,16 @@ Whiplash is a light framework combining the [haxe implementation](https://github
 
 This project has the following dependencies as submodules:
 
- * [Ash-Haxe](https://github.com/firefalcom/Ash-Haxe)
- * [haxe-babylon](https://github.com/firefalcom/haxe-babylon)
- * [haxe-phaser](https://github.com/Blank101/haxe-phaser)
+ * [Ash-Haxe](https://github.com/firefalcom/Ash-Haxe) for [ECS](https://en.wikipedia.org/wiki/Entity_component_system) support
+ * [haxe-babylon](https://github.com/firefalcom/haxe-babylon) for 3D support
+ * [haxe-phaser3](https://github.com/sebbernery/haxe-phaser3.git) for 2D support
 
 They have to be included in your .hxml file, g.e:
 
 ```
 ...
 -cp deps/haxe-babylon/src
--cp deps/haxe-phaser/src
+-cp deps/haxe-phaser3/src
 -cp deps/Ash-Haxe/src
 ...
 ```
