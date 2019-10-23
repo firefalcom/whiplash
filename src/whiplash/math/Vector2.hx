@@ -27,6 +27,7 @@ abstract Vector2(Base) to Base from Base {
     }
 
     @:op(A + B)
+
     inline static public function add(a:Vector2, b:Vector2) {
         return new Vector2(a.x + b.x, a.y + b.y);
     }
