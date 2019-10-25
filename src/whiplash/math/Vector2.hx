@@ -49,4 +49,11 @@ abstract Vector2(Base) to Base from Base {
     public function getLength() : Float{
         return Math.sqrt(this.x * this.x + this.y * this.y);
     }
+
+#if babylonjs
+    public function setTo(x, y) {
+        this.x = x;
+        this.y = y;
+    }
+#end
 }
