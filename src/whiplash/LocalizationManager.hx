@@ -29,7 +29,7 @@ class LocalizationManager {
 
         for(e in elements) {
             var key = untyped e.getAttribute("data-loca");
-            untyped e.innerHTML = localization[key];
+            untyped e.innerHTML = get(key);
         }
     }
 
