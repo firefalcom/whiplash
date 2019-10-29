@@ -107,13 +107,13 @@ class Application {
         });
     }
 
-    public function changeUiState(stateName) {
+    public function changeUiState(stateName, ?overrideShowOptions:Dynamic, ?overrideHideOptions:Dynamic) {
         uiEngine.updateComplete.addOnce(function() {
             uiEsm.changeState(stateName);
             var pageName = statePageMap.get(stateName);
 
             if(pageName != null) {
-                pages.showPage(pageName);
+                pages.showPage(pageName, overrideShowOptions, overrideHideOptions);
             }
         });
     }

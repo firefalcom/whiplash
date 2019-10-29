@@ -3,7 +3,7 @@
 -cp deps/haxe-babylon/src
 -cp deps/haxe-phaser3/src
 -cp deps/Ash-Haxe/src
--lib jquery-uipages
+-cp deps/jquery-uipages/src
 -js test/generated.js
 -main Test
 -D phaser

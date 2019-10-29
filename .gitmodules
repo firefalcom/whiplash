@@ -7,3 +7,6 @@
 [submodule "deps/haxe-phaser3"]
 	path = deps/haxe-phaser3
 	url = https://github.com/sebbernery/haxe-phaser3.git
+[submodule "deps/jquery-uipages"]
+	path = deps/jquery-uipages
+	url = git@github.com:gogoprog/jquery-uipages
