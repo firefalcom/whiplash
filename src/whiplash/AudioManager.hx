@@ -1,9 +1,33 @@
 package whiplash;
 
+class Sound {
+    public var index:Int = 0;
+    public var instances:Array<Dynamic> = [];
+
+    public function new(scene:phaser.Scene, name, count) {
+        for(i in 0...count) {
+            instances.push(scene.sound.add(name));
+        }
+    }
+
+    public function play() {
+        instances[index].play();
+        ++index;
+        index %= instances.length;
+    }
+
+    public function stop() {
+        for(instance in instances) {
+            instance.stop();
+        }
+    }
+}
+
 class AudioManager {
+    static public var instancesPerSound = 6;
     static private var soundIsEnabled = true;
     static private var musicIsEnabled = true;
-    static public var sounds:Map<String, Dynamic> = new Map();
+    static public var sounds:Map<String, Sound> = new Map();
     static public var music:Dynamic;
 
     static public function init(scene:phaser.Scene) {
@@ -11,7 +35,7 @@ class AudioManager {
             for(file in DataManager.soundFiles) {
                 var name = new haxe.io.Path(file).file;
                 scene.load.audio(name, file);
-                sounds[name] = Lib.phaserScene.sound.add(name);
+                sounds[name] = new Sound(scene, name, instancesPerSound);
             }
         }
     }
