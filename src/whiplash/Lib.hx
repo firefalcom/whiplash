@@ -74,19 +74,19 @@ class Lib {
         ashEngine.addSystem(new SoundSystem(), systemsPriority);
 #end
 #if !phaser
-        getDeltaTime = function() {
-            var totalTime = 0.0;
-            var updateLoop = function() {
-                var dt = getDeltaTime();
-                totalTime += dt;
-                callbacks.update(totalTime, dt);
-            };
-            haxe.Timer.delay(function() {
-                callbacks.preload();
-                callbacks.create();
-                babylonEngine.runRenderLoop(updateLoop);
-            }, 1);
+        getDeltaTime = babylonEngine.getDeltaTime;
+        var totalTime = 0.0;
+        var updateLoop = function() {
+            var dt = getDeltaTime();
+            totalTime += dt;
+            callbacks.update(totalTime, dt);
+        };
+        haxe.Timer.delay(function() {
+            callbacks.preload();
+            callbacks.create();
+            babylonEngine.runRenderLoop(updateLoop);
+        }, 1);
 #end
-        }
     }
+}
 
