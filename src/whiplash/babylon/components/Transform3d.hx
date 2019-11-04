@@ -14,4 +14,14 @@ class Transform3d {
     public function setRotationFromYawPitchRoll(y:Float, p:Float, r:Float) {
         Quaternion.RotationYawPitchRollToRef(y, p, r, rotation);
     }
+
+    public function lookAt(targetPoint:Vector3) {
+        var dv = new Vector3(0, 0, 0);
+        var pos = position;
+        pos.subtractToRef(targetPoint, dv);
+        var yaw = -Math.atan2(dv.z, dv.x) - Math.PI / 2;
+        var len = Math.sqrt(dv.x * dv.x + dv.z * dv.z);
+        var pitch = Math.atan2(dv.y, len);
+        BABYLON.Quaternion.RotationYawPitchRollToRef(yaw, pitch, 0, rotation);
+    }
 }
