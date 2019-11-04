@@ -22,8 +22,6 @@ class Lib {
         parentElement.appendChild(canvas);
         canvas.width = width;
         canvas.height = height;
-        canvas.style.width = width+"px";
-        canvas.style.height = height+"px";
         canvas.style.zIndex = "-1";
         canvas.style.position = "absolute";
         return canvas;
@@ -48,7 +46,8 @@ class Lib {
             width: width, height: height, type: untyped Phaser.WEBGL, canvas: phaserCanvas,
             scene : {preload:local_preload, create:callbacks.create, update:callbacks.update, render:callbacks.render},
             render : {transparent:true},
-            physics: {"default":'arcade'}
+            physics: {"default":'arcade'},
+            scale : { mode:phaser.scale.scalemodes.RESIZE }
         });
 #end
 #if phaser
