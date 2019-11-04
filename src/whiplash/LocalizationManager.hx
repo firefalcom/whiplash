@@ -9,7 +9,10 @@ class LocalizationManager {
     static public function load(loca:Dynamic, _lang:String) {
         localization = loca;
         lang = _lang;
-        apply();
+    }
+
+    static public function add(key:String, value:String) {
+        localization[cast key] = value;
     }
 
     static public function generateJsonFromDocument() {
@@ -24,7 +27,7 @@ class LocalizationManager {
         trace(haxe.Json.stringify(content, null, "    "));
     }
 
-    static public function apply() {
+    static public function translateDocument() {
         var elements = document.querySelectorAll("[data-loca]");
 
         for(e in elements) {
