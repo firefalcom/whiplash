@@ -36,6 +36,8 @@ class Input {
     static public var keys:Map<String, Bool> = new Map();
     static public var mouseButtons:Map<Int, Bool> = new Map();
     static public var mouseCoordinates:Point = new Point(0, 0);
+    static public var mouseMove:Point = new Point(0, 0);
+    static public var nextMouseMove:Point = new Point(0, 0);
     static public var mouseWheelDelta:Int = 0;
 
     static private var justPressedKeys:Map<String, Bool> = new Map();
@@ -69,6 +71,8 @@ class Input {
         }
 
         gamepadStates = navigator.getGamepads();
+        mouseMove.setTo(nextMouseMove.x, nextMouseMove.y);
+        nextMouseMove.setTo(0, 0);
     }
 
     static public function isKeyJustPressed(name:String):Bool {
@@ -242,6 +246,8 @@ class Input {
         element.addEventListener("mousemove", function(e) {
             mouseCoordinates.x = e.offsetX;
             mouseCoordinates.y = e.offsetY;
+            nextMouseMove.x += e.movementX;
+            nextMouseMove.y += e.movementY;
         });
         element.addEventListener("mouseup", function(e) {
             mouseButtons[e.button] = false;
