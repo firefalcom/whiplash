@@ -57,9 +57,9 @@ class DataManager {
             for(file in tilemapFiles) {
                 var name = new haxe.io.Path(file).file;
 #if embed
-                throw "";//scene.load.tilemapWeltmeister(name, cast null, untyped $global.jsons[name],);
+                throw ":TODO:";
 #else
-                throw "";//scene.load.tilemapWeltmeister(name, cast file, cast null);
+                scene.load.tilemapTiledJSON(name, file);
 #end
             }
 

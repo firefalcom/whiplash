@@ -137,6 +137,17 @@ class Test extends Application {
         graphics.lineStyle(2, 0x0000FF, 1);
         graphics.strokeRect(-200, 40, 400, 20);
         engine.addEntity(entity);
+        {
+            var tilemap:phaser.tilemaps.Tilemap;
+            tilemap = whiplash.Lib.phaserScene.add.tilemap('super-mario');
+            var tileset = tilemap.addTilesetImage('SuperMarioBros-World1-1', 'super-mario');
+            var e = new Entity();
+            e.add(new TilemapLayer(tilemap, 0, tileset));
+            e.add(new Transform());
+            e.get(Transform).position.y = 500;
+
+            engine.addEntity(e);
+        }
 #end
 
 #if babylonjs

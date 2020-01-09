@@ -6,6 +6,7 @@ import ash.core.Node;
 import phaser.Game;
 
 class TilemapLayerNode extends Node<TilemapLayerNode> {
+    public var transform:Transform;
     public var tilemapLayer:TilemapLayer;
 }
 
@@ -19,10 +20,22 @@ class TilemapLayerSystem extends ListIteratingSystem<TilemapLayerNode> {
     }
 
     private function onNodeAdded(node:TilemapLayerNode) {
-        throw "";//node.tilemapLayer.revive();
+        apply(node);
+        node.tilemapLayer.setActive(true);
+        node.tilemapLayer.setVisible(true);
     }
 
     private function onNodeRemoved(node:TilemapLayerNode) {
-        throw "";//node.tilemapLayer.kill();
+        node.tilemapLayer.setActive(false);
+        node.tilemapLayer.setVisible(false);
+    }
+
+    private inline function apply(node:TilemapLayerNode) {
+        var transform = node.transform;
+        var position = transform.position;
+        var scale = transform.scale;
+        var tilemapLayer = node.tilemapLayer;
+        tilemapLayer.setPosition(position.x, position.y);
+        tilemapLayer.setScale(scale.x, scale.y);
     }
 }
