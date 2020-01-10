@@ -131,12 +131,23 @@ class Test extends Application {
         text.setFontSize(50);
         text.setStroke('#000000', 8);
         text.setFill('white');
-        entity.get(Transform).position = new Point(400, 500);
+        entity.get(Transform).position = new Point(400, 100);
         entity.add(new Graphics());
         var graphics = entity.get(Graphics);
         graphics.lineStyle(2, 0x0000FF, 1);
         graphics.strokeRect(-200, 40, 400, 20);
         engine.addEntity(entity);
+        {
+            var tilemap:phaser.tilemaps.Tilemap;
+            tilemap = whiplash.Lib.phaserScene.add.tilemap('super-mario');
+            var tileset = tilemap.addTilesetImage('SuperMarioBros-World1-1', 'super-mario');
+            var e = new Entity();
+            e.add(new TilemapLayer(tilemap, 0, tileset));
+            e.add(new Transform());
+            e.get(Transform).position.y = 360;
+
+            engine.addEntity(e);
+        }
 #end
 
 #if babylonjs
