@@ -21,18 +21,18 @@ class Application {
     var deltaTime:Float;
     var timeFactor:Float = 1;
 
-    public function new(width:Int = 800, height:Int = 600, parent:String = "body") {
+    public function new(width:Int = 800, height:Int = 600, parent:String = "body", ?scaleMode) {
         if(document.readyState != "complete") {
             new JQuery(window).on("load", function() {
-                init(width, height, parent);
+                init(width, height, parent, scaleMode);
             });
         } else {
-            init(width, height, parent);
+            init(width, height, parent, scaleMode);
         }
     }
 
-    function init(width, height, parent) {
-        whiplash.Lib.init(width, height, parent, {preload:preload, create:create, update:update});
+    function init(width, height, parent, scaleMode) {
+        whiplash.Lib.init(width, height, parent, {preload:preload, create:create, update:update}, scaleMode);
         whiplash.Input.setup(document.querySelector(parent));
         uiEngine = new ash.core.Engine();
         engine = whiplash.Lib.ashEngine;
