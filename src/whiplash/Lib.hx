@@ -27,7 +27,7 @@ class Lib {
         return canvas;
     }
 
-    static public function init(?width:Int = 800, ?height:Int = 600, ?parent:String = "body", ?callbacks: {?preload:Void->Void, ?create:Void->Void, ?update:Float->Float->Void, ?render:Void->Void} = null, ?systemsPriority:Int = 10) {
+    static public function init(?width:Int = 800, ?height:Int = 600, ?parent:String = "body", ?callbacks: {?preload:Void->Void, ?create:Void->Void, ?update:Float->Float->Void, ?render:Void->Void} = null, ?scaleMode, ?systemsPriority:Int = 10) {
         var parentElement = document.querySelector(parent);
         ashEngine = new ash.core.Engine();
 #if babylonjs
@@ -47,7 +47,7 @@ class Lib {
             scene : {preload:local_preload, create:callbacks.create, update:callbacks.update, render:callbacks.render},
             render : {transparent:true},
             physics: {"default":'arcade'},
-            scale : { mode:phaser.scale.scalemodes.RESIZE }
+            scale : { mode: (scaleMode != null ? scaleMode : phaser.scale.scalemodes.RESIZE)}
         });
 #end
 #if phaser
