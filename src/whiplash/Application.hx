@@ -10,7 +10,7 @@ class Application {
     public var engine:ash.core.Engine;
     public var uiEngine:ash.core.Engine;
 #if phaser
-    var game:phaser.Game;
+    var phaserGame:phaser.Game;
 #end
     var esm:EngineStateMachine;
     var ingameEsm:EngineStateMachine;
@@ -37,7 +37,7 @@ class Application {
         uiEngine = new ash.core.Engine();
         engine = whiplash.Lib.ashEngine;
 #if phaser
-        game = whiplash.Lib.phaserGame;
+        phaserGame = whiplash.Lib.phaserGame;
 #end
         esm = new EngineStateMachine(engine);
         ingameEsm = new EngineStateMachine(engine);
