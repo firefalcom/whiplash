@@ -7,7 +7,7 @@ class Utils {
         var secLeft = seconds % 60;
         var minutes = Std.int(seconds / 60);
 
-        var secString = Std.string(seconds);
+        var secString = Std.string(secLeft);
 
         if(secLeft < 10) {
             secString = "0" + secString;
