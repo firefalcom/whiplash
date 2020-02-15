@@ -39,6 +39,7 @@ class Input {
     static public var mouseMove:Point = new Point(0, 0);
     static public var nextMouseMove:Point = new Point(0, 0);
     static public var mouseWheelDelta:Int = 0;
+    static public var preventDefaultKeys:Bool = false;
 
     static private var justPressedKeys:Map<String, Bool> = new Map();
     static private var gamepadStates:Array<Gamepad> = [];
@@ -260,11 +261,17 @@ class Input {
         window.addEventListener("keydown", function(e) {
             keys[e.key] = true;
             justPressedKeys[e.key] = true;
-            // e.preventDefault();
+
+            if(preventDefaultKeys) {
+                e.preventDefault();
+            }
         });
         window.addEventListener("keyup", function(e) {
             keys[e.key] = false;
-            // e.preventDefault();
+
+            if(preventDefaultKeys) {
+                e.preventDefault();
+            }
         });
     }
 }
