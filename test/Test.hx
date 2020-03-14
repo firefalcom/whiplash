@@ -148,6 +148,15 @@ class Test extends Application {
 
             engine.addEntity(e);
         }
+        {
+            var e = new Entity();
+            e.add(new Transform());
+            e.add(new whiplash.phaser.dragonbones.Armature("mecha_1002_101d", "mecha"));
+            e.get(Transform).position.setTo(120, 560);
+            e.get(Transform).scale.setTo(0.45, 0.45);
+            e.get(whiplash.phaser.dragonbones.Armature).animation.play("idle");
+            engine.addEntity(e);
+        }
 #end
 
 #if babylonjs

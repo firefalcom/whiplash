@@ -47,7 +47,12 @@ class Lib {
             scene : {preload:local_preload, create:callbacks.create, update:callbacks.update, render:callbacks.render},
             render : {transparent:true},
             physics: {"default":'arcade'},
-            scale : { mode: (scaleMode != null ? scaleMode : phaser.scale.scalemodes.RESIZE)}
+            scale : { mode: (scaleMode != null ? scaleMode : phaser.scale.scalemodes.RESIZE)},
+            plugins: {
+                scene: [
+                { key: "dragonbone", plugin: untyped dragonBones.phaser.plugin.DragonBonesScenePlugin, start: true, mapping:"dragonbone" }
+                ]
+            }
         });
 #end
 #if phaser
@@ -61,6 +66,7 @@ class Lib {
         ashEngine.addSystem(new EmitterSystem(), systemsPriority);
         ashEngine.addSystem(new whiplash.phaser.LightSystem(), systemsPriority);
         ashEngine.addSystem(new whiplash.phaser.CameraSystem(), systemsPriority);
+        ashEngine.addSystem(new whiplash.phaser.dragonbones.ArmatureSystem(), systemsPriority);
 #end
 #if babylonjs
         ashEngine.addSystem(new LightSystem(), systemsPriority);

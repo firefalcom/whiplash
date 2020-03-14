@@ -32,18 +32,23 @@ class Application {
     }
 
     function init(width, height, parent, scaleMode) {
-        whiplash.Lib.init(width, height, parent, {preload:preload, create:create, update:update}, scaleMode);
-        whiplash.Input.setup(document.querySelector(parent));
-        uiEngine = new ash.core.Engine();
-        engine = whiplash.Lib.ashEngine;
+        try {
+            whiplash.Lib.init(width, height, parent, {preload:preload, create:create, update:update}, scaleMode);
+            whiplash.Input.setup(document.querySelector(parent));
+            uiEngine = new ash.core.Engine();
+            engine = whiplash.Lib.ashEngine;
 #if phaser
-        phaserGame = whiplash.Lib.phaserGame;
+            phaserGame = whiplash.Lib.phaserGame;
 #end
-        esm = new EngineStateMachine(engine);
-        ingameEsm = new EngineStateMachine(engine);
-        uiEsm = new EngineStateMachine(uiEngine);
-        statePageMap = new Map<String, String>();
-        onGuiLoaded();
+            esm = new EngineStateMachine(engine);
+            ingameEsm = new EngineStateMachine(engine);
+            uiEsm = new EngineStateMachine(uiEngine);
+            statePageMap = new Map<String, String>();
+            onGuiLoaded();
+        } catch(e:Dynamic) {
+            js.Browser.console.error("whiplash initialization failed");
+            js.Browser.console.error(e);
+        }
     }
 
     function preload():Void {
