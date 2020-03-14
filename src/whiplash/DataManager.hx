@@ -11,6 +11,7 @@ class DataManager {
     public static var soundFiles:Array<String> = Macro.getDataFilePaths("sounds");
     public static var tilemapFiles:Array<String> = Macro.getDataFilePaths("tilemaps");
     public static var atlasFiles:Array<String> = Macro.getDataFilePaths("atlases");
+    public static var dragonBonesFiles:Array<String> = Macro.getDataFilePaths("dragonbones");
 
     static public function preload(scene:phaser.Scene) {
 #if phaser
@@ -72,6 +73,24 @@ class DataManager {
                     throw ":TODO:";
 #else
                     scene.load.atlas(name, haxe.io.Path.withExtension(file, "png"), file);
+#end
+                }
+            }
+
+            for(file in dragonBonesFiles) {
+                if(StringTools.endsWith(file, ".ske.json")) {
+                    var partialPath = file.substr(0, file.length - 9);
+                    var path = new haxe.io.Path(partialPath);
+                    var name = path.file;
+#if embed
+                    throw ":TODO:";
+#else
+                    untyped scene.load.dragonbone(
+                        name,
+                        partialPath + ".tex.png",
+                        partialPath + ".tex.json",
+                        partialPath + ".ske.json"
+                    );
 #end
                 }
             }
