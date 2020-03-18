@@ -42,6 +42,14 @@ class Lib {
         };
         phaserCanvas = createCanvas(parentElement, width, height);
         phaserCanvas.classList.add('phaserCanvas');
+        var scenePlugins = [];
+
+        if(untyped window.dragonBones) {
+            scenePlugins.push(
+            { key: "dragonbone", plugin: untyped dragonBones.phaser.plugin.DragonBonesScenePlugin, start: true, mapping:"dragonbone" }
+            );
+        }
+
         phaserGame = new phaser.Game({
             width: width, height: height, type: untyped Phaser.WEBGL, canvas: phaserCanvas,
             scene : {preload:local_preload, create:callbacks.create, update:callbacks.update, render:callbacks.render},
@@ -49,9 +57,7 @@ class Lib {
             physics: {"default":'arcade'},
             scale : { mode: (scaleMode != null ? scaleMode : phaser.scale.scalemodes.RESIZE)},
             plugins: {
-                scene: [
-                { key: "dragonbone", plugin: untyped dragonBones.phaser.plugin.DragonBonesScenePlugin, start: true, mapping:"dragonbone" }
-                ]
+                scene: scenePlugins
             }
         });
 #end
