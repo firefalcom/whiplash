@@ -21,6 +21,16 @@ class SpriteSystem extends ListIteratingSystem<SpriteNode> {
     }
 
     private function onNodeAdded(node:SpriteNode) {
+        var sprite = node.sprite;
+
+        if(untyped sprite.body) {
+            var transform = node.transform;
+            var position = transform.position;
+            untyped sprite.body.position.x = sprite.x = position.x;
+            untyped sprite.body.position.y = sprite.y = position.y;
+            untyped sprite.body.angle = transform.rotation;
+        }
+
         apply(node);
         node.sprite.setActive(true);
         node.sprite.setVisible(true);
