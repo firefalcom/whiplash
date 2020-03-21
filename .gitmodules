@@ -3,10 +3,11 @@
 	url = https://github.com/firefalcom/haxe-babylon.git
 [submodule "deps/Ash-Haxe"]
 	path = deps/Ash-Haxe
-	url = https://github.com/firefalcom/Ash-Haxe
+	url = https://github.com/firefalcom/Ash-Haxe.git
 [submodule "deps/haxe-phaser3"]
 	path = deps/haxe-phaser3
 	url = https://github.com/sebbernery/haxe-phaser3.git
 [submodule "deps/jquery-uipages"]
 	path = deps/jquery-uipages
 	url = git@github.com:gogoprog/jquery-uipages
+	url = https://github.com/gogoprog/jquery-uipages.git
