@@ -54,7 +54,12 @@ class Lib {
             width: width, height: height, type: untyped Phaser.WEBGL, canvas: phaserCanvas,
             scene : {preload:local_preload, create:callbacks.create, update:callbacks.update, render:callbacks.render},
             render : {transparent:true},
-            physics: {"default":'arcade'},
+            physics: {
+                "default":'arcade',
+#if debug
+                arcade : { debug:true }
+#end
+            },
             scale : { mode: (scaleMode != null ? scaleMode : phaser.scale.scalemodes.RESIZE)},
             plugins: {
                 scene: scenePlugins
