@@ -50,6 +50,11 @@ abstract Vector2(Base) to Base from Base {
         return Math.sqrt(this.x * this.x + this.y * this.y);
     }
 
+    public function copyFrom(other:Vector2) {
+        this.x = other.x;
+        this.y = other.y;
+    }
+
 #if babylonjs
     public function setTo(x, y) {
         this.x = x;
