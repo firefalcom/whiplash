@@ -33,8 +33,7 @@ class AudioManager {
     static public function init(scene:phaser.Scene) {
         if(scene != null) {
             for(file in DataManager.soundFiles) {
-                var name = new haxe.io.Path(file).file;
-                scene.load.audio(name, file);
+                var name = DataManager.getNameFromFile(file);
                 sounds[name] = new Sound(scene, name, instancesPerSound);
             }
         }

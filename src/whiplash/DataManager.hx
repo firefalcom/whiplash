@@ -13,6 +13,17 @@ class DataManager {
     public static var atlasFiles:Array<String> = Macro.getDataFilePaths("atlases");
     public static var dragonBonesFiles:Array<String> = Macro.getDataFilePaths("dragonbones");
 
+    public static function getNameFromFile(file:String) {
+        var name = new haxe.io.Path(file).file;
+        var dot = name.indexOf('.');
+
+        if(dot != -1) {
+            name = name.substring(0, dot);
+        }
+
+        return name;
+    }
+
     static public function preload(scene:phaser.Scene) {
 #if phaser
 #if embed
@@ -27,12 +38,12 @@ class DataManager {
 
         if(scene != null) {
             for(file in textureFiles) {
-                var name = new haxe.io.Path(file).file;
+                var name = getNameFromFile(file);
 #if !embed
                 var loaded = false;
 
                 for(normalFile in normalmapFiles) {
-                    var normalName = new haxe.io.Path(normalFile).file;
+                    var normalName = getNameFromFile(file);
 
                     if(name == normalName) {
                         scene.load.image(name, [file, normalFile]);
@@ -49,14 +60,15 @@ class DataManager {
             }
 
             for(file in soundFiles) {
-                var name = new haxe.io.Path(file).file;
+                var name = getNameFromFile(file);
+                trace(name);
 #if !embed
                 scene.load.audio(name, file);
 #end
             }
 
             for(file in tilemapFiles) {
-                var name = new haxe.io.Path(file).file;
+                var name = getNameFromFile(file);
 #if embed
                 throw ":TODO:";
 #else
@@ -68,7 +80,7 @@ class DataManager {
                 var path = new haxe.io.Path(file);
 
                 if(path.ext == "json") {
-                    var name = path.file;
+                    var name = getNameFromFile(file);
 #if embed
                     throw ":TODO:";
 #else

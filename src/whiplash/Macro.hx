@@ -4,16 +4,33 @@ import haxe.macro.Context;
 import haxe.macro.Expr;
 
 class Macro {
+
+    public static macro function getDataFilePath(folder:String, file:String, applyRelative:Bool = true) {
+        var dataPath = haxe.macro.Context.definedValue("dataPath") + "/";
+#if !webpack
+        var dataRelativePath = haxe.macro.Context.definedValue("dataRelativePath") + "/";
+        return macro $v {(applyRelative ? dataRelativePath : dataPath) + folder + "/" + file};
+#else
+        var dataRelativePath = haxe.macro.Context.definedValue("webpackDataRelativePath") + "/";
+        return macro Webpack.require($v {"~@" + dataRelativePath + folder + "/" + file});
+#end
+    }
+
     public static macro function getDataFilePaths(folder:String, applyRelative:Bool = true) {
         var dataPath = haxe.macro.Context.definedValue("dataPath") + "/";
-        var dataRelativePath = haxe.macro.Context.definedValue("dataRelativePath") + "/";
 
         if(!sys.FileSystem.exists(dataPath + folder)) {
             return macro $a {[]};
         }
 
         var files = sys.FileSystem.readDirectory(dataPath + folder);
+#if !webpack
+        var dataRelativePath = haxe.macro.Context.definedValue("dataRelativePath") + "/";
         var exprs = [for(file in files) macro $v {(applyRelative ? dataRelativePath : dataPath) + folder + "/" + file}];
+#else
+        var dataRelativePath = haxe.macro.Context.definedValue("webpackDataRelativePath") + "/";
+        var exprs = [for(file in files) macro Webpack.require($v {"~@" + dataRelativePath + folder + "/" + file})];
+#end
         return macro $a {exprs};
     }
 
