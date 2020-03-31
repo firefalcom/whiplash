@@ -4,6 +4,18 @@ import haxe.macro.Context;
 import haxe.macro.Expr;
 
 class Macro {
+
+    public static macro function getDataFilePath(folder:String, file:String, applyRelative:Bool = true) {
+        var dataPath = haxe.macro.Context.definedValue("dataPath") + "/";
+#if !webpack
+        var dataRelativePath = haxe.macro.Context.definedValue("dataRelativePath") + "/";
+        return macro $v {(applyRelative ? dataRelativePath : dataPath) + folder + "/" + file};
+#else
+        var dataRelativePath = haxe.macro.Context.definedValue("webpackDataRelativePath") + "/";
+        return macro Webpack.require($v {"~@" + dataRelativePath + folder + "/" + file});
+#end
+    }
+
     public static macro function getDataFilePaths(folder:String, applyRelative:Bool = true) {
         var dataPath = haxe.macro.Context.definedValue("dataPath") + "/";
 
