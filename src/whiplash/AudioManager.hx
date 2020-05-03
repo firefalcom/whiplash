@@ -77,7 +77,8 @@ class AudioManager {
 
         if(musicIsEnabled) {
             music = sounds[name];
-            music.play({loop:true});
+            music.play();
+            music.instances[0].setLoop(true);
         }
     }
 
