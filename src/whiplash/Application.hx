@@ -131,7 +131,7 @@ class Application {
         });
     }
 
-    public function delay(func, time_s:Float) {
-        haxe.Timer.delay(func, Std.int(time_s * 1000 / timeFactor));
+    public function delay(func, time_s:Float):haxe.Timer {
+        return haxe.Timer.delay(func, Std.int(time_s * 1000 / timeFactor));
     }
 }
