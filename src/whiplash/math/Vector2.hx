@@ -50,6 +50,13 @@ abstract Vector2(Base) to Base from Base {
         return Math.sqrt(this.x * this.x + this.y * this.y);
     }
 
+    static public function getRotatedVector(vector:Vector2, angle:Float):Vector2 {
+        var cosinus = Math.cos(angle);
+        var sinus = Math.sin(angle);
+
+        return new Vector2(vector.x * cosinus + vector.y * sinus, -vector.x * sinus + vector.y * cosinus);
+    }
+
 #if babylonjs
     public function setTo(x, y) {
         this.x = x;
