@@ -45,13 +45,14 @@ class AudioManager {
         }
     }
 
-    static public function playSound(name) {
+    static public function playSound(name, volume = 1.0) {
         if(!sounds.exists(name)) {
             trace("Unknown sound: " + name);
             return;
         }
 
         if(soundIsEnabled) {
+            untyped(sounds[name]).setVolume(volume);
             sounds[name].play();
         }
     }
