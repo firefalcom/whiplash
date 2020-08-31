@@ -10,7 +10,8 @@ class Sound {
         }
     }
 
-    public function play() {
+    public function play(volume = 1.0) {
+        instances[index].setVolume(volume);
         instances[index].play();
         ++index;
         index %= instances.length;
@@ -46,8 +47,7 @@ class AudioManager {
         }
 
         if(soundIsEnabled) {
-            untyped(sounds[name]).setVolume(volume);
-            sounds[name].play();
+            sounds[name].play(volume);
         }
     }
 
