@@ -3,10 +3,15 @@ package whiplash;
 import js.Browser.document;
 
 class LocalizationManager {
-    static private var localization:Dynamic;
+    static private var localization:Dynamic = {};
     static private var lang:String;
 
     static public function load(loca:Dynamic, _lang:String) {
+        if(loca == null) {
+            trace("LocalizationManager.load : empty localization");
+            return;
+        }
+
         localization = loca;
         lang = _lang;
     }

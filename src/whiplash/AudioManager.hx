@@ -11,7 +11,12 @@ class Sound {
     }
 
     public function play() {
-        instances[index].play();
+        try {
+            instances[index].play();
+        } catch(e:Dynamic) {
+            trace("Could not play sound");
+        }
+
         ++index;
         index %= instances.length;
     }
