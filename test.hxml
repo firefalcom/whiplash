@@ -4,6 +4,7 @@
 -cp deps/haxe-phaser3/src
 -cp deps/Ash-Haxe/src
 -cp deps/jquery-uipages/src
+-lib hx3compat
 -js test/generated.js
 -main Test
 -D phaser
