@@ -4,15 +4,19 @@ on: [push]
 
 jobs:
   build-linux:
-
-    runs-on: ubuntu-20.04
-
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - name: Prepare environment
-      run: |
-           sudo apt install haxe
-    - name: Build
-      run: |
-        make
+      - uses: actions/checkout@v1
+        with:
+          submodules: recursive
+      - uses: krdlab/setup-haxe@v1
+        with:
+          haxe-version: 4.0.5
+      - name: Setup
+        run: |
+          haxe -version
+          haxelib install hx3compat
+      - name: Build
+        run: |
+          make
 
