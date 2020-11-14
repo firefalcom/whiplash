@@ -205,8 +205,7 @@ class Test extends Application {
         whiplash.Input.setup(document.querySelector(".pages"));
     }
 
-    override function onGuiLoaded() {
-        super.onGuiLoaded();
+    override function start() {
         new JQuery(".play").on("click", function() {
             changeUiState("lobby");
         });

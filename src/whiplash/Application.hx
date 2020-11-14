@@ -44,7 +44,7 @@ class Application {
             ingameEsm = new EngineStateMachine(engine);
             uiEsm = new EngineStateMachine(uiEngine);
             statePageMap = new Map<String, String>();
-            onGuiLoaded();
+            initPages();
         } catch(e:Dynamic) {
             js.Browser.console.error("whiplash initialization failed");
             js.Browser.console.error(e);
@@ -62,6 +62,7 @@ class Application {
 #if phaser
         AudioManager.init(whiplash.Lib.phaserScene);
 #end
+        start();
     }
 
     function update(time:Float, delta:Float):Void {
@@ -99,13 +100,9 @@ class Application {
         return state;
     }
 
-    function onResize() {
-    }
-
-    function onGuiLoaded() {
+    function initPages() {
         pages = js.uipages.Lib.createGroup(new JQuery(".pages"));
         pages.showPage(".default");
-        onResize();
     }
 
     public function changeState(stateName) {
@@ -133,5 +130,9 @@ class Application {
 
     public function delay(func, time_s:Float):haxe.Timer {
         return haxe.Timer.delay(func, Std.int(time_s * 1000 / timeFactor));
+    }
+
+    public function start() {
+
     }
 }
