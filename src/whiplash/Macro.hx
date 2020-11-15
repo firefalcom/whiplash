@@ -90,8 +90,7 @@ class Macro {
             access:  [Access.APublic, Access.AStatic],
             kind: FieldType.FVar(macro:Int, macro(function() {
                 var datGui = new dat.gui.GUI();
-                trace("dat_GUI_initializer");
-                var expose;
+                var expose = null;
                 expose = function(folder:dat.gui.GUI, owner:Dynamic, fields:Array<String>) {
                     for(field in fields) {
                         var value = Reflect.field(owner, field);
