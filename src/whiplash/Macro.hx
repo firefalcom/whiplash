@@ -73,4 +73,46 @@ class Macro {
 
         return Context.getBuildFields();
     }
+
+    public static macro function editable():Array<Field> {
+        var fields = Context.getBuildFields();
+
+        var names:Array<String> = [];
+
+        for(field in fields) {
+            names.push(field.name);
+        }
+
+        var klass = Context.getLocalClass().get().name;
+
+        fields.push({
+            name:  "dat_GUI_initializer",
+            access:  [Access.APublic, Access.AStatic],
+            kind: FieldType.FVar(macro:Int, macro(function() {
+                var datGui = new dat.gui.GUI();
+                trace("dat_GUI_initializer");
+                var expose;
+                expose = function(folder:dat.gui.GUI, owner:Dynamic, fields:Array<String>) {
+                    for(field in fields) {
+                        var value = Reflect.field(owner, field);
+
+                        if(Reflect.isObject(value)) {
+                            var folder = folder.addFolder(field);
+                            expose(folder, value, Reflect.fields(value));
+
+                        } else {
+                            folder.add(owner, field);
+                        }
+                    }
+                };
+
+                expose(datGui, $i{klass}, $v {names});
+                return 0;
+            }
+                                                 )()),
+            pos: Context.currentPos(),
+        });
+
+        return fields;
+    }
 }
