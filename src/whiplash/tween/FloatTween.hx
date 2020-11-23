@@ -43,19 +43,19 @@ class FloatTween {
             time = duration;
         } else {
             f = time / duration;
-
-            f = switch(easing) {
-                case Linear:
-                    f;
-
-                case EaseIn:
-                    f * f;
-
-                case EaseInEaseOut:
-                    ((1.0 - Math.cos((f) * Math.PI)) * 0.5);
-            };
+            f = Ease.get(easing, f);
         }
 
         value = from + (to - from) * f;
+    }
+
+    static public function get(from:Float, to:Float, easing:Easing, advance:Float) {
+        var f = advance;
+
+        if(f > 1) { f = 1; }
+
+        f = Ease.get(easing, f);
+
+        return from + (to - from) * f;
     }
 }
