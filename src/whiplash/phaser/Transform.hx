@@ -14,4 +14,10 @@ class Transform {
         scale.x = sx;
         scale.y = sy;
     }
+
+    public function copyFrom(other:Transform) {
+        position.copyFrom(other.position);
+        rotation = other.rotation;
+        scale.copyFrom(other.scale);
+    }
 }
