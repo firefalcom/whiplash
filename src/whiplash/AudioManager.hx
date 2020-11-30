@@ -62,7 +62,7 @@ class AudioManager {
         }
     }
 
-    static public function playMusic(name) {
+    static public function playMusic(name, volume = 1.0) {
         if(!sounds.exists(name)) {
             trace("Unknown sound: " + name);
             return;
@@ -78,7 +78,7 @@ class AudioManager {
 
         if(musicIsEnabled) {
             music = sounds[name];
-            music.play();
+            music.play(volume);
             music.instances[0].setLoop(true);
         }
     }
