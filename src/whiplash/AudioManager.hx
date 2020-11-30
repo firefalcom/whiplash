@@ -10,11 +10,14 @@ class Sound {
         }
     }
 
-    public function play(volume = 1.0) {
-        instances[index].setVolume(volume);
-        instances[index].play();
+    public function play(volume, loop) {
+        var current = instances[index];
+        current.setVolume(volume);
+        current.setLoop(loop);
+        current.play();
         ++index;
         index %= instances.length;
+        return current;
     }
 
     public function stop() {
@@ -40,15 +43,13 @@ class AudioManager {
         }
     }
 
-    static public function playSound(name, volume = 1.0) {
+    static public function playSound(name, volume = 1.0, loop = false) {
         if(!sounds.exists(name)) {
             trace("Unknown sound: " + name);
-            return;
+            return null;
         }
 
-        if(soundIsEnabled) {
-            sounds[name].play(volume);
-        }
+        return sounds[name].play(soundIsEnabled ? volume : 0, loop);
     }
 
     static public function stopSound(name) {
@@ -65,22 +66,19 @@ class AudioManager {
     static public function playMusic(name, volume = 1.0) {
         if(!sounds.exists(name)) {
             trace("Unknown sound: " + name);
-            return;
+            return null;
         }
 
         if(sounds[name] == music) {
-            return;
+            return music.instances[0];
         }
 
         if(music != null) {
             music.stop();
         }
 
-        if(musicIsEnabled) {
-            music = sounds[name];
-            music.play(volume);
-            music.instances[0].setLoop(true);
-        }
+        music = sounds[name];
+        return music.play(musicIsEnabled ? volume : 0, true);
     }
 
     static public function stopMusic() {
