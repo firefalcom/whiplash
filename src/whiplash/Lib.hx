@@ -80,7 +80,7 @@ class Lib {
         ashEngine.addSystem(new ContainerSystem(), systemsPriority);
         ashEngine.addSystem(new SpriteSystem(), systemsPriority);
         ashEngine.addSystem(new TileSpriteSystem(), systemsPriority);
-        ashEngine.addSystem(new TilemapLayerSystem(), systemsPriority);
+        // ashEngine.addSystem(new TilemapLayerSystem(), systemsPriority);
         ashEngine.addSystem(new TextSystem(), systemsPriority);
         ashEngine.addSystem(new BitmapTextSystem(), systemsPriority);
         ashEngine.addSystem(new GraphicsSystem(), systemsPriority);
