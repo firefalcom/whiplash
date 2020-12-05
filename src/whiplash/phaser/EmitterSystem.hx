@@ -34,8 +34,17 @@ class EmitterSystem extends ListIteratingSystem<EmitterNode> {
         var position = transform.position;
         var scale = transform.scale;
         var emitter = node.emitter;
-        emitter.setPosition(position.x, position.y);
         emitter.setScale(scale.x, scale.y);
-        emitter.setAngle(transform.rotation);
+
+        if(emitter.moveEmitters) {
+            for(name in Reflect.fields(node.emitter.emitters.list)) {
+                var emitter = Reflect.field(node.emitter.emitters.list, name);
+                emitter.setPosition(position.x / scale.x, position.y / scale.y);
+                emitter.setAngle(transform.rotation);
+            }
+        } else {
+            emitter.setPosition(position.x, position.y);
+            emitter.setAngle(transform.rotation);
+        }
     }
 }
