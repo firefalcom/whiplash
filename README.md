@@ -2,7 +2,7 @@
 
 ![CI](https://github.com/firefalcom/whiplash/workflows/CI/badge.svg)
 
-Whiplash is a HTML5 framework combining the [haxe implementation](https://github.com/firefalcom/Ash-Haxe) of the [Ash framework](http://www.ashframework.org/), the [haxe externs](https://github.com/Blank101/haxe-phaser) for [Phaser](https://github.com/photonstorm/phaser) and the [haxe externs](https://github.com/firefalcom/haxe-babylon) for [Babylon.js](https://babylonjs.com).
+Whiplash is a HTML5 framework combining the [haxe implementation](https://github.com/firefalcom/Ash-Haxe) of the [Ash framework](https://www.richardlord.net/ash/), the [haxe externs](https://github.com/Blank101/haxe-phaser) for [Phaser](https://github.com/photonstorm/phaser) and the [haxe externs](https://github.com/firefalcom/haxe-babylon) for [Babylon.js](https://babylonjs.com).
 
 ## Features
  * Entities-Components-Systems provided by the Ash famework
