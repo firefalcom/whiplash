@@ -61,7 +61,6 @@ class DataManager {
 
             for(file in soundFiles) {
                 var name = getNameFromFile(file);
-                trace(name);
 #if !embed
                 scene.load.audio(name, file);
 #end
@@ -114,7 +113,9 @@ class DataManager {
     static public function preloadFont(fontFamily) {
         var font = js.Syntax.code("new FontFaceObserver(fontFamily)");
         font.load(null, 10000).then(function() {
+#if dev
             trace('Font-family loaded: ' + fontFamily);
+#end
         });
     }
 }
