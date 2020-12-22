@@ -112,7 +112,7 @@ class DataManager {
     }
 
     static public function preloadFont(fontFamily) {
-        var font = untyped __js__("new FontFaceObserver(fontFamily)");
+        var font = js.Syntax.code("new FontFaceObserver(fontFamily)");
         font.load(null, 10000).then(function() {
             trace('Font-family loaded: ' + fontFamily);
         });

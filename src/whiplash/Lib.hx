@@ -37,7 +37,7 @@ class Lib {
 #end
 #if phaser
         var local_preload = function() {
-            phaserScene = untyped __js__("this");
+            phaserScene = js.Syntax.code("this");
             callbacks.preload();
         };
         phaserCanvas = createCanvas(parentElement, width, height);

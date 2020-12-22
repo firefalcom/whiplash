@@ -37,7 +37,7 @@ class UiSystem extends ash.core.System {
     }
 
     public function apply(func:String, ?a:Dynamic, ?b:Dynamic, ?c:Dynamic, ?d:Dynamic) {
-        var js_args = untyped __js__("arguments");
+        var js_args = js.Syntax.code("arguments");
         var args = [for(a in 1...js_args.length) untyped js_args[a]];
 
         for(item in items) {
