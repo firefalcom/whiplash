@@ -59,6 +59,12 @@ abstract Vector2(Base) to Base from Base {
         this.y = other.y;
     }
 
+    public function getNormalized():Vector2 {
+        var result = new Vector2(this.x, this.y);
+        result.normalize();
+        return result;
+    }
+
     static public function getRotatedVector(vector:Vector2, angle:Float):Vector2 {
         var cosinus = Math.cos(angle);
         var sinus = Math.sin(angle);
@@ -69,6 +75,10 @@ abstract Vector2(Base) to Base from Base {
     static public function getSquareDistance(a:Vector2, b:Vector2):Float {
         var delta = b - a;
         return delta.getSquareLength();
+    }
+
+    static public function getDotProduct(a:Vector2, b:Vector2):Float {
+        return a.x * b.x + a.y * b.y;
     }
 
 #if babylonjs
