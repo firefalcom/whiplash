@@ -33,15 +33,15 @@ enum GamepadButton {
 }
 
 class Input {
-    static public var keys:Map<String, Bool> = new Map();
-    static public var mouseButtons:Map<Int, Bool> = new Map();
-    static public var mouseCoordinates:Point = new Point(0, 0);
-    static public var mouseMove:Point = new Point(0, 0);
-    static public var nextMouseMove:Point = new Point(0, 0);
-    static public var mouseWheelDelta:Int = 0;
-    static public var preventDefaultKeys:Bool = false;
-
+    static private var preventDefaultKeys:Bool = false;
+    static private var mouseWheelDelta:Int = 0;
+    static private var nextMouseMove:Point = new Point(0, 0);
+    static private var mouseMove:Point = new Point(0, 0);
+    static private var mouseCoordinates:Point = new Point(0, 0);
+    static private var mouseButtons:Map<Int, Bool> = new Map();
+    static private var keys:Map<String, Bool> = new Map();
     static private var justPressedKeys:Map<String, Bool> = new Map();
+    static private var justPressedMouseButton:Map<Int, Bool> = new Map();
     static private var gamepadStates:Array<Gamepad> = [];
     static private var nullAxes:Array<Float> = [0, 0, 0, 0];
     static private var previousGamepadButtons:Array<Array<Bool>> = [[], [], [], []];
@@ -55,6 +55,7 @@ class Input {
 
     static public function postUpdate() {
         justPressedKeys = new Map();
+        justPressedMouseButton = new Map();
     }
 
     static public function update() {
@@ -78,6 +79,34 @@ class Input {
 
     static public function isKeyJustPressed(name:String):Bool {
         return justPressedKeys[name];
+    }
+
+    static public function isKeyPressed(name:String):Bool {
+        return keys[name];
+    }
+
+    static public function isKeyReleased(name:String):Bool {
+        return !keys[name];
+    }
+
+    static public function isKeyJustReleased(name:String):Bool {
+        return justPressedKeys.exists(name) ? !justPressedKeys[name] : false;
+    }
+
+    static public function isMouseButtonJustPressed(name:Int):Bool {
+        return justPressedMouseButton[name];
+    }
+
+    static public function isMouseButtonPressed(name:Int):Bool {
+        return mouseButtons[name];
+    }
+
+    static public function isMouseButtonReleased(name:Int):Bool {
+        return !mouseButtons[name];
+    }
+
+    static public function isMouseButtonJustReleased(name:Int):Bool {
+        return justPressedMouseButton.exists(name) ? !justPressedMouseButton[name] : false;
     }
 
     static public function hasJustAxisValue(axe:Axis, value:Float):Bool {
@@ -144,6 +173,46 @@ class Input {
     }
 #end
 
+    static public function getMouseCoordinates():Point {
+        return mouseCoordinates;
+    }
+
+    static public function setMouseCoordinates(point:Point):Point {
+        return mouseCoordinates = point;
+    }
+    
+    static public function getMouseMove():Point {
+        return mouseMove;
+    }
+
+    static public function setMouseMove(point:Point):Point {
+        return mouseMove = point;
+    }
+    
+    static public function getNextMouseMove():Point {
+        return nextMouseMove;
+    }
+
+    static public function setNextMouseMove(point:Point):Point {
+        return nextMouseMove = point;
+    }
+
+    static public function getMouseWheelDelta():Int {
+        return mouseWheelDelta;
+    }
+
+    static public function setMouseWheelDelta(value:Int):Int {
+        return mouseWheelDelta = value;
+    }
+
+    static public function isPreventDefaultKeys():Bool {
+        return preventDefaultKeys;
+    }
+
+    static public function setPreventDefaultKeys(value:Bool):Bool {
+        return preventDefaultKeys = value;
+    }
+
     static public function getXYAxes():Vector2 {
         for(i in 0...gamepadStates.length) {
             var g = gamepadStates[i];
@@ -209,6 +278,7 @@ class Input {
     static public function setup(element:js.html.Element) {
         var rect = element.getBoundingClientRect();
         element.addEventListener("mousedown", function(e) {
+            if (!mouseButtons[e.button]) justPressedMouseButton[e.button] = true;
             mouseButtons[e.button] = true;
             mouseCoordinates.x = e.offsetX;
             mouseCoordinates.y = e.offsetY;
@@ -252,6 +322,7 @@ class Input {
         });
         element.addEventListener("mouseup", function(e) {
             mouseButtons[e.button] = false;
+            justPressedMouseButton[e.button] = false;
             mouseCoordinates.x = e.offsetX;
             mouseCoordinates.y = e.offsetY;
         });
@@ -259,8 +330,8 @@ class Input {
             mouseWheelDelta = e.deltaY;
         });
         window.addEventListener("keydown", function(e) {
+            if (!keys[e.key]) justPressedKeys[e.key] = true;
             keys[e.key] = true;
-            justPressedKeys[e.key] = true;
 
             if(preventDefaultKeys) {
                 e.preventDefault();
@@ -268,6 +339,7 @@ class Input {
         });
         window.addEventListener("keyup", function(e) {
             keys[e.key] = false;
+            justPressedKeys[e.key] = false;
 
             if(preventDefaultKeys) {
                 e.preventDefault();
