@@ -41,7 +41,9 @@ class Input {
     static private var mouseButtons:Map<Int, Bool> = new Map();
     static private var keys:Map<String, Bool> = new Map();
     static private var justPressedKeys:Map<String, Bool> = new Map();
+    static private var justReleasedKeys:Map<String, Bool> = new Map();
     static private var justPressedMouseButton:Map<Int, Bool> = new Map();
+    static private var justReleasedMouseButton:Map<Int, Bool> = new Map();
     static private var gamepadStates:Array<Gamepad> = [];
     static private var nullAxes:Array<Float> = [0, 0, 0, 0];
     static private var previousGamepadButtons:Array<Array<Bool>> = [[], [], [], []];
@@ -55,7 +57,9 @@ class Input {
 
     static public function postUpdate() {
         justPressedKeys = new Map();
+        justReleasedKeys = new Map();
         justPressedMouseButton = new Map();
+        justReleasedMouseButton = new Map();
     }
 
     static public function update() {
@@ -90,7 +94,7 @@ class Input {
     }
 
     static public function isKeyJustReleased(name:String):Bool {
-        return justPressedKeys.exists(name) ? !justPressedKeys[name] : false;
+        return justReleasedKeys[name];
     }
 
     static public function isMouseButtonJustPressed(name:Int):Bool {
@@ -106,7 +110,7 @@ class Input {
     }
 
     static public function isMouseButtonJustReleased(name:Int):Bool {
-        return justPressedMouseButton.exists(name) ? !justPressedMouseButton[name] : false;
+        return justReleasedMouseButton[name];
     }
 
     static public function hasJustAxisValue(axe:Axis, value:Float):Bool {
@@ -275,6 +279,34 @@ class Input {
         return false;
     }
 
+    static public function isButtonJustReleased(button:GamepadButton):Bool {
+        var b = Type.enumIndex(button);
+
+        for(i in 0...gamepadStates.length) {
+            var g = gamepadStates[i];
+
+            if(g != null && !g.buttons[b].pressed && previousGamepadButtons[i][b]) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    static public function isButtonReleased(button:GamepadButton):Bool {
+        var b = Type.enumIndex(button);
+
+        for(i in 0...gamepadStates.length) {
+            var g = gamepadStates[i];
+
+            if(g == null || !g.buttons[b].pressed) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     static public function setup(element:js.html.Element) {
         var rect = element.getBoundingClientRect();
         element.addEventListener("mousedown", function(e) {
@@ -322,7 +354,7 @@ class Input {
         });
         element.addEventListener("mouseup", function(e) {
             mouseButtons[e.button] = false;
-            justPressedMouseButton[e.button] = false;
+            justReleasedMouseButton[e.button] = true;
             mouseCoordinates.x = e.offsetX;
             mouseCoordinates.y = e.offsetY;
         });
@@ -339,7 +371,7 @@ class Input {
         });
         window.addEventListener("keyup", function(e) {
             keys[e.key] = false;
-            justPressedKeys[e.key] = false;
+            justReleasedKeys[e.key] = true;
 
             if(preventDefaultKeys) {
                 e.preventDefault();
