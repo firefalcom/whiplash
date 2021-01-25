@@ -310,7 +310,7 @@ class Input {
     static public function setup(element:js.html.Element) {
         var rect = element.getBoundingClientRect();
         element.addEventListener("mousedown", function(e) {
-            if (!mouseButtons[e.button]) justPressedMouseButton[e.button] = true;
+            justPressedMouseButton[e.button] = true;
             mouseButtons[e.button] = true;
             mouseCoordinates.x = e.offsetX;
             mouseCoordinates.y = e.offsetY;
@@ -362,7 +362,7 @@ class Input {
             mouseWheelDelta = e.deltaY;
         });
         window.addEventListener("keydown", function(e) {
-            if (!keys[e.key]) justPressedKeys[e.key] = true;
+            justPressedKeys[e.key] = true;
             keys[e.key] = true;
 
             if(preventDefaultKeys) {
