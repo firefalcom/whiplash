@@ -226,7 +226,7 @@ class Test extends Application {
             scene.render();
         }
 
-        if(keyTime > 0.1 && whiplash.Input.keys[" "]) {
+        if(keyTime > 0.1 && whiplash.Input.isKeyPressed(" ")) {
             sphereAdded = !sphereAdded;
 
             if(sphereAdded) {
@@ -238,10 +238,6 @@ class Test extends Application {
             keyTime = 0;
         } else {
             keyTime += 0.1; // :TODO: System for deltatime.
-        }
-
-        if(whiplash.Input.mouseButtons[0]) {
-            trace(whiplash.Input.mouseCoordinates);
         }
     }
 
