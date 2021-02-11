@@ -14,6 +14,7 @@ import whiplash.math.*;
 import whiplash.phaser.*;
 import whiplash.babylon.components.*;
 import whiplash.common.components.Active;
+import whiplash.phaser.spine.Spine;
 
 class Move {
     public var time:Float = 0.0;
@@ -115,6 +116,8 @@ class Test extends Application {
         entity.add(new Transform());
         entity.add(new Sprite('firefalcom'));
         entity.add(new Move());
+        entity.add(new Spine("pattySkeleton"));
+        entity.get(Spine).setAnimation("Lose", true);
         engine.addEntity(entity);
         engine.removeEntity(entity);
         entity.get(Sprite).setOrigin(0.5, 0.5);
@@ -134,13 +137,9 @@ class Test extends Application {
         entity.get(Transform).position = new Point(400, 100);
         entity.add(new Graphics());
         var graphics = entity.get(Graphics);
-        graphics.lineStyle(2, 0x0000FF, 1);
-        graphics.strokeRect(-200, 40, 400, 20);
+        // graphics.lineStyle(2, 0x0000FF, 1);
+        // graphics.strokeRect(-200, 40, 400, 20);
         engine.addEntity(entity);
-        {
-            var patty = untyped whiplash.Lib.phaserScene.add.spine(400, 400, "pattySkeleton");
-            patty.setAnimation(1, "Lose", true);
-        }
         // {
         //     var tilemap:phaser.tilemaps.Tilemap;
         //     tilemap = whiplash.Lib.phaserScene.add.tilemap('super-mario');
