@@ -69,7 +69,7 @@ abstract Vector2(Base) to Base from Base {
         var cosinus = Math.cos(angle);
         var sinus = Math.sin(angle);
 
-        return new Vector2(vector.x * cosinus + vector.y * sinus, -vector.x * sinus + vector.y * cosinus);
+        return new Vector2(vector.x * cosinus - vector.y * sinus, vector.x * sinus + vector.y * cosinus);
     }
 
     static public function getSquareDistance(a:Vector2, b:Vector2):Float {

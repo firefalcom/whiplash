@@ -14,7 +14,7 @@ class Rectangle {
     }
 
     public function contains(point:Vector2) {
-        var localPosition = Vector2.getRotatedVector(point - center, Math.PI - rotation * Math.PI / 180);
+        var localPosition = Vector2.getRotatedVector(point - center, - rotation * Math.PI / 180);
         var halfWidth = extent.x / 2;
         var halfHeight = extent.y / 2;
 
