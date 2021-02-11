@@ -1,0 +1,146 @@
+
+pattySkeleton.png
+size: 878,556
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ArmLeft1
+  rotate: true
+  xy: 410, 383
+  size: 76, 134
+  orig: 76, 134
+  offset: 0, 0
+  index: -1
+ArmLeft2
+  rotate: false
+  xy: 533, 26
+  size: 90, 109
+  orig: 90, 110
+  offset: 0, 1
+  index: -1
+ArmLeftTop
+  rotate: true
+  xy: 409, 10
+  size: 101, 87
+  orig: 101, 87
+  offset: 0, 0
+  index: -1
+ArmLeftTop2
+  rotate: true
+  xy: 721, 223
+  size: 127, 136
+  orig: 128, 136
+  offset: 1, 0
+  index: -1
+ArmRight
+  rotate: false
+  xy: 464, 245
+  size: 74, 136
+  orig: 74, 136
+  offset: 0, 0
+  index: -1
+ArmRightTop
+  rotate: false
+  xy: 281, 352
+  size: 127, 107
+  orig: 127, 107
+  offset: 0, 0
+  index: -1
+ArmRightTop2
+  rotate: true
+  xy: 540, 137
+  size: 127, 136
+  orig: 128, 136
+  offset: 0, 0
+  index: -1
+Body
+  rotate: false
+  xy: 2, 2
+  size: 219, 251
+  orig: 219, 251
+  offset: 0, 0
+  index: -1
+Explosion
+  rotate: true
+  xy: 2, 255
+  size: 299, 277
+  orig: 299, 277
+  offset: 0, 0
+  index: -1
+Gun
+  rotate: false
+  xy: 281, 461
+  size: 457, 93
+  orig: 457, 93
+  offset: 0, 0
+  index: -1
+Gun1
+  rotate: true
+  xy: 740, 352
+  size: 202, 136
+  orig: 203, 137
+  offset: 0, 1
+  index: -1
+Gun2
+  rotate: true
+  xy: 223, 4
+  size: 249, 184
+  orig: 250, 184
+  offset: 0, 0
+  index: -1
+Hair
+  rotate: true
+  xy: 281, 263
+  size: 87, 181
+  orig: 87, 181
+  offset: 0, 0
+  index: -1
+HandLeft
+  rotate: true
+  xy: 625, 37
+  size: 61, 60
+  orig: 61, 61
+  offset: 0, 1
+  index: -1
+HandRight
+  rotate: true
+  xy: 687, 37
+  size: 61, 60
+  orig: 61, 61
+  offset: 0, 1
+  index: -1
+Hat
+  rotate: true
+  xy: 546, 266
+  size: 193, 173
+  orig: 193, 173
+  offset: 0, 0
+  index: -1
+Head
+  rotate: true
+  xy: 409, 113
+  size: 130, 122
+  orig: 130, 122
+  offset: 0, 0
+  index: -1
+Head2
+  rotate: false
+  xy: 678, 100
+  size: 126, 121
+  orig: 130, 121
+  offset: 1, 0
+  index: -1
+LegLeft
+  rotate: false
+  xy: 806, 125
+  size: 69, 96
+  orig: 69, 96
+  offset: 0, 0
+  index: -1
+LegRight
+  rotate: false
+  xy: 806, 38
+  size: 68, 85
+  orig: 68, 85
+  offset: 0, 0
+  index: -1

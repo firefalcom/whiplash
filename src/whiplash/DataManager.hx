@@ -106,6 +106,8 @@ class DataManager {
 #end
                 }
             }
+            var pattyPath = "data/SpinePlugin/pattySkeleton";
+            untyped scene.load.spine("patty", pattyPath + ".json", pattyPath + ".atlas");
         }
 
 #end

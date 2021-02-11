@@ -137,6 +137,10 @@ class Test extends Application {
         graphics.lineStyle(2, 0x0000FF, 1);
         graphics.strokeRect(-200, 40, 400, 20);
         engine.addEntity(entity);
+        {
+            var patty = untyped whiplash.Lib.phaserScene.add.spine(400, 400, "patty");
+            patty.setAnimation(1, "Lose", true);
+        }
         // {
         //     var tilemap:phaser.tilemaps.Tilemap;
         //     tilemap = whiplash.Lib.phaserScene.add.tilemap('super-mario');

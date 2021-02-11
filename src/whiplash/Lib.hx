@@ -49,6 +49,9 @@ class Lib {
             { key: "dragonbone", plugin: untyped dragonBones.phaser.plugin.DragonBonesScenePlugin, start: true, mapping:"dragonbone" }
             );
         }
+        scenePlugins.push(
+            { key: 'SpinePlugin', plugin: untyped window.SpinePlugin, start: true, mapping: 'spine' }
+            );
 
         var config = {
             width: width, height: height, type: untyped Phaser.WEBGL, canvas: phaserCanvas,
