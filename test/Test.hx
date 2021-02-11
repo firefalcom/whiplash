@@ -116,8 +116,8 @@ class Test extends Application {
         entity.add(new Transform());
         entity.add(new Sprite('firefalcom'));
         entity.add(new Move());
-        entity.add(new Spine("pattySkeleton"));
-        entity.get(Spine).setAnimation("Lose", true);
+        entity.add(new Spine("spineboy"));
+        entity.get(Spine).setAnimation("death", true);
         engine.addEntity(entity);
         engine.removeEntity(entity);
         entity.get(Sprite).setOrigin(0.5, 0.5);
