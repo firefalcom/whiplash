@@ -137,26 +137,26 @@ class Test extends Application {
         graphics.lineStyle(2, 0x0000FF, 1);
         graphics.strokeRect(-200, 40, 400, 20);
         engine.addEntity(entity);
-        {
-            var tilemap:phaser.tilemaps.Tilemap;
-            tilemap = whiplash.Lib.phaserScene.add.tilemap('super-mario');
-            var tileset = tilemap.addTilesetImage('SuperMarioBros-World1-1', 'super-mario');
-            var e = new Entity();
-            e.add(new TilemapLayer(tilemap, 0, tileset));
-            e.add(new Transform());
-            e.get(Transform).position.y = 360;
+        // {
+        //     var tilemap:phaser.tilemaps.Tilemap;
+        //     tilemap = whiplash.Lib.phaserScene.add.tilemap('super-mario');
+        //     var tileset = tilemap.addTilesetImage('SuperMarioBros-World1-1', 'super-mario');
+        //     var e = new Entity();
+        //     e.add(new TilemapLayer(tilemap, 0, tileset));
+        //     e.add(new Transform());
+        //     e.get(Transform).position.y = 360;
 
-            engine.addEntity(e);
-        }
-        {
-            var e = new Entity();
-            e.add(new Transform());
-            e.add(new whiplash.phaser.dragonbones.Armature("mecha_1002_101d", "mecha"));
-            e.get(Transform).position.setTo(120, 560);
-            e.get(Transform).scale.setTo(0.45, 0.45);
-            e.get(whiplash.phaser.dragonbones.Armature).animation.play("idle");
-            engine.addEntity(e);
-        }
+        //     engine.addEntity(e);
+        // }
+        // {
+        //     var e = new Entity();
+        //     e.add(new Transform());
+        //     e.add(new whiplash.phaser.dragonbones.Armature("mecha_1002_101d", "mecha"));
+        //     e.get(Transform).position.setTo(120, 560);
+        //     e.get(Transform).scale.setTo(0.45, 0.45);
+        //     e.get(whiplash.phaser.dragonbones.Armature).animation.play("idle");
+        //     engine.addEntity(e);
+        // }
 #end
 
 #if babylonjs

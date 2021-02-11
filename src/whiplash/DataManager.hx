@@ -97,12 +97,12 @@ class DataManager {
 #if embed
                     throw ":TODO:";
 #else
-                    untyped scene.load.dragonbone(
-                        name,
-                        partialPath + ".tex.png",
-                        partialPath + ".tex.json",
-                        partialPath + ".ske.json"
-                    );
+                    // untyped scene.load.dragonbone(
+                    //     name,
+                    //     partialPath + ".tex.png",
+                    //     partialPath + ".tex.json",
+                    //     partialPath + ".ske.json"
+                    // );
 #end
                 }
             }
