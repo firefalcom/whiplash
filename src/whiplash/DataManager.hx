@@ -12,6 +12,7 @@ class DataManager {
     public static var tilemapFiles:Array<String> = Macro.getDataFilePaths("tilemaps");
     public static var atlasFiles:Array<String> = Macro.getDataFilePaths("atlases");
     public static var dragonBonesFiles:Array<String> = Macro.getDataFilePaths("dragonbones");
+    public static var spineFiles:Array<String> = Macro.getDataFilePaths("spine");
 
     public static function getNameFromFile(file:String) {
         var name = new haxe.io.Path(file).file;
@@ -105,9 +106,20 @@ class DataManager {
                     // );
 #end
                 }
+            } 
+
+            for (file in spineFiles) {
+                if(StringTools.endsWith(file, ".json")) {
+                    var partialPath = file.substr(0, file.length - 5);
+                    var path = new haxe.io.Path(partialPath);
+                    var name = path.file;
+#if embed
+                    throw ":TODO:";
+#else
+                    untyped scene.load.spine(name, partialPath + ".json", partialPath + ".atlas");
+#end
+                }
             }
-            var pattyPath = "data/SpinePlugin/pattySkeleton";
-            untyped scene.load.spine("patty", pattyPath + ".json", pattyPath + ".atlas");
         }
 
 #end

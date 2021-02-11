@@ -138,7 +138,7 @@ class Test extends Application {
         graphics.strokeRect(-200, 40, 400, 20);
         engine.addEntity(entity);
         {
-            var patty = untyped whiplash.Lib.phaserScene.add.spine(400, 400, "patty");
+            var patty = untyped whiplash.Lib.phaserScene.add.spine(400, 400, "pattySkeleton");
             patty.setAnimation(1, "Lose", true);
         }
         // {
