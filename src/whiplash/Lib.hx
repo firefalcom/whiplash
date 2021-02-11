@@ -49,6 +49,9 @@ class Lib {
             { key: "dragonbone", plugin: untyped dragonBones.phaser.plugin.DragonBonesScenePlugin, start: true, mapping:"dragonbone" }
             );
         }
+        scenePlugins.push(
+            { key: 'SpinePlugin', plugin: untyped window.SpinePlugin, start: true, mapping: 'spine' }
+            );
 
         var config = {
             width: width, height: height, type: untyped Phaser.WEBGL, canvas: phaserCanvas,
@@ -88,6 +91,7 @@ class Lib {
         ashEngine.addSystem(new whiplash.phaser.LightSystem(), systemsPriority);
         ashEngine.addSystem(new whiplash.phaser.CameraSystem(), systemsPriority);
         ashEngine.addSystem(new whiplash.phaser.dragonbones.ArmatureSystem(), systemsPriority);
+        ashEngine.addSystem(new whiplash.phaser.spine.SpineSystem(), systemsPriority);
 #end
 #if babylonjs
         ashEngine.addSystem(new LightSystem(), systemsPriority);

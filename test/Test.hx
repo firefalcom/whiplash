@@ -14,6 +14,7 @@ import whiplash.math.*;
 import whiplash.phaser.*;
 import whiplash.babylon.components.*;
 import whiplash.common.components.Active;
+import whiplash.phaser.spine.Spine;
 
 class Move {
     public var time:Float = 0.0;
@@ -115,6 +116,8 @@ class Test extends Application {
         entity.add(new Transform());
         entity.add(new Sprite('firefalcom'));
         entity.add(new Move());
+        entity.add(new Spine("spineboy"));
+        entity.get(Spine).setAnimation("death", true);
         engine.addEntity(entity);
         engine.removeEntity(entity);
         entity.get(Sprite).setOrigin(0.5, 0.5);
@@ -134,8 +137,8 @@ class Test extends Application {
         entity.get(Transform).position = new Point(400, 100);
         entity.add(new Graphics());
         var graphics = entity.get(Graphics);
-        graphics.lineStyle(2, 0x0000FF, 1);
-        graphics.strokeRect(-200, 40, 400, 20);
+        // graphics.lineStyle(2, 0x0000FF, 1);
+        // graphics.strokeRect(-200, 40, 400, 20);
         engine.addEntity(entity);
         // {
         //     var tilemap:phaser.tilemaps.Tilemap;
