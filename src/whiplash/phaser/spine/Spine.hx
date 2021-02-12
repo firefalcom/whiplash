@@ -4,6 +4,8 @@ package whiplash.phaser.spine;
 class Spine {
     private var _o:Dynamic;
 
+    public var alpha(get, set):Float;
+
     public function new(name:String, ?a, ?b) {
         _o = untyped whiplash.Lib.phaserScene.add.spine(0, 0, name);
         _o.setActive(false);
@@ -13,5 +15,13 @@ class Spine {
     public function setAnimation(name:String, loop:Bool):String {
         _o.setAnimation(1, name, loop);
         return name;
+    }
+
+    public function set_alpha(alpha:Float):Float {
+        return _o.alpha = alpha;
+    }
+
+    public function get_alpha():Float {
+        return _o.alpha;
     }
 }
