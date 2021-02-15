@@ -12,7 +12,7 @@ class Spine {
         _o.setVisible(false);
     }
 
-    public function setAnimation(name:String, loop:Bool):String {
+    public function setAnimation(name:String, ?loop:Bool):String {
         _o.setAnimation(1, name, loop);
         return name;
     }
