@@ -99,6 +99,7 @@ class Test extends Application {
         engine.addSystem(new MoveSystem(), 1);
         engine.addSystem(new Move3dSystem(), 1);
         engine.addSystem(new Translate3dSystem(), 1);
+        engine.addSystem(new TestSystem(), 1);
 
         var menuState = createState("menu");
         createUiState("main", ".default");
