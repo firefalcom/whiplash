@@ -20,6 +20,7 @@ class Container extends phaser.gameobjects.Container {
         tryAddComponent(entity, Light);
         tryAddComponent(entity, BitmapText);
         tryAddComponent(entity, Emitter);
+        tryAddComponent(entity, whiplash.phaser.spine.Spine);
 
         if(active) {
             Lib.ashEngine.addEntity(entity);
@@ -30,7 +31,11 @@ class Container extends phaser.gameobjects.Container {
         var component = entity.get(componentType);
 
         if(component != null) {
-            add(component);
+            if (Std.is(component, whiplash.phaser.spine.Spine)) {
+                add(untyped component.getSpineGameObject());
+            } else {
+                add(component);
+            }
         }
     }
 }
