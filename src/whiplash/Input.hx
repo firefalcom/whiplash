@@ -184,7 +184,7 @@ class Input {
     static public function setMouseCoordinates(point:Point):Point {
         return mouseCoordinates = point;
     }
-    
+
     static public function getMouseMove():Point {
         return mouseMove;
     }
@@ -192,7 +192,7 @@ class Input {
     static public function setMouseMove(point:Point):Point {
         return mouseMove = point;
     }
-    
+
     static public function getNextMouseMove():Point {
         return nextMouseMove;
     }
@@ -362,6 +362,10 @@ class Input {
             mouseWheelDelta = e.deltaY;
         });
         window.addEventListener("keydown", function(e) {
+            if(keys[e.key]) {
+                return; // :NOTE: Avoid repetitive keydown events.
+            }
+
             justPressedKeys[e.key] = true;
             keys[e.key] = true;
 
