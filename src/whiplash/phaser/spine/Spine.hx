@@ -6,8 +6,8 @@ class Spine {
 
     public var alpha(get, set):Float;
 
-    public function new(name:String, ?animation:String) {
-        _o = untyped whiplash.Lib.phaserScene.add.spine(0, 0, name, animation);
+    public function new(name:String, ?animation:String, ?loop) {
+        _o = untyped whiplash.Lib.phaserScene.add.spine(0, 0, name, animation, loop);
         _o.setActive(false);
         _o.setVisible(false);
     }
