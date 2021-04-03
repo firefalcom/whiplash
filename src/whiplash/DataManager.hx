@@ -43,7 +43,7 @@ class DataManager {
                 var loaded = false;
 
                 for(normalFile in normalmapFiles) {
-                    var normalName = getNameFromFile(file);
+                    var normalName = getNameFromFile(normalFile);
 
                     if(name == normalName) {
                         scene.load.image(name, [file, normalFile]);
