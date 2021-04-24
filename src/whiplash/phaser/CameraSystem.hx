@@ -41,9 +41,9 @@ class CameraSystem extends ListIteratingSystem<CameraNode> {
         var camera = node.camera;
 
         if(untyped camera._follow != null) {
-            position.setTo(camera.scrollX, camera.scrollY);
+            position.setTo(camera.scrollX + camera.width * 0.5, camera.scrollY + camera.height * 0.5);
         } else {
-            camera.setScroll(position.x, position.y);
+            camera.setScroll(position.x - camera.width * 0.5, position.y - camera.height * 0.5);
         }
 
         camera.setAngle(transform.rotation);
