@@ -12,7 +12,9 @@ class LocalizationManager {
     }
 
     static public function add(key:String, value:String) {
-        localization[cast key] = value;
+        if(localization) {
+            localization[cast key] = value;
+        }
     }
 
     static public function generateJsonFromDocument() {
@@ -37,6 +39,10 @@ class LocalizationManager {
     }
 
     static public function get(key:String) {
+        if(localization == null) {
+            return key;
+        }
+
         var value:String = untyped localization[key];
 
         if(value == null) {
