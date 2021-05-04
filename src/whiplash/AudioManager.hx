@@ -33,6 +33,7 @@ class AudioManager {
     static private var musicIsEnabled = true;
     static public var sounds:Map<String, Sound> = new Map();
     static public var music:Dynamic;
+    static public var volumeFactor:Float = 1;
 
     static public function init(scene:phaser.Scene) {
         if(scene != null) {
@@ -49,7 +50,7 @@ class AudioManager {
             return null;
         }
 
-        return sounds[name].play(soundIsEnabled ? volume : 0, loop);
+        return sounds[name].play(soundIsEnabled ? volume * volumeFactor : 0, loop);
     }
 
     static public function stopSound(name) {
@@ -78,7 +79,7 @@ class AudioManager {
         }
 
         music = sounds[name];
-        return music.play(musicIsEnabled ? volume : 0, true);
+        return music.play(musicIsEnabled ? volume * volumeFactor : 0, true);
     }
 
     static public function stopMusic() {
@@ -114,10 +115,11 @@ class AudioManager {
         musicIsEnabled = enabled;
     }
 
-    static public function setVolume(volumeFactor:Float) {
+    static public function setVolume(volume:Float) {
+        volumeFactor = volume < 1 ? volume : 1;
         for (sound in sounds) {
             for (instance in sound.instances) {
-                instance.setVolume(instance.volume * volumeFactor);
+                instance.setVolume(instance.volume * volume);
             }
         }
     }
