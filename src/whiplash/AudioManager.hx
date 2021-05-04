@@ -113,4 +113,12 @@ class AudioManager {
 
         musicIsEnabled = enabled;
     }
+
+    static public function setVolume(volumeFactor:Float) {
+        for (sound in sounds) {
+            for (instance in sound.instances) {
+                instance.setVolume(instance.volume * volumeFactor);
+            }
+        }
+    }
 }
