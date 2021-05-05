@@ -1,18 +1,24 @@
 package whiplash;
 
+typedef SoundInstance = {
+    var sound : Dynamic;
+    var originalVolume : Float;
+}
+
 class Sound {
     public var index:Int = 0;
-    public var instances:Array<Dynamic> = [];
+    public var instances:Array<SoundInstance> = [];
 
     public function new(scene:phaser.Scene, name, count) {
         for(i in 0...count) {
-            instances.push(scene.sound.add(name));
+            instances.push({sound:scene.sound.add(name), originalVolume:1});
         }
     }
 
-    public function play(volume, loop) {
-        var current = instances[index];
-        current.setVolume(volume);
+    public function play(volume:Float, loop, volumeFactor:Float) {
+        var current = instances[index].sound;
+        current.setVolume(volume * volumeFactor);
+        instances[index].originalVolume = volume;
         current.setLoop(loop);
         current.play();
         ++index;
@@ -22,7 +28,7 @@ class Sound {
 
     public function stop() {
         for(instance in instances) {
-            instance.stop();
+            instance.sound.stop();
         }
     }
 }
@@ -33,6 +39,7 @@ class AudioManager {
     static private var musicIsEnabled = true;
     static public var sounds:Map<String, Sound> = new Map();
     static public var music:Dynamic;
+    static public var volumeFactor:Float = 1;
 
     static public function init(scene:phaser.Scene) {
         if(scene != null) {
@@ -49,7 +56,7 @@ class AudioManager {
             return null;
         }
 
-        return sounds[name].play(soundIsEnabled ? volume : 0, loop);
+        return sounds[name].play(soundIsEnabled ? volume : 0, loop, volumeFactor);
     }
 
     static public function stopSound(name) {
@@ -78,7 +85,7 @@ class AudioManager {
         }
 
         music = sounds[name];
-        return music.play(musicIsEnabled ? volume : 0, true);
+        return music.play(musicIsEnabled ? volume : 0, true, volumeFactor);
     }
 
     static public function stopMusic() {
@@ -112,5 +119,14 @@ class AudioManager {
         }
 
         musicIsEnabled = enabled;
+    }
+
+    static public function setVolume(volume:Float) {
+        volumeFactor = volume;
+        for (sound in sounds) {
+            for (instance in sound.instances) {
+                instance.sound.setVolume(instance.originalVolume * volumeFactor);
+            }
+        }
     }
 }
