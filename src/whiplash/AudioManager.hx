@@ -1,13 +1,13 @@
 package whiplash;
 
-typedef SoundVolume = {
+typedef SoundInstance = {
     var sound : Dynamic;
     var originalVolume : Float;
 }
 
 class Sound {
     public var index:Int = 0;
-    public var instances:Array<SoundVolume> = [];
+    public var instances:Array<SoundInstance> = [];
 
     public function new(scene:phaser.Scene, name, count) {
         for(i in 0...count) {
