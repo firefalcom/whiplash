@@ -23,6 +23,11 @@ class SpriteSystem extends ListIteratingSystem<SpriteNode> {
     private function onNodeAdded(node:SpriteNode) {
         var sprite = node.sprite;
 
+        if(!sprite._added) {
+            whiplash.Lib.phaserScene.add.existing(sprite);
+            sprite._added = true;
+        }
+
         if(untyped sprite.body) {
             var transform = node.transform;
             var position = transform.position;
@@ -41,7 +46,7 @@ class SpriteSystem extends ListIteratingSystem<SpriteNode> {
         node.sprite.setVisible(false);
     }
 
-    private inline function apply(node:SpriteNode) {
+    private function apply(node:SpriteNode) {
         var transform = node.transform;
         var position = transform.position;
         var scale = transform.scale;
