@@ -22,11 +22,7 @@ class SpriteSystem extends ListIteratingSystem<SpriteNode> {
 
     private function onNodeAdded(node:SpriteNode) {
         var sprite = node.sprite;
-
-        if(!sprite._added) {
-            whiplash.Lib.phaserScene.add.existing(sprite);
-            sprite._added = true;
-        }
+        whiplash.Lib.phaserScene.add.existing(sprite);
 
         if(untyped sprite.body) {
             var transform = node.transform;
@@ -44,6 +40,8 @@ class SpriteSystem extends ListIteratingSystem<SpriteNode> {
     private function onNodeRemoved(node:SpriteNode) {
         node.sprite.setActive(false);
         node.sprite.setVisible(false);
+        untyped whiplash.Lib.phaserScene.add.updateList.remove(node.sprite);
+        untyped whiplash.Lib.phaserScene.add.displayList.remove(node.sprite);
     }
 
     private function apply(node:SpriteNode) {

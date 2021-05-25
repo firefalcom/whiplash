@@ -20,11 +20,7 @@ class EmitterSystem extends ListIteratingSystem<EmitterNode> {
     }
 
     private function onNodeAdded(node:EmitterNode) {
-        if(!node.emitter._added) {
-            whiplash.Lib.phaserScene.add.existing(node.emitter);
-            node.emitter._added = true;
-        }
-
+        whiplash.Lib.phaserScene.add.existing(node.emitter);
         apply(node);
         node.emitter.setActive(true);
         node.emitter.setVisible(true);
@@ -33,6 +29,8 @@ class EmitterSystem extends ListIteratingSystem<EmitterNode> {
     private function onNodeRemoved(node:EmitterNode) {
         node.emitter.setActive(false);
         node.emitter.setVisible(false);
+        untyped whiplash.Lib.phaserScene.add.updateList.remove(node.emitter);
+        untyped whiplash.Lib.phaserScene.add.displayList.remove(node.emitter);
     }
 
     private inline function apply(node:EmitterNode) {
