@@ -1,9 +1,11 @@
 package whiplash.phaser;
 
 class Sprite extends phaser.gameobjects.Sprite {
+    public var _added = false;
+
     public function new(?key, ?frame) {
         super(Lib.phaserScene, 0, 0, key, frame);
-        Lib.phaserScene.add.existing(this);
+        // Lib.phaserScene.add.existing(this);
         setActive(false);
         setVisible(false);
     }

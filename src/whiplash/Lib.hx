@@ -99,6 +99,7 @@ class Lib {
         ashEngine.addSystem(new VisibilitySystem(), systemsPriority);
         ashEngine.addSystem(new SoundSystem(), systemsPriority);
 #end
+        ashEngine.addSystem(new whiplash.factory.PoolSystem(), systemsPriority);
 #if !phaser
         getDeltaTime = babylonEngine.getDeltaTime;
         var totalTime = 0.0;

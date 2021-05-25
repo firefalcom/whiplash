@@ -20,13 +20,19 @@ class EmitterSystem extends ListIteratingSystem<EmitterNode> {
     }
 
     private function onNodeAdded(node:EmitterNode) {
+        if(!node.emitter._added) {
+            whiplash.Lib.phaserScene.add.existing(node.emitter);
+            node.emitter._added = true;
+        }
+
         apply(node);
         node.emitter.setActive(true);
         node.emitter.setVisible(true);
     }
 
     private function onNodeRemoved(node:EmitterNode) {
-        node.emitter.destroy();
+        node.emitter.setActive(false);
+        node.emitter.setVisible(false);
     }
 
     private inline function apply(node:EmitterNode) {
